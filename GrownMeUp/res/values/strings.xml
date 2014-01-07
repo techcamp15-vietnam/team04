@@ -14,5 +14,11 @@
     <string name="title_activity_high_score">HighScoreActivity</string>
     <string name="title_activity_create_stage">CreateStageActivity</string>
     <string name="title_activity_edit_stage">EditStageActivity</string>
-
+    <string name="description_image_thumbnail">image thubnail</string>
+    <string name="description_camera_image_button">camera image button</string>
+    <string name="description_save_item">save image button</string>
+    <string name="description_add_item">add image button</string>
+    <string name="description_custom_stage">custom stage button</string>
+    <string name="stage_detail_name">Name of stage</string>
+    
 </resources>
