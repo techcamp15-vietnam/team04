@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="vn.techcamp.team04.grownmeup"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="18" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="vn.techcamp.team04.grownmeup.MainMenuActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="vn.techcamp.team04.grownmeup.LearningActivity"
+            android:label="@string/title_activity_learning" >
+        </activity>
+        <activity
+            android:name="vn.techcamp.team04.grownmeup.SubjectChooserActivity"
+            android:label="@string/title_activity_subject_chooser" >
+        </activity>
+        <activity
+            android:name="vn.techcamp.team04.grownmeup.StageChooserActivity"
+            android:label="@string/title_activity_stage_chooser" >
+        </activity>
+        <activity
+            android:name="vn.techcamp.team04.grownmeup.PlayingQuizActivity"
+            android:label="@string/title_activity_playing_quiz" >
+        </activity>
+        <activity
+            android:name="vn.techcamp.team04.grownmeup.OptionActivity"
+            android:label="@string/title_activity_option" >
+        </activity>
+        <activity
+            android:name="vn.techcamp.team04.grownmeup.AddNewItemActivity"
+            android:label="@string/title_activity_add_item" >
+        </activity>
+        <activity
+            android:name="vn.techcamp.team04.grownmeup.CustomStageActivity"
+            android:label="@string/title_activity_custom_stage" >
+        </activity>
+        <activity
+            android:name="vn.techcamp.team04.grownmeup.HighScoreActivity"
+            android:label="@string/title_activity_high_score" >
+        </activity>
+        <activity
+            android:name="vn.techcamp.team04.grownmeup.CreateStageActivity"
+            android:label="@string/title_activity_create_stage" >
+        </activity>
+        <activity
+            android:name="vn.techcamp.team04.grownmeup.EditStageActivity"
+            android:label="@string/title_activity_edit_stage" >
+        </activity>
+    </application>
+
+</manifest>

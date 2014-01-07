@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GrownMeUp</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_learning">LearningActivity</string>
+    <string name="title_activity_subject_chooser">SubjectChooser</string>
+    <string name="title_activity_stage_chooser">StageChooser</string>
+    <string name="title_activity_playing_quiz">PlayingQuiz</string>
+    <string name="title_activity_option">Option</string>
+    <string name="title_activity_add_item">AddItem</string>
+    <string name="title_activity_custom_stage">CustomStage</string>
+    <string name="title_activity_high_score">HighScoreActivity</string>
+    <string name="title_activity_create_stage">CreateStageActivity</string>
+    <string name="title_activity_edit_stage">EditStageActivity</string>
+
+</resources>
