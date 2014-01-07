@@ -8,9 +8,41 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".OptionActivity" >
 
-    <TextView
+    <ImageButton
+        android:id="@+id/option_add_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="173dp"
+        android:contentDescription="@string/description_add_item"
+        android:src="@drawable/add_item" />
+
+    <ImageButton
+        android:id="@+id/option_custom_stage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/option_add_item"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/description_custom_stage"
+        android:src="@drawable/custom_stage" />
+
+    <ImageButton
+        android:id="@+id/option_language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/option_custom_stage"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/description_custom_stage"
+        android:src="@drawable/language" />
+
+    <ImageButton
+        android:id="@+id/option_about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/option_language"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/description_add_item"
+        android:src="@drawable/about" />
 
 </RelativeLayout>

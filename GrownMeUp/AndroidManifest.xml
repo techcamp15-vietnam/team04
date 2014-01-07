@@ -15,7 +15,9 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="vn.techcamp.team04.grownmeup.MainMenuActivity"
-            android:label="@string/app_name" android:screenOrientation="landscape" android:theme="@style/NoActionBar">
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,43 +26,63 @@
         </activity>
         <activity
             android:name="vn.techcamp.team04.grownmeup.LearningActivity"
-            android:label="@string/title_activity_learning" android:theme="@style/NoActionBar" android:screenOrientation="landscape">
+            android:label="@string/title_activity_learning"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBar" >
         </activity>
         <activity
             android:name="vn.techcamp.team04.grownmeup.SubjectChooserActivity"
-            android:label="@string/title_activity_subject_chooser" >
+            android:label="@string/title_activity_subject_chooser"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBar" >
         </activity>
         <activity
             android:name="vn.techcamp.team04.grownmeup.StageChooserActivity"
-            android:label="@string/title_activity_stage_chooser" android:theme="@style/NoActionBar" android:screenOrientation="landscape">
+            android:label="@string/title_activity_stage_chooser"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBar" >
         </activity>
         <activity
             android:name="vn.techcamp.team04.grownmeup.PlayingQuizActivity"
-            android:label="@string/title_activity_playing_quiz" >
+            android:label="@string/title_activity_playing_quiz"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBar" >
         </activity>
         <activity
             android:name="vn.techcamp.team04.grownmeup.OptionActivity"
-            android:label="@string/title_activity_option" >
+            android:label="@string/title_activity_option"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBar" >
         </activity>
         <activity
             android:name="vn.techcamp.team04.grownmeup.AddNewItemActivity"
-            android:label="@string/title_activity_add_item" >
+            android:label="@string/title_activity_add_item"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBar" >
         </activity>
         <activity
             android:name="vn.techcamp.team04.grownmeup.CustomStageActivity"
-            android:label="@string/title_activity_custom_stage" >
+            android:label="@string/title_activity_custom_stage"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBar" >
         </activity>
         <activity
             android:name="vn.techcamp.team04.grownmeup.HighScoreActivity"
-            android:label="@string/title_activity_high_score" >
+            android:label="@string/title_activity_high_score"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBar" >
         </activity>
         <activity
             android:name="vn.techcamp.team04.grownmeup.CreateStageActivity"
-            android:label="@string/title_activity_create_stage" >
+            android:label="@string/title_activity_create_stage"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBar" >
         </activity>
         <activity
             android:name="vn.techcamp.team04.grownmeup.EditStageActivity"
-            android:label="@string/title_activity_edit_stage" >
+            android:label="@string/title_activity_edit_stage"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBar" >
         </activity>
     </application>
 
