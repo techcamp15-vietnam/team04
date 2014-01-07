@@ -27,4 +27,8 @@
     <dimen name="learning_screen_text_size">40sp</dimen>
     <dimen name="learning_screen_sound_margin_left">30dp</dimen>
 
+    <!-- stage detail screen -->
+    <dimen name="stage_detail_padding_right">20dp</dimen>
+    <dimen name="stage_detail_padding_left">20dp</dimen>
+
 </resources>
