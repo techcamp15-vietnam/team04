@@ -18,8 +18,8 @@ public class CustomStageActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.custom_stage_screen);
-		initView();
+		setContentView(R.layout.stage_detail_screen);
+//		initView();
 	}
 
 	@Override
