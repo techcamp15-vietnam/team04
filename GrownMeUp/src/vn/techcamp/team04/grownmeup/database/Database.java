@@ -383,10 +383,10 @@ public class Database {
 						newItem.add(i + 1 + ""); // subjectID
 						newItem.add(DEFAUT_VALUE[i][j + 1]); // description
 						String image = DEFAUT_VALUE[i][j + 1];
-						image = image.replaceAll(" ", "_");
-						Log.e("", image);
-						newItem.add(image); // image
-						newItem.add(DEFAUT_VALUE[i][j + 1]); // audio
+						image = "image/" + image.replaceAll(" ", "_") + ".png";
+						Log.e("image link", image);
+						newItem.add(image); // image path
+						newItem.add(""); // no audio
 						Log.e("newItems", newItem.toString());
 						query(ACTION_ADD_NEW_ITEM, newItem);
 					}
