@@ -3,6 +3,7 @@ package vn.techcamp.team04.grownmeup;
 import vn.techcamp.team04.grownmeup.database.Database;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -27,8 +28,8 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_menu_screen);
 		initView();
-		db = new Database(this);
-		db.setDefaultData();
+
+		createDefaultValue();
 	}
 
 	public void initView() {
@@ -66,6 +67,8 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 			startActivity(subjectChooserActivity);
 			break;
 		case R.id.btn_highscore:
+			Intent highScoreActivity = new Intent(this, HighScoreActivity.class);
+			startActivity(highScoreActivity);
 			break;
 		case R.id.btn_option:
 			Intent optionIntent = new Intent(this, OptionActivity.class);
@@ -79,6 +82,24 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 			break;
 		}
 
+	}
+
+	private void createDefaultValue() {
+		db = new Database(this);
+		db.setDefaultData();
+
+		SharedPreferences settings = getSharedPreferences(
+				HighScoreActivity.ACHIEVEMENT, 0);
+		if (!settings.contains(HighScoreActivity.badge1)) {
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putBoolean(HighScoreActivity.badge1, false);
+			editor.putBoolean(HighScoreActivity.badge2, false);
+			editor.putBoolean(HighScoreActivity.badge3, false);
+			editor.putBoolean(HighScoreActivity.badge4, false);
+			editor.putFloat(HighScoreActivity.badge5, (float) 0.0);
+			editor.putBoolean(HighScoreActivity.badge6, false);
+			editor.commit();
+		}
 	}
 
 }
