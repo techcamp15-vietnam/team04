@@ -28,7 +28,7 @@
         </activity>
         <activity
             android:name="vn.techcamp.team04.grownmeup.SubjectChooserActivity"
-            android:label="@string/title_activity_subject_chooser" >
+            android:label="@string/title_activity_subject_chooser" android:screenOrientation="landscape" android:theme="@style/NoActionBar">
         </activity>
         <activity
             android:name="vn.techcamp.team04.grownmeup.StageChooserActivity"

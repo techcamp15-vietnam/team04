@@ -53,10 +53,12 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_learn:
-			Intent intent = new Intent(this, LearningActivity.class);
-			startActivity(intent);
+			Intent learningActivity = new Intent(this, LearningActivity.class);
+			startActivity(learningActivity);
 			break;
 		case R.id.btn_play:
+			Intent subjectChooserActivity = new Intent(this, SubjectChooserActivity.class);
+			startActivity(subjectChooserActivity);
 			break;
 		case R.id.btn_highscore:
 			break;
