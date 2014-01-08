@@ -3,6 +3,8 @@ package vn.techcamp.team04.grownmeup;
 import vn.techcamp.team04.grownmeup.database.Database;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -15,6 +17,8 @@ import android.widget.ImageButton;
  */
 public class MainMenuActivity extends Activity implements OnClickListener {
 
+	public static final String PREFS_NAME = "Setting";
+
 	private ImageButton btnLearn;
 	private ImageButton btnPlay;
 	private ImageButton btnHighScore;
@@ -22,13 +26,23 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 	private ImageButton btnExit;
 	private Database db;
 
+	public MediaPlayer sound;
+	private boolean isMute;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_menu_screen);
 		initView();
+
 		db = new Database(this);
 		db.setDefaultData();
+
+		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+		boolean silent = settings.getBoolean("silentMode", false);
+		playLoopSound(R.raw.sound_background_menu);
+
+		createDefaultValue();
 	}
 
 	public void initView() {
@@ -66,6 +80,8 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 			startActivity(subjectChooserActivity);
 			break;
 		case R.id.btn_highscore:
+			Intent highScoreActivity = new Intent(this, HighScoreActivity.class);
+			startActivity(highScoreActivity);
 			break;
 		case R.id.btn_option:
 			Intent optionIntent = new Intent(this, OptionActivity.class);
@@ -79,6 +95,101 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 			break;
 		}
 
+	}
+
+	private synchronized void playSound(int idSound) {
+		if (this.isMute == false) {
+			if (sound != null) {
+				sound.release();
+				sound = null;
+				// Log.v("Huy bo", String.valueOf(i));
+			}
+			// Log.v("Khoi tao", String.valueOf(i));
+			sound = MediaPlayer.create(MainMenuActivity.this, idSound);
+			if (sound != null) {
+				sound.seekTo(0);
+				sound.start();
+			}
+			Runtime.getRuntime().gc();
+		}
+	}
+
+	private void releaseSound() {
+		if (this.isMute == false && sound != null) {
+			sound.release();
+			sound = null;
+			// Log.v("Con lai", String.valueOf(i));
+		}
+	}
+
+	private void pauseSound() {
+		if (this.isMute == false && sound != null) {
+			sound.pause();
+		}
+	}
+
+	private void startSound() {
+		if (this.isMute == false && sound != null) {
+			sound.start();
+		}
+	}
+
+	private void playLoopSound(int idSound) {
+		if (this.isMute == false) {
+			if (sound != null) {
+				sound.release();
+				sound = null;
+			}
+			sound = MediaPlayer.create(MainMenuActivity.this, idSound);
+			if (sound != null) {
+				sound.seekTo(0);
+				sound.setLooping(true);
+				sound.start();
+			}
+			Runtime.getRuntime().gc();
+		}
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		releaseSound();
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		startSound();
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		pauseSound();
+
+	}
+
+	/**
+	 * @author zendbui
+	 * @author 4-B Bui Trong Hieu
+	 * Create default value for apps: database and achievement  
+	 */
+	private void createDefaultValue() {
+		db = new Database(this);
+		db.setDefaultData();
+
+		SharedPreferences settings = getSharedPreferences(
+				HighScoreActivity.ACHIEVEMENT, 0);
+		if (!settings.contains(HighScoreActivity.badge1)) {
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putBoolean(HighScoreActivity.badge1, false);
+			editor.putBoolean(HighScoreActivity.badge2, false);
+			editor.putBoolean(HighScoreActivity.badge3, false);
+			editor.putBoolean(HighScoreActivity.badge4, false);
+			editor.putFloat(HighScoreActivity.badge5, (float) 0.0);
+			editor.putBoolean(HighScoreActivity.badge6, false);
+			editor.commit();
+		}
 	}
 
 }

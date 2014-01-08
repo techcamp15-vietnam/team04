@@ -40,7 +40,9 @@ public class LearningActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.learning_screen);
 		initView();
+		
 		tts = new mTTS(this, 0.7f);
+		
 		db = new Database(this);
 		currentItem = 0;
 		ArrayList<String> currentSubject = new ArrayList<String>();
