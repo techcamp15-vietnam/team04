@@ -49,9 +49,11 @@ public class Database {
 	private String[] allColumnsStageDetail = { mSQLiteHelper.STAGE_ID,
 			mSQLiteHelper.ITEM_ID };
 
-	private static final String[][] DEFAUT_VALUE = { { "Household", "chair",
-			"fan", "fork", "knife", "pressure cooker", "rice cooker", "shoe",
-			"socket", "table", "tv" } };
+	private static final String[][] DEFAUT_VALUE = {
+			{ "Household", "chair", "fan", "fork", "knife", "pressure cooker",
+					"rice cooker", "shoe", "socket", "table", "tv" },
+			{ "animal" }, { "car" }, { "city" }, { "clothes" }, { "color" },
+			{ "home" }, { "plant" }, { "school" } };
 
 	public Database(Context context) {
 		dbHelper = new mSQLiteHelper(context);
@@ -378,11 +380,11 @@ public class Database {
 				try {
 					query(ACTION_ADD_NEW_SUBJECT, newSubject);
 					// insert items to objects.
-					for (int j = 0; j < DEFAUT_VALUE[i].length; j++) {
+					for (int j = 1; j < DEFAUT_VALUE[i].length; j++) {
 						ArrayList<String> newItem = new ArrayList<String>();
 						newItem.add(i + 1 + ""); // subjectID
-						newItem.add(DEFAUT_VALUE[i][j + 1]); // description
-						String image = DEFAUT_VALUE[i][j + 1];
+						newItem.add(DEFAUT_VALUE[i][j]); // description
+						String image = DEFAUT_VALUE[i][j];
 						image = "image/" + image.replaceAll(" ", "_") + ".png";
 						Log.e("image link", image);
 						newItem.add(image); // image path
