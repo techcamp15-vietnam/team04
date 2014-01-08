@@ -1,6 +1,7 @@
 package vn.techcamp.team04.grownmeup;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -58,8 +59,10 @@ public class SubjectChooserActivity extends Activity implements OnClickListener 
 
 		btnNext.setOnClickListener(this);
 		btnPrev.setOnClickListener(this);
-
 		lnTopLeft.setOnClickListener(this);
+		lnTopRight.setOnClickListener(this);
+		lnBottomLeft.setOnClickListener(this);
+		lnBottomRight.setOnClickListener(this);
 
 	}
 
@@ -82,6 +85,8 @@ public class SubjectChooserActivity extends Activity implements OnClickListener 
 
 		case R.id.ln_subject_top_left:
 			// Toast.makeText(this, "top left", Toast.LENGTH_SHORT).show();
+			Intent stageChooser = new Intent(this, StageChooserActivity.class);
+			startActivity(stageChooser);
 			
 			
 

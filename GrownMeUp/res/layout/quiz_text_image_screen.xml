@@ -1,8 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_mainmenu"
     android:orientation="vertical" >
-    
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tv_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/quiz_text_image_question_margin_top"
+        android:background="@color/white_transparent"
+        android:text="Car"
+        android:textSize="@dimen/quiz_text_image_question_textsize" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tv_question"
+        android:background="@color/white_transparent"
+        android:layout_alignTop="@+id/tv_question"
+        android:text="20s"
+        android:layout_marginLeft="@dimen/quiz_text_image_time_margin_left"
+        android:textSize="@dimen/quiz_text_image_question_textsize" />
+
+    <RelativeLayout
+        android:id="@+id/rltlayout_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_question"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/quiz_text_image_answer_margin_top" >
+
+        <ImageView
+            android:id="@+id/iv_answer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="@dimen/quiz_text_image_answer_margin"
+            android:background="@color/white_transparent"
+            android:src="@drawable/subject_car" />
+
+        <ImageView
+            android:id="@+id/iv_answer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/quiz_text_image_answer_margin"
+            android:layout_toRightOf="@+id/iv_answer1"
+            android:background="@color/white_transparent"
+            android:src="@drawable/subject_car" />
+
+        <ImageView
+            android:id="@+id/iv_answer3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_answer1"
+            android:layout_margin="@dimen/quiz_text_image_answer_margin"
+            android:background="@color/white_transparent"
+            android:src="@drawable/subject_car" />
+
+        <ImageView
+            android:id="@+id/iv_answer4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_answer2"
+            android:layout_margin="@dimen/quiz_text_image_answer_margin"
+            android:layout_toRightOf="@+id/iv_answer3"
+            android:background="@color/white_transparent"
+            android:src="@drawable/subject_car" />
+    </RelativeLayout>
+
+</RelativeLayout>
