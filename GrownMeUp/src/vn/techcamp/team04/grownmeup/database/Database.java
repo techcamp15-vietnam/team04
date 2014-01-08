@@ -50,10 +50,10 @@ public class Database {
 			mSQLiteHelper.ITEM_ID };
 
 	private static final String[][] DEFAUT_VALUE = {
-			{ "home", "chair", "fan", "fork", "knife", "pressure cooker",
+			{ "Home", "chair", "fan", "fork", "knife", "pressure cooker",
 					"rice cooker", "shoe", "socket", "table", "tv" },
-			{ "animal" }, { "car" }, { "city" }, { "clothes" }, { "color" },
-			{ "plant" }, { "school" } };
+			{ "Animal" }, { "Car" }, { "City" }, { "Clothes" }, { "Color" },
+			{ "Plant" }, { "School" } };
 
 	public Database(Context context) {
 		dbHelper = new mSQLiteHelper(context);
