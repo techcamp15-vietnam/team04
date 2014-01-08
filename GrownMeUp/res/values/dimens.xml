@@ -4,6 +4,18 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!-- add item screen. -->
+    <dimen name="add_item_image_thumbnail_height">120dp</dimen>
+    <dimen name="add_item_image_thumbnail_width">120dp</dimen>
+    <dimen name="add_item_image_thumbnail_magrin_bottom">10dp</dimen>
+    <dimen name="add_item_btn_record_margin_left">10dp</dimen>
+    <dimen name="add_item_btn_record_margin_top">10dp</dimen>
+    <dimen name="add_item_margin_bottom">10dp</dimen>
+
+    <!-- custom stage screen.     <dimen name="custom_stage_">10dp</dimen> -->
+    <dimen name="custom_stage_margin_top">10dp</dimen>
+    <dimen name="custom_stage_margin_right">20dp</dimen>
+
     <!-- Main Menu -->
     <dimen name="mainmenu_item_padding">10dp</dimen>
     <dimen name="mainmenu_margin_top">90dp</dimen>
@@ -20,5 +32,11 @@
 
     <!-- Quiz Image -> Text -->
     <dimen name="quiz_image_text_image_margin_top">20dp</dimen>
+
+    <!-- stage detail screen -->
+    <dimen name="stage_detail_padding_right">20dp</dimen>
+    <dimen name="stage_detail_padding_left">20dp</dimen>
+    <dimen name="stage_detail_padding_bottom">10dp</dimen>
+    <dimen name="stage_detail_padding_top">10dp</dimen>
 
 </resources>
