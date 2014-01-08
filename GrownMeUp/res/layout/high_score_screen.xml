@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_learn"
     tools:context=".HighScoreActivity" >
 
     <ImageButton
@@ -16,9 +17,11 @@
         android:src="@drawable/report" />
 
     <RelativeLayout
+        android:id="@+id/high_score_relative_badge"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/high_score_btn_report"
+        android:background="@color/white_transparent"
         android:orientation="vertical" >
 
         <ImageView
@@ -29,7 +32,7 @@
             android:layout_marginLeft="@dimen/high_score_margin_left"
             android:layout_toLeftOf="@+id/high_score_img_achievement_2"
             android:background="@android:color/transparent"
-            android:src="@drawable/achievement_1" />
+            android:src="@drawable/badge1" />
 
         <ImageView
             android:id="@+id/high_score_img_achievement_2"
@@ -39,7 +42,7 @@
             android:layout_margin="@dimen/high_score_margin_bottom"
             android:layout_marginLeft="@dimen/high_score_margin_left"
             android:background="@android:color/transparent"
-            android:src="@drawable/achievement_2" />
+            android:src="@drawable/badge2" />
 
         <ImageView
             android:id="@+id/high_score_img_achievement_3"
@@ -49,7 +52,7 @@
             android:layout_marginLeft="@dimen/high_score_margin_left"
             android:layout_toRightOf="@+id/high_score_img_achievement_2"
             android:background="@android:color/transparent"
-            android:src="@drawable/achievement_3" />
+            android:src="@drawable/badge3" />
 
         <ImageView
             android:id="@+id/high_score_img_achievement_4"
@@ -60,7 +63,7 @@
             android:layout_marginLeft="@dimen/high_score_margin_left"
             android:layout_toLeftOf="@+id/high_score_img_achievement_5"
             android:background="@android:color/transparent"
-            android:src="@drawable/achievement_4" />
+            android:src="@drawable/badge4" />
 
         <ImageView
             android:id="@+id/high_score_img_achievement_5"
@@ -71,7 +74,7 @@
             android:layout_margin="@dimen/high_score_margin_bottom"
             android:layout_marginLeft="@dimen/high_score_margin_left"
             android:background="@android:color/transparent"
-            android:src="@drawable/achievement_5" />
+            android:src="@drawable/badge5" />
 
         <ImageView
             android:id="@+id/high_score_img_achievement_6"
@@ -82,7 +85,24 @@
             android:layout_marginLeft="@dimen/high_score_margin_left"
             android:layout_toRightOf="@+id/high_score_img_achievement_5"
             android:background="@android:color/transparent"
-            android:src="@drawable/achievement_6" />
+            android:src="@drawable/black_badge" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/high_score_relative_badge"
+        android:layout_marginTop="20dp"
+        android:background="@color/white_transparent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/high_socre_tv_explain_badge"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/hello_world"
+            android:textSize="30sp" />
     </RelativeLayout>
 
 </RelativeLayout>
