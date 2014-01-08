@@ -1,12 +1,14 @@
 package vn.techcamp.team04.grownmeup;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class StageChooserActivity extends Activity implements OnClickListener {
@@ -22,6 +24,11 @@ public class StageChooserActivity extends Activity implements OnClickListener {
 	private TextView tvTopRight;
 	private TextView tvBottomLeft;
 	private TextView tvBottomRight;
+
+	private LinearLayout lnTopLeft;
+	private LinearLayout lnTopRight;
+	private LinearLayout lnBottomLeft;
+	private LinearLayout lnBottomRight;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +51,17 @@ public class StageChooserActivity extends Activity implements OnClickListener {
 		tvBottomLeft = (TextView) findViewById(R.id.tv_bottom_left);
 		tvBottomRight = (TextView) findViewById(R.id.tv_bottom_right);
 
+		lnTopLeft = (LinearLayout) findViewById(R.id.ln_subject_top_left);
+		lnTopRight = (LinearLayout) findViewById(R.id.ln_subject_top_right);
+		lnBottomLeft = (LinearLayout) findViewById(R.id.ln_subject_bottom_left);
+		lnBottomRight = (LinearLayout) findViewById(R.id.ln_subject_bottom_right);
+
 		btnNext.setOnClickListener(this);
 		btnPrev.setOnClickListener(this);
+		lnTopLeft.setOnClickListener(this);
+		lnTopRight.setOnClickListener(this);
+		lnBottomLeft.setOnClickListener(this);
+		lnBottomRight.setOnClickListener(this);
 
 	}
 
@@ -63,6 +79,21 @@ public class StageChooserActivity extends Activity implements OnClickListener {
 
 			break;
 		case R.id.btn_prev:
+
+			break;
+		case R.id.ln_subject_top_left:
+			// Toast.makeText(this, "top left", Toast.LENGTH_SHORT).show();
+			Intent playScreen = new Intent(this, PlayingQuizActivity.class);
+			startActivity(playScreen);
+
+			break;
+		case R.id.ln_subject_top_right:
+
+			break;
+		case R.id.ln_subject_bottom_left:
+
+			break;
+		case R.id.ln_subject_bottom_right:
 
 			break;
 

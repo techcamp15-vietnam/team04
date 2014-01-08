@@ -34,6 +34,15 @@
 
     <!-- Quiz Image -> Text -->
     <dimen name="quiz_image_text_image_margin_top">20dp</dimen>
+    <dimen name="quiz_image_text_time_textsize">60dp</dimen>
+
+    <!-- Quiz  Text ->Image -->
+    <dimen name="quiz_text_image_image_margin_top">20dp</dimen>
+    <dimen name="quiz_text_image_question_textsize">60dp</dimen>
+    <dimen name="quiz_text_image_question_margin_top">70dp</dimen>
+    <dimen name="quiz_text_image_answer_margin_top">10dp</dimen>
+    <dimen name="quiz_text_image_answer_margin">10dp</dimen>
+    <dimen name="quiz_text_image_time_margin_left">80dp</dimen>
 
     <!-- stage detail screen -->
     <dimen name="stage_detail_padding_right">20dp</dimen>

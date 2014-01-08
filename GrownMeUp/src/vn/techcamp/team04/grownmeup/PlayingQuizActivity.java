@@ -9,7 +9,7 @@ public class PlayingQuizActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.playing_quiz_screen);
+		setContentView(R.layout.quiz_image_text_screen);
 	}
 
 	@Override
