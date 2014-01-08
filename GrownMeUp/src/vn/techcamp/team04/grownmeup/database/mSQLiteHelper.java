@@ -36,6 +36,8 @@ public class mSQLiteHelper extends SQLiteOpenHelper {
 	public static final String ITEM_NAME = "item_name";
 	public static final String ITEM_IMG_LINK = "item_img_link";
 	public static final String ITEM_AUDIO_LINK = "item_audio_link";
+	public static final String ITEM_CORRECT_ANSWER = "item_correct_answer";
+	public static final String ITEM_WRONG_ANSWER = "item_wrong_answer";
 
 	/**
 	 * Creating database statement
@@ -55,7 +57,9 @@ public class mSQLiteHelper extends SQLiteOpenHelper {
 			+ TABLE_ITEM + " (" + ITEM_ID
 			+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + SUBJECT_ID
 			+ " INTEGER, " + ITEM_NAME + " VARCHAR, " + ITEM_IMG_LINK
-			+ " VARCHAR, " + ITEM_AUDIO_LINK + " VARCHAR " + ");";
+			+ " VARCHAR, " + ITEM_AUDIO_LINK + " VARCHAR, "
+			+ ITEM_CORRECT_ANSWER + "INTEGER, " + ITEM_WRONG_ANSWER
+			+ "INTEGER " + ");";
 
 	private static final String CREATE_TABLE_STAGE_DETAIL = "CREATE TABLE "
 			+ TABLE_STAGE_DETAIL + " (" + STAGE_ID + " INTEGER, " + ITEM_ID

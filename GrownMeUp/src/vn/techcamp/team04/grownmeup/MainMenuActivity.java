@@ -169,6 +169,11 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 
 	}
 
+	/**
+	 * @author zendbui
+	 * @author 4-B Bui Trong Hieu
+	 * Create default value for apps: database and achievement  
+	 */
 	private void createDefaultValue() {
 		db = new Database(this);
 		db.setDefaultData();

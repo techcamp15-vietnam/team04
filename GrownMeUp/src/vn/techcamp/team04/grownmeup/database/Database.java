@@ -33,6 +33,8 @@ public class Database {
 	public static final int ACTION_GET_ITEM = 8;
 	public static final int ACTION_GET_ALL_ITEM = 9;
 	public static final int ACTION_ADD_NEW_ITEM = 10;
+	public static final int ACTION_ADD_ITEM_ANSWER = 11;
+	public static final int ACTION_ADD_TOTAL_ITEM_ANSWER = 12;
 
 	public static final String KEY_SUCCESS = "success";
 	public static final String KEY_FAILURE = "failure";
