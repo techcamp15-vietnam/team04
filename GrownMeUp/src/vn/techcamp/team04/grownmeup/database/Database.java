@@ -51,9 +51,10 @@ public class Database {
 
 	private static final String[][] DEFAUT_VALUE = {
 			{ "Home", "chair", "fan", "fork", "knife", "pressure cooker",
-					"rice cooker", "shoe", "socket", "table", "tv" },
-			{ "Animal" }, { "Car" }, { "City" }, { "Clothes" }, { "Color" },
-			{ "Plant" }, { "School" } };
+					"rice cooker", "shoe", "socket", "table", "tv", "bag",
+					"bowl", "cup", "door", "dvd player", "remote", "water can",
+					"lock" }, { "Animal" }, { "Car" }, { "City" },
+			{ "Clothes" }, { "Color" }, { "Plant" }, { "School" } };
 
 	public Database(Context context) {
 		dbHelper = new mSQLiteHelper(context);
