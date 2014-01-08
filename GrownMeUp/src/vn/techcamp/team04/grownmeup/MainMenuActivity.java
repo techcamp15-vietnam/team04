@@ -23,8 +23,8 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.stage_detail_screen);
-		//initView();
+		setContentView(R.layout.main_menu_screen);
+		initView();
 	}
 
 	public void initView() {
@@ -61,6 +61,9 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 		case R.id.btn_highscore:
 			break;
 		case R.id.btn_option:
+			Intent optionIntent = new Intent(this, OptionActivity.class);
+			startActivity(optionIntent);
+
 			break;
 		case R.id.btn_exit:
 			break;

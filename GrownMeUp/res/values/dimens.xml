@@ -11,8 +11,10 @@
     <dimen name="add_item_btn_record_margin_left">10dp</dimen>
     <dimen name="add_item_btn_record_margin_top">10dp</dimen>
     <dimen name="add_item_margin_bottom">10dp</dimen>
+    <dimen name="add_item_screen_padding_top">20dp</dimen>
+    <dimen name="add_item_screen_padding_bottom">20dp</dimen>
 
-    <!-- custom stage screen.     <dimen name="custom_stage_">10dp</dimen> -->
+    <!-- custom stage screen. -->
     <dimen name="custom_stage_margin_top">10dp</dimen>
     <dimen name="custom_stage_margin_right">20dp</dimen>
 
@@ -32,5 +34,9 @@
     <dimen name="stage_detail_padding_left">20dp</dimen>
     <dimen name="stage_detail_padding_bottom">10dp</dimen>
     <dimen name="stage_detail_padding_top">10dp</dimen>
+
+    <!-- Option screen -->
+    <dimen name="option_margin_top">20dp</dimen>
+    <dimen name="option_margin_bottom">10dp</dimen>
 
 </resources>

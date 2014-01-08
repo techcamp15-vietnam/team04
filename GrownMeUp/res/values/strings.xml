@@ -21,5 +21,6 @@
     <string name="description_custom_stage">custom stage button</string>
     <string name="stage_detail_name">Name of stage</string>
     <string name="description_stage_detail_default_desc">description</string>
+    <string name="add_item_hint">description</string>
 
 </resources>

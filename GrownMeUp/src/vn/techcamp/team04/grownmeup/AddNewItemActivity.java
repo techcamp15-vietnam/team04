@@ -12,8 +12,9 @@ import android.widget.ImageButton;
  * 
  */
 public class AddNewItemActivity extends Activity implements OnClickListener {
-	private ImageButton btnChoose;
 	private ImageButton btnTakePic;
+	private ImageButton btnRecord;
+	private ImageButton btnPlay;
 	private ImageButton btnSave;
 
 	@Override
@@ -25,30 +26,32 @@ public class AddNewItemActivity extends Activity implements OnClickListener {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.add_item, menu);
 		return true;
 	}
 
 	/**
-	 * @init and set listener for button.
-	 * @param no
-	 * @return no
+	 * init and set listener for button.
+	 * 
+	 * @param
+	 * @return
 	 */
 	private void initView() {
-		btnChoose = (ImageButton) findViewById(R.id.add_item_btn_image_choose);
 		btnTakePic = (ImageButton) findViewById(R.id.add_item_btn_camera);
 		btnSave = (ImageButton) findViewById(R.id.add_item_btn_save);
+		btnRecord = (ImageButton) findViewById(R.id.add_item_btn_record);
+		btnPlay = (ImageButton) findViewById(R.id.add_item_btn_play);
 
-		btnChoose.setOnClickListener(this);
 		btnTakePic.setOnClickListener(this);
 		btnSave.setOnClickListener(this);
+		btnPlay.setOnClickListener(this);
+		btnRecord.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View view) {
 		switch (view.getId()) {
-		case R.id.add_item_btn_image_choose:
+		case R.id.add_item_btn_record:
 
 			break;
 		case R.id.add_item_btn_camera:
@@ -57,6 +60,10 @@ public class AddNewItemActivity extends Activity implements OnClickListener {
 		case R.id.add_item_btn_save:
 
 			break;
+		case R.id.add_item_btn_play:
+
+			break;
+
 		default:
 			break;
 		}
