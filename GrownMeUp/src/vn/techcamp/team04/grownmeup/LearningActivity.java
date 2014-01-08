@@ -1,5 +1,7 @@
 package vn.techcamp.team04.grownmeup;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -7,6 +9,7 @@ import vn.techcamp.team04.grownmeup.database.Database;
 import vn.techcamp.team04.grownmeup.database.mSQLiteHelper;
 import android.os.Bundle;
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -26,6 +29,8 @@ public class LearningActivity extends Activity implements OnClickListener {
 	private ImageButton btnNext;
 	private ImageButton btnPrev;
 	private Database db;
+	private ArrayList<HashMap<String, String>> allItem;
+	private int currentItem;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +38,11 @@ public class LearningActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.learning_screen);
 		initView();
 		db = new Database(this);
-		ArrayList<HashMap<String, String>> allItem = db
-				.query(Database.ACTION_GET_ALL_SUBJECT);
-		if (allItem == null) {
-			Log.e("learning", "null");
-
-		}
+		currentItem = 0;
+		ArrayList<String> currentSubject = new ArrayList<String>();
+		currentSubject.add("1");
+		allItem = db.query(Database.ACTION_GET_ALL_ITEM, currentSubject);
+		ViewItem();
 	}
 
 	/**
@@ -72,10 +76,22 @@ public class LearningActivity extends Activity implements OnClickListener {
 
 			break;
 		case R.id.btn_next:
-
+			if (currentItem < allItem.size() - 1) {
+				currentItem++;
+				ViewItem();
+			} else {
+				currentItem = 0;
+				ViewItem();
+			}
 			break;
 		case R.id.btn_prev:
-
+			if (currentItem == 0) {
+				currentItem = allItem.size() - 1;
+				ViewItem();
+			} else {
+				currentItem--;
+				ViewItem();
+			}
 			break;
 		default:
 			break;
@@ -83,4 +99,26 @@ public class LearningActivity extends Activity implements OnClickListener {
 
 	}
 
+	private void ViewItem() {
+		InputStream is = null;
+		Log.e("", allItem.get(currentItem).get(mSQLiteHelper.ITEM_IMG_LINK));
+		try {
+			is = getAssets().open(
+					getImageFileName(allItem.get(currentItem).get(
+							mSQLiteHelper.ITEM_IMG_LINK)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Drawable d = Drawable.createFromStream(is, null);
+		imgvLearningImage.setImageDrawable(d);
+
+	}
+
+	private String getImageFileName(String name) {
+		return name + ".png";
+	}
+
+	private String getSoundFIleName(String name) {
+		return name + ".mp3";
+	}
 }

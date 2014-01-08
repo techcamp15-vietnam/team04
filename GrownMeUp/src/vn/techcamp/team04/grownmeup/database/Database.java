@@ -55,6 +55,7 @@ public class Database {
 
 	public Database(Context context) {
 		dbHelper = new mSQLiteHelper(context);
+		open();
 	}
 
 	public void open() throws SQLException {
@@ -380,9 +381,12 @@ public class Database {
 					for (int j = 0; j < DEFAUT_VALUE[i].length; j++) {
 						ArrayList<String> newItem = new ArrayList<String>();
 						newItem.add(i + 1 + ""); // subjectID
-						newItem.add(DEFAUT_VALUE[i][j]); // description
-						newItem.add(DEFAUT_VALUE[i][j]); // image
-						newItem.add(DEFAUT_VALUE[i][j]); // audio
+						newItem.add(DEFAUT_VALUE[i][j + 1]); // description
+						String image = DEFAUT_VALUE[i][j + 1];
+						image = image.replaceAll(" ", "_");
+						Log.e("", image);
+						newItem.add(image); // image
+						newItem.add(DEFAUT_VALUE[i][j + 1]); // audio
 						Log.e("newItems", newItem.toString());
 						query(ACTION_ADD_NEW_ITEM, newItem);
 					}
