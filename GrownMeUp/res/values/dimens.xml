@@ -30,5 +30,7 @@
     <!-- stage detail screen -->
     <dimen name="stage_detail_padding_right">20dp</dimen>
     <dimen name="stage_detail_padding_left">20dp</dimen>
+    <dimen name="stage_detail_padding_bottom">10dp</dimen>
+    <dimen name="stage_detail_padding_top">10dp</dimen>
 
 </resources>

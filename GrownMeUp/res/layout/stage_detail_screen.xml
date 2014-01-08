@@ -1,157 +1,223 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/stage_detail_padding_left"
     android:paddingRight="@dimen/stage_detail_padding_right"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".EditStageActivity" >
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/stage_detail_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="10" >
+        android:layout_height="wrap_content" >
 
         <EditText
             android:id="@+id/stage_detail_name"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
+            android:layout_toLeftOf="@+id/stage_detail_total_chosen_items"
             android:ems="10"
             android:enabled="false"
+            android:gravity="center"
             android:hint="@string/stage_detail_name" >
         </EditText>
 
         <TextView
             android:id="@+id/stage_detail_total_chosen_items"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_centerHorizontal="true"
             android:gravity="center"
+            android:paddingLeft="@dimen/stage_detail_padding_left"
+            android:paddingRight="@dimen/stage_detail_padding_left"
+            android:paddingTop="@dimen/stage_detail_padding_top"
             android:text="1/10" />
 
         <Spinner
             android:id="@+id/stage_detail_list_subject"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:gravity="center_horizontal" />
-    </LinearLayout>
+            android:layout_toRightOf="@+id/stage_detail_total_chosen_items"
+            android:gravity="center" />
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/stage_detail_list_item"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/stage_detail_button"
-        android:orientation="horizontal"
-        android:weightSum="10" >
-
-        <ImageButton
-            android:id="@+id/stage_detail_prev"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
-            android:src="@drawable/btn_left_arrow" />
-
-        <LinearLayout
-            android:id="@+id/stage_detail_4_items"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="8"
-            android:orientation="horizontal"
-            android:weightSum="10" >
-
-            <LinearLayout
-                android:id="@+id/stage_detail_item_1_3"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:orientation="vertical"
-                android:weightSum="10" >
-
-                <LinearLayout
-                    android:id="@+id/stage_detail_item_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="5"
-                    android:orientation="horizontal"
-                    android:weightSum="10" >
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/stage_detail_item_3"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="5"
-                    android:orientation="horizontal"
-                    android:weightSum="10" >
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/stage_detail_item_2_4"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:orientation="vertical"
-                android:weightSum="10" >
-
-                <LinearLayout
-                    android:id="@+id/stage_detail_item_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="5"
-                    android:orientation="horizontal"
-                    android:weightSum="10" >
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/stage_detail_item_4"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="5"
-                    android:orientation="horizontal"
-                    android:weightSum="10" >
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-
-        <ImageButton
-            android:id="@+id/stage_detail_next"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
-            android:src="@drawable/btn_right_arrow" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/stage_detail_btn_save_clear"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/stage_detail_button"
+        android:layout_centerHorizontal="true"
         android:orientation="horizontal" >
 
         <ImageButton
-            android:id="@+id/stage_detail_save"
+            android:id="@+id/stage_detail_prev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_toLeftOf="@+id/stage_detail_4_items"
             android:background="@android:color/transparent"
-            android:src="@drawable/btn_right_arrow" />
+            android:contentDescription="@string/description_stage_detail_default_desc"
+            android:scaleType="fitCenter"
+            android:src="@drawable/btn_left_arrow" />
+
+        <RelativeLayout
+            android:id="@+id/stage_detail_4_items"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:weightSum="10" >
+
+            <LinearLayout
+                android:id="@+id/stage_detail_item_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:id="@+id/stage_detail_item_pic_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/description_stage_detail_default_desc"
+                    android:paddingBottom="@dimen/stage_detail_padding_bottom"
+                    android:paddingTop="@dimen/stage_detail_padding_top"
+                    android:scaleType="center"
+                    android:src="@drawable/add_item" />
+
+                <TextView
+                    android:id="@+id/stage_detail_item_desc_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/stage_detail_padding_bottom"
+                    android:text="@string/description_stage_detail_default_desc"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/stage_detail_item_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@+id/stage_detail_item_1"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:id="@+id/stage_detail_item_pic_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/description_stage_detail_default_desc"
+                    android:paddingBottom="@dimen/stage_detail_padding_bottom"
+                    android:paddingTop="@dimen/stage_detail_padding_top"
+                    android:scaleType="center"
+                    android:src="@drawable/add_item" />
+
+                <TextView
+                    android:id="@+id/stage_detail_item_desc_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/stage_detail_padding_bottom"
+                    android:text="@string/description_stage_detail_default_desc"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/stage_detail_item_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/stage_detail_item_1"
+                android:layout_gravity="center"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:id="@+id/stage_detail_item_pic_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/description_stage_detail_default_desc"
+                    android:paddingBottom="@dimen/stage_detail_padding_bottom"
+                    android:paddingTop="@dimen/stage_detail_padding_top"
+                    android:scaleType="center"
+                    android:src="@drawable/add_item" />
+
+                <TextView
+                    android:id="@+id/stage_detail_item_desc_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/stage_detail_padding_bottom"
+                    android:text="@string/description_stage_detail_default_desc"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/stage_detail_item_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/stage_detail_item_2"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@+id/stage_detail_item_3"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:id="@+id/stage_detail_item_pic_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/description_stage_detail_default_desc"
+                    android:paddingBottom="@dimen/stage_detail_padding_bottom"
+                    android:paddingTop="@dimen/stage_detail_padding_top"
+                    android:scaleType="center"
+                    android:src="@drawable/add_item" />
+
+                <TextView
+                    android:id="@+id/stage_detail_item_desc_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/stage_detail_padding_bottom"
+                    android:text="@string/description_stage_detail_default_desc"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </LinearLayout>
+        </RelativeLayout>
 
         <ImageButton
-            android:id="@+id/stage_detail_clear_all"
+            android:id="@+id/stage_detail_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_toRightOf="@+id/stage_detail_4_items"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/description_stage_detail_default_desc"
+            android:scaleType="fitCenter"
+            android:src="@drawable/btn_right_arrow" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/stage_detail_btn_save_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/stage_detail_list_item"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/stage_detail_create"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:src="@drawable/btn_right_arrow" />
+            android:contentDescription="@string/description_stage_detail_default_desc"
+            android:src="@drawable/create" />
+
+        <ImageButton
+            android:id="@+id/stage_detail_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/description_stage_detail_default_desc"
+            android:src="@drawable/clear_all" />
     </LinearLayout>
 
 </RelativeLayout>

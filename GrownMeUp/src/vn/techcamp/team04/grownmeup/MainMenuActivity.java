@@ -23,8 +23,8 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main_menu_screen);
-		initView();
+		setContentView(R.layout.stage_detail_screen);
+		//initView();
 	}
 
 	public void initView() {
