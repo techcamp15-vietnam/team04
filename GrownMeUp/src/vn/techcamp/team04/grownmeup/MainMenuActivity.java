@@ -1,5 +1,6 @@
 package vn.techcamp.team04.grownmeup;
 
+import vn.techcamp.team04.grownmeup.database.Database;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,12 +20,15 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 	private ImageButton btnHighScore;
 	private ImageButton btnOption;
 	private ImageButton btnExit;
+	private Database db;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_menu_screen);
 		initView();
+		db = new Database(this);
+		db.setDefaultData();
 	}
 
 	public void initView() {
@@ -57,7 +61,8 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 			startActivity(learningActivity);
 			break;
 		case R.id.btn_play:
-			Intent subjectChooserActivity = new Intent(this, SubjectChooserActivity.class);
+			Intent subjectChooserActivity = new Intent(this,
+					SubjectChooserActivity.class);
 			startActivity(subjectChooserActivity);
 			break;
 		case R.id.btn_highscore:

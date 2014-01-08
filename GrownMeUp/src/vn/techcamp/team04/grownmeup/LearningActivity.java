@@ -1,7 +1,13 @@
 package vn.techcamp.team04.grownmeup;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import vn.techcamp.team04.grownmeup.database.Database;
+import vn.techcamp.team04.grownmeup.database.mSQLiteHelper;
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,12 +25,20 @@ public class LearningActivity extends Activity implements OnClickListener {
 	private TextView tvMeaning;
 	private ImageButton btnNext;
 	private ImageButton btnPrev;
+	private Database db;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.learning_screen);
 		initView();
+		db = new Database(this);
+		ArrayList<HashMap<String, String>> allItem = db
+				.query(Database.ACTION_GET_ALL_SUBJECT);
+		if (allItem == null) {
+			Log.e("learning", "null");
+
+		}
 	}
 
 	/**

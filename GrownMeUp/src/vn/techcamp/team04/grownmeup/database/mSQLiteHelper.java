@@ -1,8 +1,11 @@
 package vn.techcamp.team04.grownmeup.database;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * @author buihieu
@@ -41,7 +44,7 @@ public class mSQLiteHelper extends SQLiteOpenHelper {
 			+ TABLE_SUBJECT + " (" + SUBJECT_ID
 			+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + SUBJECT_NAME
 			+ " VARCHAR " + ");";
-	
+
 	private static final String CREATE_TABLE_STAGE = "CREATE TABLE "
 			+ TABLE_STAGE + " (" + STAGE_ID
 			+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + SUBJECT_ID
@@ -53,7 +56,7 @@ public class mSQLiteHelper extends SQLiteOpenHelper {
 			+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + SUBJECT_ID
 			+ " INTEGER, " + ITEM_NAME + " VARCHAR, " + ITEM_IMG_LINK
 			+ " VARCHAR, " + ITEM_AUDIO_LINK + " VARCHAR " + ");";
-	
+
 	private static final String CREATE_TABLE_STAGE_DETAIL = "CREATE TABLE "
 			+ TABLE_STAGE_DETAIL + " (" + STAGE_ID + " INTEGER, " + ITEM_ID
 			+ " INTEGER, " + "PRIMARY KEY " + "(" + STAGE_ID + ", " + ITEM_ID
@@ -81,5 +84,4 @@ public class mSQLiteHelper extends SQLiteOpenHelper {
 		onCreate(db);
 
 	}
-
 }
