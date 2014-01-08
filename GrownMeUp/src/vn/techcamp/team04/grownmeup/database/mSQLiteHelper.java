@@ -1,4 +1,4 @@
-package vn.techcamp.team04.database;
+package vn.techcamp.team04.grownmeup.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
