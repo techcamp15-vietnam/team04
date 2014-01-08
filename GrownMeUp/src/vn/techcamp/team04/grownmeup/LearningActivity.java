@@ -20,7 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * @author hieu 4-A
+ * @author 4-A bui trung hieu.
  * 
  */
 public class LearningActivity extends Activity implements OnClickListener {

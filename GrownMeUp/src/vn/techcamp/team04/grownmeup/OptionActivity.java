@@ -9,7 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
 /**
- * @author trung hieu
+ * @author 4-A bui trung hieu.
  * 
  */
 public class OptionActivity extends Activity implements OnClickListener {

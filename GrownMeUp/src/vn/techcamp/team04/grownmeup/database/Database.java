@@ -53,8 +53,10 @@ public class Database {
 			{ "Home", "chair", "fan", "fork", "knife", "pressure cooker",
 					"rice cooker", "shoe", "socket", "table", "tv", "bag",
 					"bowl", "cup", "door", "dvd player", "remote", "water can",
-					"lock" }, { "Animal" }, { "Car" }, { "City" },
-			{ "Clothes" }, { "Color" }, { "Plant" }, { "School" } };
+					"lock" },
+			{ "Animal", "cat", "snake", "dog", "pig", "bee", "bird", "cow",
+					"sheep" }, { "Car" }, { "City" }, { "Clothes" },
+			{ "Color" }, { "Plant" }, { "School" } };
 
 	public Database(Context context) {
 		dbHelper = new mSQLiteHelper(context);
@@ -365,7 +367,8 @@ public class Database {
 	}
 
 	/**
-	 * @author 4-A trung hieu. Add default data (items, stages). Raw data store
+	 * @author 4-A bui trung hieu.
+	 *  Add default data (items, stages). Raw data store
 	 *         in assets/
 	 * @return true if success, false if otherwise.
 	 */
