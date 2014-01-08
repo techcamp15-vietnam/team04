@@ -10,6 +10,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 /**
  * @author zendbui
@@ -37,6 +38,9 @@ public class Database {
 	public static final String KEY_FAILURE = "failure";
 	public static final String KEY_DUPLICATE = "duplicate";
 
+	private static final String[][] DEFAUT_VALUE = { { "Household", "chair",
+			"fan", "fork", "knife", "pressure_cooker", "rice_cooker", "shoe",
+			"socket", "table", "tv" } };
 	private String[] allColumnsSubject = { mSQLiteHelper.SUBJECT_ID,
 			mSQLiteHelper.SUBJECT_NAME };
 	private String[] allColumnsStage = { mSQLiteHelper.STAGE_ID,
@@ -95,7 +99,7 @@ public class Database {
 				throw new InvalidParameterException(
 						"content must be implement Subject ID.");
 			}
-			
+
 		case ACTION_GET_ALL_SUBJECT:
 			// RETURN ALL SUBJECT IN DATABASE
 			ArrayList<HashMap<String, String>> listSubject = new ArrayList<HashMap<String, String>>();
@@ -109,7 +113,7 @@ public class Database {
 			}
 			cursorListSubject.close();
 			return listSubject;
-			
+
 		case ACTION_ADD_NEW_SUBJECT:
 			// CREATE A NEW SUBJECT AND STORE IN DATABASE
 			if (!this.isDatabaseWriteable()) {
@@ -269,7 +273,7 @@ public class Database {
 						"content must be implement ITEM ID");
 			}
 		case ACTION_GET_ALL_ITEM:
-			// RETURN ALL ITEM WHICH BELONG TO A SUBJECT 
+			// RETURN ALL ITEM WHICH BELONG TO A SUBJECT
 			ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
 			if (content[0] instanceof ArrayList<?>) {
 				int subjectID = Integer.parseInt(content[0].get(0));
@@ -328,7 +332,7 @@ public class Database {
 	private boolean isDatabaseWriteable() {
 		return !database.isReadOnly();
 	}
-	
+
 	private HashMap<String, String> cursorToSubject(Cursor cursor) {
 		HashMap<String, String> subject = new HashMap<String, String>();
 		subject.put(mSQLiteHelper.SUBJECT_ID, cursor.getLong(0) + "");
@@ -355,4 +359,27 @@ public class Database {
 		return item;
 	}
 
+	/**
+	 * @author 4-A trung hieu. 
+	 * Add default data (items, stages). Raw data store
+	 *         in assets/
+	 * @return true if success, false if otherwise.
+	 */
+	private boolean setDefaultData() {
+		// insert all default object
+		for (int i = 0; i < DEFAUT_VALUE.length; i++) {
+			ArrayList<String> newSubject = new ArrayList<String>();
+			newSubject.add(DEFAUT_VALUE[i][0]);
+			try {
+				query(ACTION_ADD_NEW_SUBJECT, newSubject);
+
+			} catch (Exception e) {
+				Log.e("DATABASE ERROR", "Cannot insert " + DEFAUT_VALUE[i][0]
+						+ "subject to database.");
+			}
+		}
+		// insert items to objects.
+
+		return true;
+	}
 }

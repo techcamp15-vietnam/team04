@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * @author hiepns
+ * @author hieu 4-A
  * 
  */
 public class LearningActivity extends Activity implements OnClickListener {
@@ -27,6 +27,9 @@ public class LearningActivity extends Activity implements OnClickListener {
 		initView();
 	}
 
+	/**
+	 * @author hieu 4-A
+	 */
 	public void initView() {
 		imgvLearningImage = (ImageView) findViewById(R.id.imgv_learning_image);
 		tvMeaning = (TextView) findViewById(R.id.tv_meaning);
@@ -41,7 +44,6 @@ public class LearningActivity extends Activity implements OnClickListener {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.learning, menu);
 		return true;
 	}
@@ -61,7 +63,6 @@ public class LearningActivity extends Activity implements OnClickListener {
 		case R.id.btn_prev:
 
 			break;
-
 		default:
 			break;
 		}
