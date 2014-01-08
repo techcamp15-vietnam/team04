@@ -48,7 +48,7 @@ private TextToSpeech tts;
 	}
 	
 	/**
-	 * close TextToSpeak
+	 * close TextToSpeech
 	 */
 	public void close(){
 		if (this.tts != null) {

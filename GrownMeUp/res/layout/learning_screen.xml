@@ -6,7 +6,7 @@
     tools:context=".LearningActivity" >
 
     <RelativeLayout
-        android:id="@+id/rtlayout_image"
+        android:id="@+id/rltlayout_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/rtlayout_image"
+        android:layout_toLeftOf="@+id/rltlayout_image"
         android:background="@android:color/transparent"
         android:src="@drawable/btn_left_arrow" />
 
@@ -37,15 +37,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/rtlayout_image"
+        android:layout_toRightOf="@+id/rltlayout_image"
         android:background="@android:color/transparent"
         android:src="@drawable/btn_right_arrow" />
 
     <RelativeLayout
-        android:id="@+id/rtlayout_text"
+        android:id="@+id/rlt_layout_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rtlayout_image"
+        android:layout_below="@+id/rltlayout_image"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/learning_screen_text_margin_top"
         
