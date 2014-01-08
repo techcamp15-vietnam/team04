@@ -10,15 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * @author hiepns
+ * @author hieu 4-A
  * 
  */
 public class LearningActivity extends Activity implements OnClickListener {
 
-	private ImageView imgv_learning_image;
-	private TextView tv_meaning;
-	private ImageButton btn_next;
-	private ImageButton btn_prev;
+	private ImageView imgvLearningImage;
+	private TextView tvMeaning;
+	private ImageButton btnNext;
+	private ImageButton btnPrev;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,21 +27,23 @@ public class LearningActivity extends Activity implements OnClickListener {
 		initView();
 	}
 
+	/**
+	 * @author hieu 4-A
+	 */
 	public void initView() {
-		imgv_learning_image = (ImageView) findViewById(R.id.imgv_learning_image);
-		tv_meaning = (TextView) findViewById(R.id.tv_meaning);
-		btn_next = (ImageButton) findViewById(R.id.btn_next);
-		btn_prev = (ImageButton) findViewById(R.id.btn_prev);
+		imgvLearningImage = (ImageView) findViewById(R.id.imgv_learning_image);
+		tvMeaning = (TextView) findViewById(R.id.tv_meaning);
+		btnNext = (ImageButton) findViewById(R.id.btn_next);
+		btnPrev = (ImageButton) findViewById(R.id.btn_prev);
 
-		imgv_learning_image.setOnClickListener(this);
-		tv_meaning.setOnClickListener(this);
-		btn_next.setOnClickListener(this);
-		btn_prev.setOnClickListener(this);
+		imgvLearningImage.setOnClickListener(this);
+		tvMeaning.setOnClickListener(this);
+		btnNext.setOnClickListener(this);
+		btnPrev.setOnClickListener(this);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.learning, menu);
 		return true;
 	}
@@ -61,7 +63,6 @@ public class LearningActivity extends Activity implements OnClickListener {
 		case R.id.btn_prev:
 
 			break;
-
 		default:
 			break;
 		}
