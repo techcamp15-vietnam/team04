@@ -1,6 +1,7 @@
 package vn.techcamp.team04.grownmeup;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -26,15 +27,15 @@ public class OptionActivity extends Activity implements OnClickListener {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.option, menu);
 		return true;
 	}
 
 	/**
-	 * @init and set listener for button.
-	 * @param no
-	 * @return no
+	 * init and set listener for button.
+	 * 
+	 * @param
+	 * @return
 	 */
 	private void initView() {
 		btnAddItem = (ImageButton) findViewById(R.id.option_add_item);
@@ -52,9 +53,14 @@ public class OptionActivity extends Activity implements OnClickListener {
 	public void onClick(View view) {
 		switch (view.getId()) {
 		case R.id.option_add_item:
+			Intent addNewItemItent = new Intent(this, AddNewItemActivity.class);
+			startActivity(addNewItemItent);
 
 			break;
 		case R.id.option_custom_stage:
+			Intent customStageItent = new Intent(this,
+					CustomStageActivity.class);
+			startActivity(customStageItent);
 
 			break;
 		case R.id.option_language:
