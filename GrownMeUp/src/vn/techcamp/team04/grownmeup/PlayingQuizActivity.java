@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import vn.techcamp.team04.grownmeup.database.Database;
 import vn.techcamp.team04.grownmeup.database.mSQLiteHelper;
@@ -27,7 +28,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * @author Nguyen Sinh Hiep 4-C
@@ -40,6 +40,8 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 	private Database db;
 	private ArrayList<HashMap<String, String>> allItem;
 
+	private int MAX_TIME = 5000;
+
 	// private Dialog dialog;
 
 	private int correctAnswer;
@@ -47,6 +49,9 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 	private Drawable questionImage;
 	private String correctAnswerText;
+
+	private String questionText;
+	private Drawable correctAnswerImage;
 
 	private int currentItem;
 	private String currentItemID;
@@ -72,12 +77,14 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 	// quiz text image
 	private TextView tvQuestionText;
-	private ImageView ivAnswer1;
-	private ImageView ivAnswer2;
-	private ImageView ivAnswer3;
-	private ImageView ivAnswer4;
+	private ImageView imgvAnswer1;
+	private ImageView imgvAnswer2;
+	private ImageView imgvAnswer3;
+	private ImageView imgvAnswer4;
 
 	private CountDownTimer countDownTimer;
+
+	private int quizType = 1;
 
 	// achievement
 	private AchievementRules achievement;
@@ -85,8 +92,16 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.quiz_image_text_screen);
-		// setContentView(R.layout.quiz_text_image_screen);
+		Random r = new Random();
+		quizType = r.nextInt(2) + 1;
+		if (quizType == 1) {
+			setContentView(R.layout.quiz_image_text_screen);
+			initViewQuiz1();
+		} else {
+			setContentView(R.layout.quiz_text_image_screen);
+			initViewQuiz2();
+
+		}
 
 		holdDialog = false;
 		holdFinishStage = false;
@@ -97,7 +112,6 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 		currentItem = 0;
 		db = new Database(this);
 
-		initViewQuiz1();
 		initTimeCounter();
 		initQuiz();
 
@@ -126,22 +140,22 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 		tvTimeCounter = (TextView) findViewById(R.id.tv_time_counter);
 		// quiz text image
 		tvQuestionText = (TextView) findViewById(R.id.tv_question_text);
-		ivAnswer1 = (ImageView) findViewById(R.id.iv_answer1);
-		ivAnswer2 = (ImageView) findViewById(R.id.iv_answer2);
-		ivAnswer3 = (ImageView) findViewById(R.id.iv_answer3);
-		ivAnswer4 = (ImageView) findViewById(R.id.iv_answer4);
+		imgvAnswer1 = (ImageView) findViewById(R.id.imgv_answer1);
+		imgvAnswer2 = (ImageView) findViewById(R.id.imgv_answer2);
+		imgvAnswer3 = (ImageView) findViewById(R.id.imgv_answer3);
+		imgvAnswer4 = (ImageView) findViewById(R.id.imgv_answer4);
 
 		tvQuestionText.setOnClickListener(this);
-		ivAnswer1.setOnClickListener(this);
-		ivAnswer2.setOnClickListener(this);
-		ivAnswer3.setOnClickListener(this);
-		ivAnswer4.setOnClickListener(this);
+		imgvAnswer1.setOnClickListener(this);
+		imgvAnswer2.setOnClickListener(this);
+		imgvAnswer3.setOnClickListener(this);
+		imgvAnswer4.setOnClickListener(this);
 
 	}
 
 	public void initTimeCounter() {
 		if (countDownTimer == null) {
-			countDownTimer = new CountDownTimer(31000, 1000) {
+			countDownTimer = new CountDownTimer(MAX_TIME, 1000) {
 
 				@Override
 				public void onTick(long millisUntilFinished) {
@@ -181,7 +195,6 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 		mRandomItem randomAns = new mRandomItem(PlayingQuizActivity.this);
 		ArrayList<String> arAns = randomAns.random(subjectID,
 				Integer.parseInt(currentItemID));
-		Log.i("ans", arAns.toString());
 
 		correctAnswer = Integer.parseInt(arAns.get(0));
 
@@ -189,40 +202,122 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 		al1.add(arAns.get(1));
 		ArrayList<HashMap<String, String>> allAns1 = db.query(
 				Database.ACTION_GET_ITEM, al1);
-		ans1 = allAns1.get(0).get(mSQLiteHelper.ITEM_NAME);
 
 		ArrayList<String> al2 = new ArrayList<String>();
 		al2.add(arAns.get(2));
 		ArrayList<HashMap<String, String>> allAns2 = db.query(
 				Database.ACTION_GET_ITEM, al2);
-		ans2 = allAns2.get(0).get(mSQLiteHelper.ITEM_NAME);
 
 		ArrayList<String> al3 = new ArrayList<String>();
 		al3.add(arAns.get(3));
 		ArrayList<HashMap<String, String>> allAns3 = db.query(
 				Database.ACTION_GET_ITEM, al3);
-		ans3 = allAns3.get(0).get(mSQLiteHelper.ITEM_NAME);
 
 		ArrayList<String> al4 = new ArrayList<String>();
 		al4.add(arAns.get(4));
 		ArrayList<HashMap<String, String>> allAns4 = db.query(
 				Database.ACTION_GET_ITEM, al4);
-		ans4 = allAns4.get(0).get(mSQLiteHelper.ITEM_NAME);
+		if (quizType == 1) {
+			ans1 = allAns1.get(0).get(mSQLiteHelper.ITEM_NAME);
+			ans2 = allAns2.get(0).get(mSQLiteHelper.ITEM_NAME);
+			ans3 = allAns3.get(0).get(mSQLiteHelper.ITEM_NAME);
+			ans4 = allAns4.get(0).get(mSQLiteHelper.ITEM_NAME);
 
-		InputStream is = null;
-		try {
-			is = getAssets().open(
-					allItem.get(currentItem).get(mSQLiteHelper.ITEM_IMG_LINK));
-		} catch (IOException e) {
-			e.printStackTrace();
+			InputStream is = null;
+			try {
+				is = getAssets().open(
+						allItem.get(currentItem).get(
+								mSQLiteHelper.ITEM_IMG_LINK));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			questionImage = Drawable.createFromStream(is, null);
+			imgvQuestionImage.setImageDrawable(questionImage);
+
+			btnAnswer1.setText(ans1);
+			btnAnswer2.setText(ans2);
+			btnAnswer3.setText(ans3);
+			btnAnswer4.setText(ans4);
+
+			switch (correctAnswer) {
+			case 1:
+				correctAnswerText = ans1;
+				break;
+			case 2:
+				correctAnswerText = ans2;
+				break;
+			case 3:
+				correctAnswerText = ans3;
+				break;
+			case 4:
+				correctAnswerText = ans4;
+				break;
+
+			default:
+				break;
+			}
+
+		} else {
+			questionText = allItem.get(currentItem)
+					.get(mSQLiteHelper.ITEM_NAME);
+			tvQuestionText.setText(questionText);
+
+			InputStream is = null;
+			try {
+				is = getAssets().open(
+						allAns1.get(0).get(mSQLiteHelper.ITEM_IMG_LINK));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Drawable d1 = Drawable.createFromStream(is, null);
+			imgvAnswer1.setImageDrawable(d1);
+
+			try {
+				is = getAssets().open(
+						allAns2.get(0).get(mSQLiteHelper.ITEM_IMG_LINK));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Drawable d2 = Drawable.createFromStream(is, null);
+			imgvAnswer2.setImageDrawable(d2);
+
+			try {
+				is = getAssets().open(
+						allAns3.get(0).get(mSQLiteHelper.ITEM_IMG_LINK));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Drawable d3 = Drawable.createFromStream(is, null);
+			imgvAnswer3.setImageDrawable(d3);
+
+			try {
+				is = getAssets().open(
+						allAns4.get(0).get(mSQLiteHelper.ITEM_IMG_LINK));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Drawable d4 = Drawable.createFromStream(is, null);
+			imgvAnswer4.setImageDrawable(d4);
+
+			switch (correctAnswer) {
+			case 1:
+				correctAnswerImage = d1;
+				break;
+			case 2:
+				correctAnswerImage = d2;
+				break;
+			case 3:
+				correctAnswerImage = d3;
+				break;
+			case 4:
+				correctAnswerImage = d4;
+				break;
+
+			default:
+				break;
+			}
+
 		}
-		questionImage = Drawable.createFromStream(is, null);
-		imgvQuestionImage.setImageDrawable(questionImage);
-
-		btnAnswer1.setText(ans1);
-		btnAnswer2.setText(ans2);
-		btnAnswer3.setText(ans3);
-		btnAnswer4.setText(ans4);
 
 	}
 
@@ -235,51 +330,56 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.btn_answer1:
-			answer = 1;
-			calculateResult();
+		if (quizType == 1) {
+			switch (v.getId()) {
+			case R.id.btn_answer1:
+				answer = 1;
+				calculateResult();
 
-			break;
-		case R.id.btn_answer2:
-			answer = 2;
-			calculateResult();
+				break;
+			case R.id.btn_answer2:
+				answer = 2;
+				calculateResult();
 
-			break;
-		case R.id.btn_answer3:
-			answer = 3;
-			calculateResult();
+				break;
+			case R.id.btn_answer3:
+				answer = 3;
+				calculateResult();
 
-			break;
-		case R.id.btn_answer4:
-			answer = 4;
-			calculateResult();
+				break;
+			case R.id.btn_answer4:
+				answer = 4;
+				calculateResult();
 
-			break;
+				break;
 
-		default:
-			break;
+			default:
+				break;
+			}
+		} else {
+			switch (v.getId()) {
+			case R.id.imgv_answer1:
+				answer = 1;
+				calculateResult();
+				break;
+			case R.id.imgv_answer2:
+				answer = 2;
+				calculateResult();
+				break;
+			case R.id.imgv_answer3:
+				answer = 3;
+				calculateResult();
+				break;
+			case R.id.imgv_answer4:
+				answer = 4;
+				calculateResult();
+				break;
+			}
 		}
 	}
 
 	public void calculateResult() {
-		switch (correctAnswer) {
-		case 1:
-			correctAnswerText = ans1;
-			break;
-		case 2:
-			correctAnswerText = ans2;
-			break;
-		case 3:
-			correctAnswerText = ans3;
-			break;
-		case 4:
-			correctAnswerText = ans4;
-			break;
 
-		default:
-			break;
-		}
 		if (answer == correctAnswer) {
 			chosenCorrectAnswer();
 		} else {
@@ -332,8 +432,12 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 	}
 
 	public void chosenWrongAnswer() {
-		showDialog(correctAnswerText, this.questionImage);
+		if (quizType == 1) {
+			showDialog(correctAnswerText, this.questionImage);
+		} else {
+			showDialog(questionText, correctAnswerImage);
 
+		}
 		ArrayList<String> alWrongAns = new ArrayList<String>();
 		alWrongAns.add(currentItemID);
 		alWrongAns.add("false");

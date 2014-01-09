@@ -40,8 +40,9 @@
 
     <!-- Quiz  Text ->Image -->
     <dimen name="quiz_text_image_image_margin_top">20dp</dimen>
-    <dimen name="quiz_text_image_question_textsize">60dp</dimen>
-    <dimen name="quiz_text_image_question_margin_top">70dp</dimen>
+    <dimen name="quiz_text_image_question_textsize">40dp</dimen>
+        <dimen name="quiz_text_image_time_textsize">30dp</dimen>
+    <dimen name="quiz_text_image_question_margin_top">20dp</dimen>
     <dimen name="quiz_text_image_answer_margin_top">10dp</dimen>
     <dimen name="quiz_text_image_answer_margin">10dp</dimen>
     <dimen name="quiz_text_image_time_margin_left">80dp</dimen>

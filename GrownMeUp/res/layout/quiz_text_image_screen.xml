@@ -19,11 +19,11 @@
         android:id="@+id/tv_time_counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tv_question_text"
+        android:layout_marginLeft="@dimen/quiz_text_image_time_margin_left"
         android:layout_toRightOf="@+id/tv_question_text"
         android:background="@color/white_transparent"
-        android:layout_alignTop="@+id/tv_question_text"
         android:text="20s"
-        android:layout_marginLeft="@dimen/quiz_text_image_time_margin_left"
         android:textSize="@dimen/quiz_text_image_question_textsize" />
 
     <RelativeLayout
@@ -35,40 +35,44 @@
         android:layout_marginTop="@dimen/quiz_text_image_answer_margin_top" >
 
         <ImageView
-            android:id="@+id/iv_answer1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/imgv_answer1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_alignParentLeft="true"
             android:layout_margin="@dimen/quiz_text_image_answer_margin"
             android:background="@color/white_transparent"
+            android:scaleType="fitCenter"
             android:src="@drawable/subject_car" />
 
         <ImageView
-            android:id="@+id/iv_answer2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/imgv_answer2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_margin="@dimen/quiz_text_image_answer_margin"
-            android:layout_toRightOf="@+id/iv_answer1"
+            android:layout_toRightOf="@+id/imgv_answer1"
             android:background="@color/white_transparent"
+            android:scaleType="fitCenter"
             android:src="@drawable/subject_car" />
 
         <ImageView
-            android:id="@+id/iv_answer3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/iv_answer1"
+            android:id="@+id/imgv_answer3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/imgv_answer1"
             android:layout_margin="@dimen/quiz_text_image_answer_margin"
             android:background="@color/white_transparent"
+            android:scaleType="fitCenter"
             android:src="@drawable/subject_car" />
 
         <ImageView
-            android:id="@+id/iv_answer4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/iv_answer2"
+            android:id="@+id/imgv_answer4"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/imgv_answer2"
             android:layout_margin="@dimen/quiz_text_image_answer_margin"
-            android:layout_toRightOf="@+id/iv_answer3"
+            android:layout_toRightOf="@+id/imgv_answer3"
             android:background="@color/white_transparent"
+            android:scaleType="fitCenter"
             android:src="@drawable/subject_car" />
     </RelativeLayout>
 
