@@ -8,8 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /**
- * @author buihieu
- * 
+ * @author zendbui
+ * @author 4-B Bui Trong Hieu
  */
 public class mSQLiteHelper extends SQLiteOpenHelper {
 

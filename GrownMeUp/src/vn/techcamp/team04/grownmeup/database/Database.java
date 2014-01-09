@@ -76,9 +76,9 @@ public class Database {
 	}
 
 	/**
-	 * @param action
-	 * @param content
-	 * @return
+	 * @param action: from list action  
+	 * @param content: subjectID or stageID or ... or nothing
+	 * @return ArrayList
 	 * @throws InvalidParameterException
 	 * @throws UnsupportedOperationException
 	 */
@@ -369,7 +369,6 @@ public class Database {
 			}
 		case ACTION_ADD_STAGE_STATUS:
 			// input: stageID + number of correct answer
-			// TODO
 			if (!this.isDatabaseWriteable()) {
 				return null;
 			}
@@ -493,7 +492,7 @@ public class Database {
 	 * @author 4-B Bui Trong Hieu
 	 * @param cursor
 	 * @param answer
-	 * @return contenValue that will be added to database
+	 * @return contenValue that will be updated to database
 	 */
 	ContentValues newItemAttr(Cursor cursor, String answer) {
 		ContentValues item = new ContentValues();
@@ -515,6 +514,13 @@ public class Database {
 		return item;
 	}
 	
+	/**
+	 * @author zendbui
+	 * @author 4-B Bui Trong HIeu
+	 * @param cursor
+	 * @param correctAnswer
+	 * @return contenValue that will be updated to database
+	 */
 	ContentValues newStageAttr(Cursor cursor, int correctAnswer) {
 		ContentValues stage = new ContentValues();
 		int currentCorrectAnswer = 0;
