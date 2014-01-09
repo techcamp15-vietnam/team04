@@ -136,6 +136,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 		if (countDownTimer == null) {
 			countDownTimer = new CountDownTimer(31000, 1000) {
 
+				@Override
 				public void onTick(long millisUntilFinished) {
 					mRemainSecond = (600000 - millisUntilFinished) / 1000;
 					long second = (millisUntilFinished % 60000) / 1000;

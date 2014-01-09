@@ -1,11 +1,8 @@
 package vn.techcamp.team04.grownmeup.database;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 /**
  * @author zendbui

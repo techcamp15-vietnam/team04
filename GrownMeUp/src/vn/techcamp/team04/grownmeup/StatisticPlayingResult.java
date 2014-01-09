@@ -102,6 +102,7 @@ public class StatisticPlayingResult extends Activity implements
 		super.onDestroy();
 	}
 
+	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.imgv_item_image:
@@ -143,6 +144,7 @@ public class StatisticPlayingResult extends Activity implements
 
 	}
 
+	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int pos,
 			long id) {
 		if (currentSubject == (pos + 1)) {
@@ -157,6 +159,7 @@ public class StatisticPlayingResult extends Activity implements
 
 	}
 
+	@Override
 	public void onNothingSelected(AdapterView<?> parent) {
 		// Another interface callback
 	}
