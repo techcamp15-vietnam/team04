@@ -84,6 +84,12 @@
             android:screenOrientation="landscape"
             android:theme="@style/NoActionBar" >
         </activity>
+        <activity
+            android:name="vn.techcamp.team04.grownmeup.StatisticPlayingResult"
+            android:label="@string/title_activity_statistic_playing_result" 
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBar">
+        </activity>
     </application>
 
 </manifest>

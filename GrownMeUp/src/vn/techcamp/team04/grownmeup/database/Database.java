@@ -240,7 +240,7 @@ public class Database {
 				if (resultInsertStage == -1) {
 					addingStageResult.put(KEY_FAILURE, "failure");
 				} else {
-					for (int i = 3; i < content[0].size(); i++) {
+					for (int i = 4; i < content[0].size(); i++) {
 						int itemID = Integer.parseInt(content[0].get(i));
 						ContentValues newStageDetails = new ContentValues();
 						newStageDetails.put(mSQLiteHelper.STAGE_ID,

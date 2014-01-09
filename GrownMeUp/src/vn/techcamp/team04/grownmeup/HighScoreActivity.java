@@ -1,6 +1,7 @@
 package vn.techcamp.team04.grownmeup;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
@@ -105,7 +106,9 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 	public void onClick(View view) {
 		switch (view.getId()) {
 		case R.id.high_score_btn_report:
-
+			Intent statisticActivity = new Intent(this,
+					StatisticPlayingResult.class);
+			startActivity(statisticActivity);
 			break;
 		case R.id.high_score_img_achievement_1:
 			Toast.makeText(getApplicationContext(), "badge 1",
