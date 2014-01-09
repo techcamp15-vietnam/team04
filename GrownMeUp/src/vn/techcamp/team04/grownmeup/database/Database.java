@@ -50,15 +50,25 @@ public class Database {
 			mSQLiteHelper.ITEM_IMG_LINK, mSQLiteHelper.ITEM_AUDIO_LINK };
 	private String[] allColumnsStageDetail = { mSQLiteHelper.STAGE_ID,
 			mSQLiteHelper.ITEM_ID };
-
+	// DEFAULT_VALUE format : {{subject1, item11, item12, item13},{subject2,
+	// item21, item22, item23}}
 	private static final String[][] DEFAUT_VALUE = {
 			{ "Home", "chair", "fan", "fork", "knife", "pressure cooker",
 					"rice cooker", "shoe", "socket", "table", "tv", "bag",
 					"bowl", "cup", "door", "dvd player", "remote", "water can",
-					"lock" },
+					"lock", "bottle", "trash can" },
 			{ "Animal", "cat", "snake", "dog", "pig", "bee", "bird", "cow",
-					"sheep" }, { "Car" }, { "City" }, { "Clothes" },
-			{ "Color" }, { "Plant" }, { "School" } };
+					"sheep", "elephant", "horse" }, { "Car" }, { "City" },
+			{ "Clothes" }, { "Color" }, { "Plant" }, { "School" } };
+	// DEFAUT_STAGE format : {{subjectID, stage_name, stage_number,
+	// stage_status, item1ID, item2ID, item3ID, item4ID, item5ID}}
+	private static final String[][] DEFAULT_STAGE = {
+			{ "1", "stage_1", "1", "0", "1", "2", "3", "4", "5" },
+			{ "1", "stage_2", "2", "0", "6", "7", "8", "9", "10" },
+			{ "1", "stage_3", "3", "0", "11", "12", "13", "14", "15" },
+			{ "1", "stage_4", "4", "0", "16", "17", "18", "19", "20" },
+			{ "2", "stage_5", "5", "0", "21", "22", "23", "24", "25" },
+			{ "2", "stage_6", "6", "0", "26", "27", "28", "29", "30" } };
 
 	public Database(Context context) {
 		dbHelper = new mSQLiteHelper(context);
@@ -239,7 +249,7 @@ public class Database {
 				if (resultInsertStage == -1) {
 					addingStageResult.put(KEY_FAILURE, "failure");
 				} else {
-					for (int i = 3; i < content[0].size(); i++) {
+					for (int i = 4; i < content[0].size(); i++) {
 						int itemID = Integer.parseInt(content[0].get(i));
 						ContentValues newStageDetails = new ContentValues();
 						newStageDetails.put(mSQLiteHelper.STAGE_ID,
@@ -369,16 +379,16 @@ public class Database {
 	}
 
 	/**
-	 * @author 4-A bui trung hieu.
-	 *  Add default data (items, stages). Raw data store
-	 *         in assets/
+	 * @author 4-A bui trung hieu. Add default data (items, stages). Raw data
+	 *         store in assets/.Run only on first run.
 	 * @return true if success, false if otherwise.
 	 */
 	public boolean setDefaultData() {
-		// insert all default object
 		ArrayList<HashMap<String, String>> allSubject = new ArrayList<HashMap<String, String>>();
 		allSubject = query(ACTION_GET_ALL_SUBJECT);
+		// check if is first run. Default value insert only on first run.
 		if (allSubject == null || allSubject.size() == 0) {
+			// insert all default object
 			for (int i = 0; i < DEFAUT_VALUE.length; i++) {
 				ArrayList<String> newSubject = new ArrayList<String>();
 				newSubject.add(DEFAUT_VALUE[i][0]);
@@ -404,9 +414,22 @@ public class Database {
 							+ DEFAUT_VALUE[i][0] + "subject to database.");
 				}
 			}
+			// insert default stage
+			for (int i = 0; i < DEFAULT_STAGE.length; i++) {
+				ArrayList<String> newStage = new ArrayList<String>();
+				newStage.add(DEFAULT_STAGE[i][0]);// subjectID
+				newStage.add(DEFAULT_STAGE[i][1]);// name
+				newStage.add(DEFAULT_STAGE[i][2]);// number
+				newStage.add(DEFAULT_STAGE[i][3]);// status
+				newStage.add(DEFAULT_STAGE[i][4]);// item 1
+				newStage.add(DEFAULT_STAGE[i][5]);// item 2
+				newStage.add(DEFAULT_STAGE[i][6]);// item 3
+				newStage.add(DEFAULT_STAGE[i][7]);// item 4
+				newStage.add(DEFAULT_STAGE[i][8]);// item 5
+
+				query(ACTION_ADD_NEW_STAGE, newStage);
+			}
 		}
 		return true;
-
 	}
-
 }
