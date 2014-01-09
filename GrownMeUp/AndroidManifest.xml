@@ -7,6 +7,8 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="18" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 
     <application
         android:allowBackup="true"
@@ -15,7 +17,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="vn.techcamp.team04.grownmeup.MainMenuActivity"
-            android:label="@string/app_name"
+            android:label="@string/app_name" 
             android:screenOrientation="landscape"
             android:theme="@style/NoActionBar" >
             <intent-filter>

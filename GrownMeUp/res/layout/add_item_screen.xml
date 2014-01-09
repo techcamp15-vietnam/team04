@@ -59,6 +59,15 @@
             android:src="@drawable/record" />
 
         <ImageButton
+            android:id="@+id/add_item_btn_recording"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/description_camera_image_button"
+            android:src="@drawable/stop"
+            android:visibility="gone" />
+
+        <ImageButton
             android:id="@+id/add_item_btn_play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,6 +75,15 @@
             android:contentDescription="@string/description_save_item"
             android:paddingLeft="@dimen/add_item_btn_record_margin_left"
             android:src="@drawable/play" />
+
+        <ImageButton
+            android:id="@+id/add_item_btn_playing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/description_camera_image_button"
+            android:src="@drawable/stop"
+            android:visibility="gone" />
     </LinearLayout>
 
     <ImageButton

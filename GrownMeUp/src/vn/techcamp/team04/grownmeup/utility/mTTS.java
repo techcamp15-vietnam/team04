@@ -14,7 +14,7 @@ public class mTTS {
 	private TextToSpeech tts;
 
 	public mTTS(Context context, final float speedrate) {
-		
+
 		this.tts = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
 			@Override
 			public void onInit(int status) {
@@ -26,14 +26,24 @@ public class mTTS {
 		});
 	}
 
-
 	/**
 	 * Speak out a text
+	 * 
 	 * @param text
 	 */
 	public void speakText(String text) {
 		tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
 
+	}
+
+	/**
+	 * Stop speak
+	 * 
+	 * @author 4-A bui trung hieu
+	 * @param
+	 */
+	public void stop() {
+		tts.stop();
 	}
 
 	/**

@@ -1,5 +1,7 @@
 package vn.techcamp.team04.grownmeup;
 
+import java.io.File;
+
 import vn.techcamp.team04.grownmeup.database.Database;
 import vn.techcamp.team04.grownmeup.utility.AchievementRules;
 import android.app.Activity;
@@ -7,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -41,9 +44,10 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 
 		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 		boolean silent = settings.getBoolean("silentMode", false);
-//		playLoopSound(R.raw.sound_background_menu);
+		// playLoopSound(R.raw.sound_background_menu);
 
 		createDefaultValue();
+		creatCustomItemDirecrory();
 	}
 
 	public void initView() {
@@ -172,8 +176,8 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 
 	/**
 	 * @author zendbui
-	 * @author 4-B Bui Trong Hieu
-	 * Create default value for apps: database and achievement  
+	 * @author 4-B Bui Trong Hieu Create default value for apps: database and
+	 *         achievement
 	 */
 	private void createDefaultValue() {
 		db = new Database(this);
@@ -195,4 +199,21 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 		}
 	}
 
+	/**
+	 * @author 4-A Bui Trung Hieu
+	 * @return true if directory create, false if othewise.
+	 */
+	private boolean creatCustomItemDirecrory() {
+		File customItemsSoundDirectory = new File(Environment
+				.getExternalStorageDirectory().getPath()
+				+ "GrowMeUp/items/images");
+		File customItemsImageDirectory = new File(Environment
+				.getExternalStorageDirectory().getPath()
+				+ "/GrowMeUp/items/sounds");
+		if (!customItemsImageDirectory.isDirectory()) {
+			customItemsImageDirectory.mkdirs();
+			customItemsSoundDirectory.mkdirs();
+		}
+		return false;
+	}
 }
