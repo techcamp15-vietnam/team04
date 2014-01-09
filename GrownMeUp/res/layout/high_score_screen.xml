@@ -92,7 +92,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/high_score_relative_badge"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/high_score_margin_top"
         android:background="@color/white_transparent"
         android:orientation="vertical" >
 
@@ -102,7 +102,8 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/hello_world"
-            android:textSize="30sp" />
+            android:textSize="@dimen/high_score_text_size"
+            android:textColor="@android:color/holo_red_light" />
     </RelativeLayout>
 
 </RelativeLayout>

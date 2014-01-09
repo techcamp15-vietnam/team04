@@ -61,10 +61,10 @@
             android:id="@+id/tv_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/learning_screen_sound_margin_left"
-            android:layout_toRightOf="@+id/tv_meaning"
+            android:layout_marginTop="@dimen/statistic_margin_top"
+            android:layout_below="@+id/tv_meaning"
             android:background="@android:color/transparent"
-             />
+            android:textSize="@dimen/learning_screen_text_size" />
     </RelativeLayout>
 
 </RelativeLayout>

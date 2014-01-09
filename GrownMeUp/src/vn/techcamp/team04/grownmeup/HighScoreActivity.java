@@ -28,9 +28,13 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 	private ImageView mBadge6;
 	private TextView mTvExplainBadge;
 
-	
+	private boolean mValuebadge1;
+	private boolean mValuebadge2;
+	private boolean mValuebadge3;
+	private boolean mValuebadge4;
+	private float mValuebadge5;
+	private boolean mValuebadge6;
 
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,9 +63,9 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 		mBadge4 = (ImageView) findViewById(R.id.high_score_img_achievement_4);
 		mBadge5 = (ImageView) findViewById(R.id.high_score_img_achievement_5);
 		mBadge6 = (ImageView) findViewById(R.id.high_score_img_achievement_6);
-		mTvExplainBadge = (TextView)findViewById(R.id.high_socre_tv_explain_badge);
+		mTvExplainBadge = (TextView) findViewById(R.id.high_socre_tv_explain_badge);
 		mTvExplainBadge.setText("");
-		
+
 		mBtnReport.setOnClickListener(this);
 		mBadge1.setOnClickListener(this);
 		mBadge2.setOnClickListener(this);
@@ -70,28 +74,29 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 		mBadge5.setOnClickListener(this);
 		mBadge6.setOnClickListener(this);
 
-		SharedPreferences settings = getSharedPreferences(AchievementRules.ACHIEVEMENT, 0);
-		boolean mValuebadge1 = settings.getBoolean(AchievementRules.badge1, false);
+		SharedPreferences settings = getSharedPreferences(
+				AchievementRules.ACHIEVEMENT, 0);
+		mValuebadge1 = settings.getBoolean(AchievementRules.badge1, false);
 		if (!mValuebadge1) {
 			mBadge1.setImageResource(R.drawable.black_badge);
 		}
-		boolean mValuebadge2 = settings.getBoolean(AchievementRules.badge2, false);
+		mValuebadge2 = settings.getBoolean(AchievementRules.badge2, false);
 		if (!mValuebadge2) {
 			mBadge2.setImageResource(R.drawable.black_badge);
 		}
-		boolean mValuebadge3 = settings.getBoolean(AchievementRules.badge3, false);
+		mValuebadge3 = settings.getBoolean(AchievementRules.badge3, false);
 		if (!mValuebadge3) {
 			mBadge3.setImageResource(R.drawable.black_badge);
 		}
-		boolean mValuebadge4 = settings.getBoolean(AchievementRules.badge4, false);
+		mValuebadge4 = settings.getBoolean(AchievementRules.badge4, false);
 		if (!mValuebadge4) {
 			mBadge4.setImageResource(R.drawable.black_badge);
 		}
-		float mValuebadge5 = settings.getFloat(AchievementRules.badge5, (float)0.0);
+		mValuebadge5 = settings.getFloat(AchievementRules.badge5, (float) 0.0);
 		if (mValuebadge5 == 0.0) {
 			mBadge5.setImageResource(R.drawable.black_badge);
 		}
-		boolean mValuebadge6 = settings.getBoolean(AchievementRules.badge6, false);
+		mValuebadge6 = settings.getBoolean(AchievementRules.badge6, false);
 		if (!mValuebadge6) {
 			mBadge6.setImageResource(R.drawable.black_badge);
 		}
@@ -108,26 +113,56 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 		case R.id.high_score_img_achievement_1:
 			Toast.makeText(getApplicationContext(), "badge 1",
 					Toast.LENGTH_SHORT).show();
+			if (mValuebadge1) {
+
+			} else {
+
+			}
 			break;
 		case R.id.high_score_img_achievement_2:
 			Toast.makeText(getApplicationContext(), "badge 2",
 					Toast.LENGTH_SHORT).show();
+			if (mValuebadge2) {
+
+			} else {
+
+			}
 			break;
 		case R.id.high_score_img_achievement_3:
 			Toast.makeText(getApplicationContext(), "badge 3",
 					Toast.LENGTH_SHORT).show();
+			if (mValuebadge3) {
+
+			} else {
+
+			}
 			break;
 		case R.id.high_score_img_achievement_4:
 			Toast.makeText(getApplicationContext(), "badge 4",
 					Toast.LENGTH_SHORT).show();
+			if (mValuebadge4) {
+
+			} else {
+
+			}
 			break;
 		case R.id.high_score_img_achievement_5:
 			Toast.makeText(getApplicationContext(), "badge 5",
 					Toast.LENGTH_SHORT).show();
+			if (mValuebadge5 == 0.0) {
+
+			} else {
+
+			}
 			break;
 		case R.id.high_score_img_achievement_6:
 			Toast.makeText(getApplicationContext(), "badge 6",
 					Toast.LENGTH_SHORT).show();
+			if (mValuebadge6) {
+
+			} else {
+
+			}
 			break;
 		default:
 			break;

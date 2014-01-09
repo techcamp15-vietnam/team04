@@ -30,6 +30,7 @@ public class StatisticPlayingResult extends Activity implements OnClickListener 
 	private mTTS tts;
 	private Database db;
 	private ArrayList<HashMap<String, String>> allItem;
+	private int currentSubject;
 	private int currentItem;
 
 	@Override
@@ -41,6 +42,7 @@ public class StatisticPlayingResult extends Activity implements OnClickListener 
 
 		db = new Database(this);
 		currentItem = 0;
+		currentSubject = 1;
 		ArrayList<String> currentSubject = new ArrayList<String>();
 		currentSubject.add("1");
 		allItem = db.query(Database.ACTION_GET_ALL_ITEM, currentSubject);
