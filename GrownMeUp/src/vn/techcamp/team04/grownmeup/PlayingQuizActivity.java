@@ -25,6 +25,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * @author Nguyen Sinh Hiep 4-C
@@ -151,7 +152,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 				@Override
 				public void onFinish() {
-					chosenWrongAnswer();
+//					chosenWrongAnswer();
 
 				}
 			}.start();

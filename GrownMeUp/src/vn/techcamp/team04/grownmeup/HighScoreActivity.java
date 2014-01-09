@@ -116,93 +116,123 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 			startActivity(statisticActivity);
 			break;
 		case R.id.high_score_img_achievement_1:
-			Toast.makeText(getApplicationContext(), "badge 1",
-					Toast.LENGTH_SHORT).show();
+			mTvExplainBadge.setText(AchievementRules.badge1.toLowerCase());
 			if (mValuebadge1) {
 				if (isPlaying) {
 					isPlaying = false;
 					releaseSound();
-				}else {
+				} else {
 					isPlaying = true;
 					playSound(R.raw.sound_right_1);
 				}
 			} else {
-
+				if (isPlaying) {
+					isPlaying = false;
+					releaseSound();
+				} else {
+					isPlaying = true;
+					playSound(R.raw.sound_wrong_1);
+				}
 			}
 			break;
 		case R.id.high_score_img_achievement_2:
-			Toast.makeText(getApplicationContext(), "badge 2",
-					Toast.LENGTH_SHORT).show();
+			mTvExplainBadge.setText(AchievementRules.badge2.toLowerCase());
 			if (mValuebadge2) {
 				if (isPlaying) {
 					isPlaying = false;
 					releaseSound();
-				}else {
+				} else {
 					isPlaying = true;
 					playSound(R.raw.sound_right_1);
 				}
 			} else {
-
+				if (isPlaying) {
+					isPlaying = false;
+					releaseSound();
+				} else {
+					isPlaying = true;
+					playSound(R.raw.sound_wrong_1);
+				}
 			}
 			break;
 		case R.id.high_score_img_achievement_3:
-			Toast.makeText(getApplicationContext(), "badge 3",
-					Toast.LENGTH_SHORT).show();
+			mTvExplainBadge.setText(AchievementRules.badge3.toLowerCase());
 			if (mValuebadge3) {
 				if (isPlaying) {
 					isPlaying = false;
 					releaseSound();
-				}else {
+				} else {
 					isPlaying = true;
 					playSound(R.raw.sound_right_1);
 				}
 			} else {
-
+				if (isPlaying) {
+					isPlaying = false;
+					releaseSound();
+				} else {
+					isPlaying = true;
+					playSound(R.raw.sound_wrong_1);
+				}
 			}
 			break;
 		case R.id.high_score_img_achievement_4:
-			Toast.makeText(getApplicationContext(), "badge 4",
-					Toast.LENGTH_SHORT).show();
+			mTvExplainBadge.setText(AchievementRules.badge4.toLowerCase());
 			if (mValuebadge4) {
 				if (isPlaying) {
 					isPlaying = false;
 					releaseSound();
-				}else {
+				} else {
 					isPlaying = true;
 					playSound(R.raw.sound_right_1);
 				}
 			} else {
-
+				if (isPlaying) {
+					isPlaying = false;
+					releaseSound();
+				} else {
+					isPlaying = true;
+					playSound(R.raw.sound_wrong_1);
+				}
 			}
 			break;
 		case R.id.high_score_img_achievement_5:
-			Toast.makeText(getApplicationContext(), "badge 5",
-					Toast.LENGTH_SHORT).show();
+			mTvExplainBadge.setText(AchievementRules.badge5.toLowerCase());
 			if (mValuebadge5 == 0.0) {
 				if (isPlaying) {
 					isPlaying = false;
 					releaseSound();
-				}else {
+				} else {
 					isPlaying = true;
 					playSound(R.raw.sound_right_1);
 				}
 			} else {
-
+				if (isPlaying) {
+					isPlaying = false;
+					releaseSound();
+				} else {
+					isPlaying = true;
+					playSound(R.raw.sound_wrong_1);
+				}
 			}
 			break;
 		case R.id.high_score_img_achievement_6:
-			Toast.makeText(getApplicationContext(), "badge 6",
-					Toast.LENGTH_SHORT).show();
+			mTvExplainBadge.setText(AchievementRules.badge6.toLowerCase());
 			if (mValuebadge6) {
 				if (isPlaying) {
 					isPlaying = false;
 					releaseSound();
-				}else {
+				} else {
 					isPlaying = true;
 					playSound(R.raw.sound_right_1);
 				}
 			} else {
-
+				if (isPlaying) {
+					isPlaying = false;
+					releaseSound();
+				} else {
+					isPlaying = true;
+					playSound(R.raw.sound_wrong_1);
+				}
 			}
 			break;
 		default:
