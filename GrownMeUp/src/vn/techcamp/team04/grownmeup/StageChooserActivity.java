@@ -45,7 +45,6 @@ public class StageChooserActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.stage_chooser_screen);
 
 		subjectID = getIntent().getExtras().getInt("subjectID", 0);
-		// Toast.makeText(this, "" + subjectID, Toast.LENGTH_SHORT).show();
 
 		initView();
 		initStage();
@@ -78,8 +77,6 @@ public class StageChooserActivity extends Activity implements OnClickListener {
 		ArrayList<String> alSubjectID = new ArrayList<String>();
 		alSubjectID.add(subjectID + "");
 		allStage = db.query(Database.ACTION_GET_ALL_STAGE, alSubjectID);
-		// Toast.makeText(this, "" + allStage.size(),
-		// Toast.LENGTH_SHORT).show();
 		currentStage = 0;
 		loadStage();
 
@@ -91,7 +88,6 @@ public class StageChooserActivity extends Activity implements OnClickListener {
 
 			String pos1 = allStage.get(currentStage).get(
 					mSQLiteHelper.STAGE_NAME);
-			Toast.makeText(this, "" + pos1, Toast.LENGTH_SHORT).show();
 			if (pos1 != null) {
 				try {
 					is = getAssets().open("image/stage/" + pos1 + ".png");

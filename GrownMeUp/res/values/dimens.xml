@@ -35,7 +35,8 @@
 
     <!-- Quiz Image -> Text -->
     <dimen name="quiz_image_text_image_margin_top">20dp</dimen>
-    <dimen name="quiz_image_text_time_textsize">60dp</dimen>
+    <dimen name="quiz_image_text_time_textsize">30dp</dimen>
+    <dimen name="quiz_image_text_answer_margin_top">20dp</dimen>
 
     <!-- Quiz  Text ->Image -->
     <dimen name="quiz_text_image_image_margin_top">20dp</dimen>

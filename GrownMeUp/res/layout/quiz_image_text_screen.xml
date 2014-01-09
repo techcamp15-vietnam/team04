@@ -7,8 +7,9 @@
 
     <ImageView
         android:id="@+id/iv_question_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:scaleType="fitCenter"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/quiz_image_text_image_margin_top"
@@ -30,6 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/iv_question_image"
+        android:layout_marginTop="@dimen/quiz_image_text_answer_margin_top"
         android:layout_centerHorizontal="true" >
 
         <Button

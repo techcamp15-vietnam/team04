@@ -23,7 +23,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * @author Nguyen Sinh Hiep 4-C
@@ -37,7 +36,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 	private ArrayList<HashMap<String, String>> allItem;
 	private ArrayList<HashMap<String, String>> allAns;
 
-	//private Dialog dialog;
+	// private Dialog dialog;
 
 	private int correctAnswer;
 	private int answer;
@@ -80,9 +79,6 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 		stageID = getIntent().getExtras().getInt("stageID", 0);
 		subjectID = getIntent().getExtras().getInt("subjectID", 0);
-
-		Toast.makeText(this, "subjectID: " + subjectID, Toast.LENGTH_SHORT)
-				.show();
 
 		initViewQuiz1();
 		initTimeCounter();
@@ -315,7 +311,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 		dialog.show();
 		Handler handler = new Handler();
 		handler.postDelayed(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
@@ -326,23 +322,17 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 			}
 		}, 2000);
 		/*
-		new CountDownTimer(2000, 1000) {
-
-			@Override
-			public void onTick(long millisUntilFinished) {
-
-			}
-
-			@Override
-			public void onFinish() {
-				if (dialog != null) {
-					dialog.dismiss();
-					dialog = null;
-					displayNextQuestion();
-				}
-
-			}
-		}.start();*/
+		 * new CountDownTimer(2000, 1000) {
+		 * 
+		 * @Override public void onTick(long millisUntilFinished) {
+		 * 
+		 * }
+		 * 
+		 * @Override public void onFinish() { if (dialog != null) {
+		 * dialog.dismiss(); dialog = null; displayNextQuestion(); }
+		 * 
+		 * } }.start();
+		 */
 	}
 
 	public void showDialog(String content, Drawable questionImage) {
@@ -359,10 +349,9 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 		dialog.show();
 		Handler handler = new Handler();
 		handler.postDelayed(new Runnable() {
-			
+
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				if (dialog != null) {
 					dialog.dismiss();
 					displayNextQuestion();
@@ -370,23 +359,17 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 			}
 		}, 2000);
 		/*
-		new CountDownTimer(2000, 1000) {
-
-			@Override
-			public void onTick(long millisUntilFinished) {
-
-			}
-
-			@Override
-			public void onFinish() {
-				if (dialog != null) {
-					dialog.dismiss();
-					dialog = null;
-					displayNextQuestion();
-				}
-
-			}
-		}.start();*/
+		 * new CountDownTimer(2000, 1000) {
+		 * 
+		 * @Override public void onTick(long millisUntilFinished) {
+		 * 
+		 * }
+		 * 
+		 * @Override public void onFinish() { if (dialog != null) {
+		 * dialog.dismiss(); dialog = null; displayNextQuestion(); }
+		 * 
+		 * } }.start();
+		 */
 	}
 
 	@Override
