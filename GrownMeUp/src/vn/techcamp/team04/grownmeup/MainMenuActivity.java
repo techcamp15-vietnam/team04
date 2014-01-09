@@ -16,7 +16,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
 /**
- * @author hiepns
+ * @author Nguyen Sinh Hiep 4-C
  * 
  */
 public class MainMenuActivity extends Activity implements OnClickListener {

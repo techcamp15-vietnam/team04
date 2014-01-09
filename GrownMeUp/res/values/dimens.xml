@@ -31,6 +31,7 @@
     <!-- Stage Chooser -->
     <dimen name="stage_chooser_item_margin">10dp</dimen>
     <dimen name="stage_chooser_text_size">30dp</dimen>
+    <dimen name="stage_chooser_image_margin">5dp</dimen>
 
     <!-- Quiz Image -> Text -->
     <dimen name="quiz_image_text_image_margin_top">20dp</dimen>
@@ -63,5 +64,10 @@
     <!-- statistc screen -->
     <dimen name="statistic_margin_left">10dp</dimen>
     <dimen name="statistic_margin_top">30dp</dimen>
+
+    <!-- dialog answer -->
+    <dimen name="dialog_image_margin_top">40dp</dimen>
+    <dimen name="dialog_text_margin_top">20dp</dimen>
+    <dimen name="dialog_text_textsize">20dp</dimen>
 
 </resources>

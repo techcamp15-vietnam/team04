@@ -17,7 +17,7 @@ public class mRandomItem {
 	}
 
 	public ArrayList<String> random(int subjectID, int itemID) {
-		ArrayList<String> name = new ArrayList<String>();
+		ArrayList<String> result = new ArrayList<String>();
 		ArrayList<String> subID = new ArrayList<String>();
 		subID.add(subjectID + "");
 		ArrayList<HashMap<String, String>> allItem = db.query(
@@ -26,19 +26,19 @@ public class mRandomItem {
 		int totalItem = allItem.size();
 		Random r = new Random();
 		int correctPosition = r.nextInt(4) + 1;
-		name.add(correctPosition + "");
+		result.add(correctPosition + "");
 		for (int i = 1; i < 5; i++) {
 			if (i == correctPosition) {
-				name.add(itemID + "");
+				result.add(itemID + "");
 			} else {
 				int posItem;
 				do {
 					posItem = r.nextInt(totalItem - 1) + 1;
 				} while (posItem == itemID);
-				name.add(posItem + "");
+				result.add(posItem + "");
 			}
 		}
-		return name;
+		return result;
 	}
 	public void close(){
 		db.close();

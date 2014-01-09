@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * @author hiepns
+ * @author Nguyen Sinh Hiep 4-C
  * 
  */
 public class SubjectChooserActivity extends Activity implements OnClickListener {
@@ -51,7 +51,6 @@ public class SubjectChooserActivity extends Activity implements OnClickListener 
 	private String itemBottomLeft;
 	private String itemBottomRight;
 
-	private int subjectID;
 	private int currentSubject;
 
 	@Override
@@ -140,23 +139,25 @@ public class SubjectChooserActivity extends Activity implements OnClickListener 
 		}
 		if (itemBottomLeft != null) {
 			tvBottomLeft.setText(itemBottomLeft);
-			 try {
-			 is = getAssets().open("image/subject/" + itemBottomLeft + ".png");
-			 } catch (IOException e) {
-			 e.printStackTrace();
-			 }
-			 Drawable d = Drawable.createFromStream(is, null);
-			 imgvBottomLeft.setImageDrawable(d);
+			try {
+				is = getAssets().open(
+						"image/subject/" + itemBottomLeft + ".png");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Drawable d = Drawable.createFromStream(is, null);
+			imgvBottomLeft.setImageDrawable(d);
 		}
 		if (itemBottomRight != null) {
 			tvBottomRight.setText(itemBottomRight);
-			 try {
-			 is = getAssets().open("image/subject/" + itemBottomRight + ".png");
-			 } catch (IOException e) {
-			 e.printStackTrace();
-			 }
-			 Drawable d = Drawable.createFromStream(is, null);
-			 imgvBottomRight.setImageDrawable(d);
+			try {
+				is = getAssets().open(
+						"image/subject/" + itemBottomRight + ".png");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Drawable d = Drawable.createFromStream(is, null);
+			imgvBottomRight.setImageDrawable(d);
 		}
 
 	}
@@ -187,25 +188,39 @@ public class SubjectChooserActivity extends Activity implements OnClickListener 
 			break;
 
 		case R.id.ln_subject_top_left:
-			// Toast.makeText(this, "top left", Toast.LENGTH_SHORT).show();
-			Intent stageChooser = new Intent(this, StageChooserActivity.class);
-//			stageChooser.putExtra(name, value)
-			startActivity(stageChooser);
+			startStageChooser(currentSubject);
 
 			break;
 		case R.id.ln_subject_top_right:
-
+			startStageChooser(currentSubject + 1);
 			break;
 		case R.id.ln_subject_bottom_left:
+			startStageChooser(currentSubject + 2);
 
 			break;
 		case R.id.ln_subject_bottom_right:
+			startStageChooser(currentSubject + 3);
 
 			break;
 
 		default:
 			break;
 		}
+	}
+
+	public void startStageChooser(int subjectID) {
+		Intent intent = new Intent(SubjectChooserActivity.this,
+				StageChooserActivity.class);
+		intent.putExtra("subjectID", subjectID + 1);
+		startActivity(intent);
+
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		db.close();
+
 	}
 
 }
