@@ -32,6 +32,7 @@ public class mSQLiteHelper extends SQLiteOpenHelper {
 	public static final String STAGE_ID = "stage_id";
 	public static final String STAGE_NAME = "stage_name";
 	public static final String STAGE_NUMBER = "stage_number";
+	public static final String STAGE_STATUS = "stage_status";
 	public static final String ITEM_ID = "item_id";
 	public static final String ITEM_NAME = "item_name";
 	public static final String ITEM_IMG_LINK = "item_img_link";
@@ -51,7 +52,7 @@ public class mSQLiteHelper extends SQLiteOpenHelper {
 			+ TABLE_STAGE + " (" + STAGE_ID
 			+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + SUBJECT_ID
 			+ " INTEGER, " + STAGE_NAME + " VARCHAR, " + STAGE_NUMBER
-			+ " INTEGER " + ");";
+			+ " INTEGER, " + STAGE_STATUS + " INTEGER " + ");";
 
 	private static final String CREATE_TABLE_ITEM = "CREATE TABLE "
 			+ TABLE_ITEM + " (" + ITEM_ID

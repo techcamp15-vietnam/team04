@@ -34,7 +34,7 @@ public class Database {
 	public static final int ACTION_GET_ALL_ITEM = 9;
 	public static final int ACTION_ADD_NEW_ITEM = 10;
 	public static final int ACTION_ADD_ITEM_ANSWER = 11;
-	public static final int ACTION_ADD_TOTAL_ITEM_ANSWER = 12;
+	public static final int ACTION_ADD_STAGE_STATUS = 12;
 
 	public static final String KEY_SUCCESS = "success";
 	public static final String KEY_FAILURE = "failure";
@@ -44,10 +44,11 @@ public class Database {
 			mSQLiteHelper.SUBJECT_NAME };
 	private String[] allColumnsStage = { mSQLiteHelper.STAGE_ID,
 			mSQLiteHelper.SUBJECT_ID, mSQLiteHelper.STAGE_NAME,
-			mSQLiteHelper.STAGE_NUMBER };
+			mSQLiteHelper.STAGE_NUMBER, mSQLiteHelper.STAGE_STATUS };
 	private String[] allColumnsItem = { mSQLiteHelper.ITEM_ID,
 			mSQLiteHelper.SUBJECT_ID, mSQLiteHelper.ITEM_NAME,
-			mSQLiteHelper.ITEM_IMG_LINK, mSQLiteHelper.ITEM_AUDIO_LINK };
+			mSQLiteHelper.ITEM_IMG_LINK, mSQLiteHelper.ITEM_AUDIO_LINK,
+			mSQLiteHelper.ITEM_CORRECT_ANSWER, mSQLiteHelper.ITEM_WRONG_ANSWER };
 	private String[] allColumnsStageDetail = { mSQLiteHelper.STAGE_ID,
 			mSQLiteHelper.ITEM_ID };
 
@@ -231,7 +232,7 @@ public class Database {
 				newStage.put(mSQLiteHelper.SUBJECT_ID, content[0].get(0));
 				newStage.put(mSQLiteHelper.STAGE_NAME, content[0].get(1));
 				newStage.put(mSQLiteHelper.STAGE_NUMBER, content[0].get(2));
-
+				newStage.put(mSQLiteHelper.STAGE_STATUS, 0 +"");
 				int resultInsertStage = (int) database.insert(
 						mSQLiteHelper.TABLE_STAGE, null, newStage);
 				ArrayList<HashMap<String, String>> result = new ArrayList<HashMap<String, String>>();
@@ -312,6 +313,8 @@ public class Database {
 				newItem.put(mSQLiteHelper.ITEM_NAME, content[0].get(1));
 				newItem.put(mSQLiteHelper.ITEM_IMG_LINK, content[0].get(2));
 				newItem.put(mSQLiteHelper.ITEM_AUDIO_LINK, content[0].get(3));
+				newItem.put(mSQLiteHelper.ITEM_CORRECT_ANSWER, 0+"");
+				newItem.put(mSQLiteHelper.ITEM_WRONG_ANSWER, 0+"");
 				int Addingresult = (int) database.insert(
 						mSQLiteHelper.TABLE_ITEM, null, newItem);
 
@@ -327,6 +330,79 @@ public class Database {
 			} else {
 				throw new InvalidParameterException(
 						"content must be implement Subject Name");
+			}
+		case ACTION_ADD_ITEM_ANSWER:
+			// AFTER USER ANSWER A INCREASE ANSWER
+			if (!this.isDatabaseWriteable()) {
+				return null;
+			}
+			if (content[0] instanceof ArrayList<?>) {
+				ArrayList<HashMap<String, String>> updateItemResult = new ArrayList<HashMap<String, String>>();
+				HashMap<String, String> hashmap = new HashMap<String, String>();
+				int itemID = Integer.parseInt(content[0].get(0));
+				String answer = content[0].get(1);
+				Cursor cursorItem = database.query(mSQLiteHelper.TABLE_ITEM,
+						allColumnsItem, mSQLiteHelper.ITEM_ID + " = " + itemID,
+						null, null, null, null);
+				cursorItem.moveToFirst();
+				if (cursorItem.getCount() != 1) {
+					cursorItem.close();
+					hashmap.put(KEY_FAILURE, "failure");
+				} else {
+					ContentValues newValue = new ContentValues();
+					newValue = newItemAttr(cursorItem, answer);
+					cursorItem.close();
+					int updateResult = database.update(
+							mSQLiteHelper.TABLE_ITEM, newValue,
+							mSQLiteHelper.ITEM_ID + " = " + itemID, null);
+					if (updateResult == 1) {
+						hashmap.put(KEY_SUCCESS, "success");
+					} else {
+						hashmap.put(KEY_FAILURE, "failure");
+					}
+				}
+				updateItemResult.add(hashmap);
+				return updateItemResult;
+			} else {
+				throw new InvalidParameterException(
+						"content must be implement itemID and answer");
+			}
+		case ACTION_ADD_STAGE_STATUS:
+			// input: stageID + number of correct answer
+			// TODO
+			if (!this.isDatabaseWriteable()) {
+				return null;
+			}
+			if (content[0] instanceof ArrayList<?>) {
+				ArrayList<HashMap<String, String>> updateStageResult = new ArrayList<HashMap<String, String>>();
+				HashMap<String, String> hashmap = new HashMap<String, String>();
+				int stageID = Integer.parseInt(content[0].get(0));
+				int answer = Integer.parseInt(content[0].get(1));
+				Cursor cursorStage = database.query(mSQLiteHelper.TABLE_STAGE,
+						allColumnsStage, mSQLiteHelper.STAGE_ID + " = " + stageID,
+						null, null, null, null);
+				cursorStage.moveToFirst();
+				if (cursorStage.getCount() != 1) {
+					cursorStage.close();
+					hashmap.put(KEY_FAILURE, "failure");
+				} else {
+					ContentValues newValue = new ContentValues();
+					newValue = newStageAttr(cursorStage, answer);
+					cursorStage.close();
+					int updateResult = database.update(
+							mSQLiteHelper.TABLE_STAGE, newValue,
+							mSQLiteHelper.STAGE_ID + " = " + stageID, null);
+					if (updateResult == 1) {
+						hashmap.put(KEY_SUCCESS, "success");
+					} else {
+						hashmap.put(KEY_FAILURE, "failure");
+					}
+				}
+				updateStageResult.add(hashmap);
+				return updateStageResult;
+			} else {
+				throw new InvalidParameterException(
+						"content must be implement stageID and number of correct answer");
 			}
 		default:
 			throw new UnsupportedOperationException();
@@ -355,6 +431,7 @@ public class Database {
 		stage.put(mSQLiteHelper.SUBJECT_ID, cursor.getLong(1) + "");
 		stage.put(mSQLiteHelper.STAGE_NAME, cursor.getString(2) + "");
 		stage.put(mSQLiteHelper.STAGE_NUMBER, cursor.getString(3) + "");
+		stage.put(mSQLiteHelper.STAGE_STATUS, cursor.getLong(4) + "");
 		return stage;
 	}
 
@@ -365,6 +442,8 @@ public class Database {
 		item.put(mSQLiteHelper.ITEM_NAME, cursor.getString(2) + "");
 		item.put(mSQLiteHelper.ITEM_IMG_LINK, cursor.getString(3) + "");
 		item.put(mSQLiteHelper.ITEM_AUDIO_LINK, cursor.getString(4) + "");
+		item.put(mSQLiteHelper.ITEM_CORRECT_ANSWER, cursor.getString(5) + "");
+		item.put(mSQLiteHelper.ITEM_WRONG_ANSWER, cursor.getString(6) + "");
 		return item;
 	}
 
@@ -409,4 +488,44 @@ public class Database {
 
 	}
 
+	/**
+	 * @author zendbui
+	 * @author 4-B Bui Trong Hieu
+	 * @param cursor
+	 * @param answer
+	 * @return contenValue that will be added to database
+	 */
+	ContentValues newItemAttr(Cursor cursor, String answer) {
+		ContentValues item = new ContentValues();
+		int correct_answer = 0;
+		int wrong_answer = 0;
+		item.put(mSQLiteHelper.SUBJECT_ID, cursor.getLong(1) + "");
+		item.put(mSQLiteHelper.ITEM_NAME, cursor.getString(2) + "");
+		item.put(mSQLiteHelper.ITEM_IMG_LINK, cursor.getString(3) + "");
+		item.put(mSQLiteHelper.ITEM_AUDIO_LINK, cursor.getString(4) + "");
+		correct_answer = Integer.parseInt(cursor.getString(5));
+		wrong_answer = Integer.parseInt(cursor.getString(6));
+		if (answer.equalsIgnoreCase("true")) {
+			correct_answer += 1;
+		} else {
+			wrong_answer += 1;
+		}
+		item.put(mSQLiteHelper.ITEM_CORRECT_ANSWER, correct_answer + "");
+		item.put(mSQLiteHelper.ITEM_WRONG_ANSWER, wrong_answer + "");
+		return item;
+	}
+	
+	ContentValues newStageAttr(Cursor cursor, int correctAnswer) {
+		ContentValues stage = new ContentValues();
+		int currentCorrectAnswer = 0;
+		stage.put(mSQLiteHelper.STAGE_NAME, cursor.getLong(1) + "");
+		stage.put(mSQLiteHelper.STAGE_NUMBER, cursor.getString(2) + "");
+		currentCorrectAnswer = Integer.parseInt(cursor.getString(3));
+		if (currentCorrectAnswer < correctAnswer) {
+			currentCorrectAnswer +=1;
+		} else {
+		}
+		stage.put(mSQLiteHelper.STAGE_STATUS, currentCorrectAnswer + "");
+		return stage;
+	}
 }
