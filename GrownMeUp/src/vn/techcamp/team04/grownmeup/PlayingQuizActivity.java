@@ -10,7 +10,9 @@ import vn.techcamp.team04.grownmeup.database.mSQLiteHelper;
 import vn.techcamp.team04.grownmeup.utility.AchievementRules;
 import vn.techcamp.team04.grownmeup.utility.mRandomItem;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -37,7 +39,6 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 	private int subjectID;
 	private Database db;
 	private ArrayList<HashMap<String, String>> allItem;
-	private ArrayList<HashMap<String, String>> allAns;
 
 	// private Dialog dialog;
 
@@ -49,6 +50,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 	private int currentItem;
 	private String currentItemID;
+	private int countCorrectAnswer = 0;
 
 	private String ans1;
 	private String ans2;
@@ -58,6 +60,8 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 	private TextView tvTimeCounter;
 
 	private boolean holdDialog;
+
+	private boolean holdFinishStage;
 
 	// quiz image_text
 	private ImageView imgvQuestionImage;
@@ -74,7 +78,6 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 	private ImageView ivAnswer4;
 
 	private CountDownTimer countDownTimer;
-	private long mRemainSecond = 0;
 
 	// achievement
 	private AchievementRules achievement;
@@ -86,9 +89,13 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 		// setContentView(R.layout.quiz_text_image_screen);
 
 		holdDialog = false;
+		holdFinishStage = false;
 
 		stageID = getIntent().getExtras().getInt("stageID", 0);
 		subjectID = getIntent().getExtras().getInt("subjectID", 0);
+
+		currentItem = 0;
+		db = new Database(this);
 
 		initViewQuiz1();
 		initTimeCounter();
@@ -133,13 +140,11 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 	}
 
 	public void initTimeCounter() {
-		mRemainSecond = 0;
 		if (countDownTimer == null) {
 			countDownTimer = new CountDownTimer(31000, 1000) {
 
 				@Override
 				public void onTick(long millisUntilFinished) {
-					mRemainSecond = (600000 - millisUntilFinished) / 1000;
 					long second = (millisUntilFinished % 60000) / 1000;
 					if ((millisUntilFinished % 60000) / 1000 < 10) {
 						tvTimeCounter.setText(millisUntilFinished / 60000
@@ -152,7 +157,9 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 				@Override
 				public void onFinish() {
-//					chosenWrongAnswer();
+					if (!holdFinishStage) {
+						chosenWrongAnswer();
+					}
 
 				}
 			}.start();
@@ -160,11 +167,11 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 	}
 
 	public void initQuiz() {
-		currentItem = 0;
-		db = new Database(this);
+
 		ArrayList<String> alstage = new ArrayList<String>();
 		alstage.add(stageID + "");
 		allItem = db.query(Database.ACTION_GET_STAGE_DETAILS, alstage);
+		Log.i("allItem", allItem.toString());
 		loadItem();
 	}
 
@@ -286,12 +293,15 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 		countDownTimer.start();
 		if (currentItem < 4) {
 			currentItem++;
+			loadItem();
+		} else {
+			finishStage();
 		}
-		loadItem();
 
 	}
 
 	public void chosenCorrectAnswer() {
+		countCorrectAnswer++;
 		showDialog("Correct!", R.drawable.correct);
 
 		ArrayList<String> alCorrectAns = new ArrayList<String>();
@@ -334,6 +344,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 		if (!holdDialog && PlayingQuizActivity.this != null) {
 			final Dialog dialog = new Dialog(PlayingQuizActivity.this);
 			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			dialog.setCancelable(false);
 			dialog.getWindow().setBackgroundDrawable(
 					new ColorDrawable(android.graphics.Color.TRANSPARENT));
 			dialog.setContentView(R.layout.correct_answer);
@@ -349,7 +360,6 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 				@Override
 				public void run() {
-					// TODO Auto-generated method stub
 					if (dialog != null) {
 						dialog.dismiss();
 						displayNextQuestion();
@@ -375,6 +385,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 		if (!holdDialog && PlayingQuizActivity.this != null) {
 			final Dialog dialog = new Dialog(PlayingQuizActivity.this);
 			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			dialog.setCancelable(false);
 			dialog.getWindow().setBackgroundDrawable(
 					new ColorDrawable(android.graphics.Color.TRANSPARENT));
 			dialog.setContentView(R.layout.correct_answer);
@@ -408,6 +419,44 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 			 * 
 			 * } }.start();
 			 */
+		}
+	}
+
+	public void finishStage() {
+		if (!holdFinishStage) {
+			holdFinishStage = true;
+			new AlertDialog.Builder(this)
+					.setTitle("Stage Result")
+					.setMessage("Correct Answer: " + countCorrectAnswer + "/5")
+					.setPositiveButton("Next Stage",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									stageID++;
+									countDownTimer.start();
+									allItem.clear();
+									allItem = null;
+									countCorrectAnswer = 0;
+									currentItem = 0;
+									holdFinishStage = false;
+									initQuiz();
+
+								}
+							})
+					.setNegativeButton("RePlay",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									countDownTimer.start();
+									allItem.clear();
+									allItem = null;
+									countCorrectAnswer = 0;
+									currentItem = 0;
+									holdFinishStage = false;
+									initQuiz();
+
+								}
+							}).show();
 		}
 	}
 
