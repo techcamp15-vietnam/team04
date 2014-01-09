@@ -59,8 +59,8 @@ public class mSQLiteHelper extends SQLiteOpenHelper {
 			+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + SUBJECT_ID
 			+ " INTEGER, " + ITEM_NAME + " VARCHAR, " + ITEM_IMG_LINK
 			+ " VARCHAR, " + ITEM_AUDIO_LINK + " VARCHAR, "
-			+ ITEM_CORRECT_ANSWER + "INTEGER, " + ITEM_WRONG_ANSWER
-			+ "INTEGER " + ");";
+			+ ITEM_CORRECT_ANSWER + " INTEGER, " + ITEM_WRONG_ANSWER
+			+ " INTEGER " + ");";
 
 	private static final String CREATE_TABLE_STAGE_DETAIL = "CREATE TABLE "
 			+ TABLE_STAGE_DETAIL + " (" + STAGE_ID + " INTEGER, " + ITEM_ID

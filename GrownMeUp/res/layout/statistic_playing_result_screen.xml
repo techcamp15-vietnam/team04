@@ -1,0 +1,70 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_learn"
+    tools:context=".LearningActivity" >
+
+    <RelativeLayout
+        android:id="@+id/rltlayout_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/learning_screen_image_margin_top"
+        android:background="@color/white_transparent" >
+
+        <ImageView
+            android:id="@+id/imgv_item_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/car" />
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/btn_prev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/rltlayout_image"
+        android:background="@android:color/transparent"
+        android:src="@drawable/btn_left_arrow" />
+
+    <ImageButton
+        android:id="@+id/btn_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/rltlayout_image"
+        android:background="@android:color/transparent"
+        android:src="@drawable/btn_right_arrow" />
+
+    <RelativeLayout
+        android:id="@+id/rlt_layout_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rltlayout_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/learning_screen_text_margin_top"
+        android:background="#CCFFFFFF" >
+
+        <TextView
+            android:id="@+id/tv_meaning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/learning_screen_text_size" />
+
+        <TextView
+            android:id="@+id/tv_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/learning_screen_sound_margin_left"
+            android:layout_toRightOf="@+id/tv_meaning"
+            android:background="@android:color/transparent"
+             />
+    </RelativeLayout>
+
+</RelativeLayout>
