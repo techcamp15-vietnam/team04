@@ -31,7 +31,8 @@ public class StatisticPlayingResult extends Activity implements
 	private TextView tvMeaning;
 	private ImageButton btnNext;
 	private ImageButton btnPrev;
-	private TextView tvResult;
+	private TextView tvResultCorrect;
+	private TextView tvResultWrong;
 	private Spinner spSubject;
 
 	private mTTS tts;
@@ -69,14 +70,16 @@ public class StatisticPlayingResult extends Activity implements
 		currentSubject = 1;
 		ArrayList<String> loadedSubject = new ArrayList<String>();
 		loadedSubject.add("1");
-		allItem = db.query(Database.ACTION_GET_ALL_ITEM_SORT_BY_ANSWER, loadedSubject);
+		allItem = db.query(Database.ACTION_GET_ALL_ITEM_SORT_BY_ANSWER,
+				loadedSubject);
 		ViewItem();
 	}
 
 	public void initView() {
 		imgvItemImage = (ImageView) findViewById(R.id.imgv_item_image);
 		tvMeaning = (TextView) findViewById(R.id.tv_meaning);
-		tvResult = (TextView) findViewById(R.id.tv_result);
+		tvResultCorrect = (TextView) findViewById(R.id.tv_result_correct);
+		tvResultWrong = (TextView) findViewById(R.id.tv_result_wrong);
 		btnNext = (ImageButton) findViewById(R.id.btn_next);
 		btnPrev = (ImageButton) findViewById(R.id.btn_prev);
 		spSubject = (Spinner) findViewById(R.id.spinner_statistic_list_subject);
@@ -116,8 +119,11 @@ public class StatisticPlayingResult extends Activity implements
 		case R.id.tv_meaning:
 
 			break;
-		case R.id.tv_result:
+		case R.id.tv_result_correct:
 
+			break;
+		case R.id.tv_result_wrong:
+			
 			break;
 		case R.id.btn_next:
 			if (currentItem < allItem.size() - 1) {
@@ -154,7 +160,8 @@ public class StatisticPlayingResult extends Activity implements
 		currentItem = 0;
 		ArrayList<String> loadedSubject = new ArrayList<String>();
 		loadedSubject.add(currentSubject + "");
-		allItem = db.query(Database.ACTION_GET_ALL_ITEM_SORT_BY_ANSWER, loadedSubject);
+		allItem = db.query(Database.ACTION_GET_ALL_ITEM_SORT_BY_ANSWER,
+				loadedSubject);
 		ViewItem();
 
 	}
@@ -177,9 +184,9 @@ public class StatisticPlayingResult extends Activity implements
 		imgvItemImage.setImageDrawable(d);
 		tvMeaning
 				.setText(allItem.get(currentItem).get(mSQLiteHelper.ITEM_NAME));
-		tvResult.setText(allItem.get(currentItem).get(
-				mSQLiteHelper.ITEM_CORRECT_ANSWER)
-				+ " / "
-				+ allItem.get(currentItem).get(mSQLiteHelper.ITEM_WRONG_ANSWER));
+		tvResultCorrect.setText(allItem.get(currentItem).get(
+				"Correct: " + mSQLiteHelper.ITEM_CORRECT_ANSWER));
+		tvResultWrong.setText(allItem.get(currentItem).get(
+				"Wrong: " + mSQLiteHelper.ITEM_WRONG_ANSWER));
 	}
 }

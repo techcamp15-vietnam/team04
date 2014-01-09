@@ -60,7 +60,7 @@
     <dimen name="high_score_margin_left">20dp</dimen>
     <dimen name="high_score_margin_top">40dp</dimen>
     <dimen name="high_score_margin_bottom">20dp</dimen>
-    <dimen name="high_score_text_size">40sp</dimen>
+    <dimen name="high_score_text_size">30sp</dimen>
 
     <!-- statistc screen -->
     <dimen name="statistic_margin_left">10dp</dimen>

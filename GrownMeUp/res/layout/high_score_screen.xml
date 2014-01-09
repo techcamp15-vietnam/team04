@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/high_score_btn_report"
         android:background="@color/white_transparent"
+        android:layout_centerHorizontal="true"
         android:orientation="vertical" >
 
         <ImageView
@@ -89,16 +90,17 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/high_score_relative_badge"
         android:layout_marginTop="@dimen/high_score_margin_top"
+        android:layout_centerHorizontal="true"
         android:background="@color/white_transparent"
         android:orientation="vertical" >
 
         <TextView
             android:id="@+id/high_socre_tv_explain_badge"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/hello_world"

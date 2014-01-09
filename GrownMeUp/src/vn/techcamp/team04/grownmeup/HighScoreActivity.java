@@ -196,7 +196,7 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.high_score_img_achievement_5:
 			mTvExplainBadge.setText(AchievementRules.badge5.toLowerCase()
-					+ " : " + mValuebadge5);
+					+ " : " + (int)mValuebadge5 + "s");
 			if (mValuebadge5 != 0.0) {
 				if (isPlaying) {
 					isPlaying = false;

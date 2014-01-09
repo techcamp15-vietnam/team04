@@ -471,12 +471,14 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 	public void onPause() {
 		super.onPause();
 		holdDialog = true;
+		db.close();
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
 		holdDialog = false;
+		db.open();
 	}
 
 }

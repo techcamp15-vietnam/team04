@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_learn"
     tools:context=".LearningActivity" >
-	
+
     <RelativeLayout
         android:id="@+id/rltlayout_image"
         android:layout_width="wrap_content"
@@ -47,23 +47,35 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/rltlayout_image"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/high_score_margin_top"
-        android:background="#CCFFFFFF" >
+        android:layout_marginTop="@dimen/high_score_margin_top" >
 
         <TextView
             android:id="@+id/tv_meaning"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:textSize="@dimen/learning_screen_text_size" />
+			android:layout_centerHorizontal="true"
+            android:text="@string/hello_world"
+            android:textSize="@dimen/learning_screen_text_size" 
+            android:background="#CCFFFF"/>
 
         <TextView
-            android:id="@+id/tv_result"
+            android:id="@+id/tv_result_correct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/statistic_margin_top"
             android:layout_below="@+id/tv_meaning"
-            android:background="@android:color/transparent"
+            android:layout_marginTop="@dimen/statistic_margin_top"
+            android:layout_toRightOf="@+id/tv_result_wrong"
+            android:text="@string/hello_world"
+            android:textColor="@android:color/holo_blue_bright"
+            android:textSize="@dimen/learning_screen_text_size" />
+        <TextView
+            android:id="@+id/tv_result_wrong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_meaning"
+            android:layout_marginTop="@dimen/statistic_margin_top"
+            android:text="@string/hello_world"
+            android:textColor="@android:color/holo_red_dark"
             android:textSize="@dimen/learning_screen_text_size" />
     </RelativeLayout>
 
