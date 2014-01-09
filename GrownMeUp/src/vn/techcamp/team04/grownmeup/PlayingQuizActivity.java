@@ -537,6 +537,33 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int which) {
+									if (correctAnswer == 5) {
+										ArrayList<String> result = achievement.checkNumberCompleteStage();
+										if (result.contains("true")) {
+											if (result.contains(AchievementRules.badge1)) {
+												SharedPreferences settings = PlayingQuizActivity.this.getSharedPreferences(
+														AchievementRules.ACHIEVEMENT, 0);
+												SharedPreferences.Editor editor = settings.edit();
+												editor.putBoolean(AchievementRules.badge1, true);
+												editor.commit();
+											}
+
+											if (result.contains(AchievementRules.badge2)) {
+												SharedPreferences settings = PlayingQuizActivity.this.getSharedPreferences(
+														AchievementRules.ACHIEVEMENT, 0);
+												SharedPreferences.Editor editor = settings.edit();
+												editor.putBoolean(AchievementRules.badge2, true);
+												editor.commit();
+											}
+											if (result.contains(AchievementRules.badge6)) {
+												SharedPreferences settings = PlayingQuizActivity.this.getSharedPreferences(
+														AchievementRules.ACHIEVEMENT, 0);
+												SharedPreferences.Editor editor = settings.edit();
+												editor.putBoolean(AchievementRules.badge6, true);
+												editor.commit();
+											}
+										}
+									}
 									stageID++;
 									countDownTimer.start();
 									allItem.clear();

@@ -112,6 +112,7 @@ public class AchievementRules {
 		editor.commit();
 		result.add(check);
 		result.add(receiveBadge);
+		db.close();
 		return result;
 	}
 
