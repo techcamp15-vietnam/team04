@@ -42,13 +42,16 @@ public class Database {
 
 	private String[] allColumnsSubject = { mSQLiteHelper.SUBJECT_ID,
 			mSQLiteHelper.SUBJECT_NAME };
+	
 	private String[] allColumnsStage = { mSQLiteHelper.STAGE_ID,
 			mSQLiteHelper.SUBJECT_ID, mSQLiteHelper.STAGE_NAME,
 			mSQLiteHelper.STAGE_NUMBER, mSQLiteHelper.STAGE_STATUS };
+	
 	private String[] allColumnsItem = { mSQLiteHelper.ITEM_ID,
 			mSQLiteHelper.SUBJECT_ID, mSQLiteHelper.ITEM_NAME,
 			mSQLiteHelper.ITEM_IMG_LINK, mSQLiteHelper.ITEM_AUDIO_LINK,
 			mSQLiteHelper.ITEM_CORRECT_ANSWER, mSQLiteHelper.ITEM_WRONG_ANSWER };
+	
 	private String[] allColumnsStageDetail = { mSQLiteHelper.STAGE_ID,
 			mSQLiteHelper.ITEM_ID };
 	// DEFAULT_VALUE format : {{subject1, item11, item12, item13},{subject2,
@@ -285,7 +288,7 @@ public class Database {
 						null, null, null, null);
 				cursorItem.moveToFirst();
 				while (!cursorItem.isAfterLast()) {
-					item.add(cursorToStage(cursorItem));
+					item.add(cursorToItem(cursorItem));
 					cursorItem.moveToNext();
 				}
 				cursorItem.close();
