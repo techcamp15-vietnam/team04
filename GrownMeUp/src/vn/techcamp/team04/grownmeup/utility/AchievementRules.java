@@ -18,7 +18,7 @@ public class AchievementRules {
 	public static String blank_badge = "no badge";
 	public static String badge1 = "complete first stage";
 	public static String badge2 = "complete five stage";
-	public static String badge3 = "answer correct an item first times";
+	public static String badge3 = "first times answer correct";
 	public static String badge4 = "answer correct an item 10 times";
 	public static String badge5 = "fastest stage";
 	public static String badge6 = "finish all stage";

@@ -35,6 +35,7 @@ public class Database {
 	public static final int ACTION_ADD_NEW_ITEM = 10;
 	public static final int ACTION_ADD_ITEM_ANSWER = 11;
 	public static final int ACTION_ADD_STAGE_STATUS = 12;
+	public static final int ACTION_GET_ALL_ITEM_SORT_BY_ANSWER = 13;
 
 	public static final String KEY_SUCCESS = "success";
 	public static final String KEY_FAILURE = "failure";
@@ -42,16 +43,16 @@ public class Database {
 
 	private String[] allColumnsSubject = { mSQLiteHelper.SUBJECT_ID,
 			mSQLiteHelper.SUBJECT_NAME };
-	
+
 	private String[] allColumnsStage = { mSQLiteHelper.STAGE_ID,
 			mSQLiteHelper.SUBJECT_ID, mSQLiteHelper.STAGE_NAME,
 			mSQLiteHelper.STAGE_NUMBER, mSQLiteHelper.STAGE_STATUS };
-	
+
 	private String[] allColumnsItem = { mSQLiteHelper.ITEM_ID,
 			mSQLiteHelper.SUBJECT_ID, mSQLiteHelper.ITEM_NAME,
 			mSQLiteHelper.ITEM_IMG_LINK, mSQLiteHelper.ITEM_AUDIO_LINK,
 			mSQLiteHelper.ITEM_CORRECT_ANSWER, mSQLiteHelper.ITEM_WRONG_ANSWER };
-	
+
 	private String[] allColumnsStageDetail = { mSQLiteHelper.STAGE_ID,
 			mSQLiteHelper.ITEM_ID };
 	// DEFAULT_VALUE format : {{subject1, item11, item12, item13},{subject2,
@@ -347,7 +348,7 @@ public class Database {
 						"content must be implement Subject Name");
 			}
 		case ACTION_ADD_ITEM_ANSWER:
-			// AFTER USER ANSWER A INCREASE ANSWER
+			// AFTER USER ANSWER A QUIZ,INCREASE COUNT ANSWER
 			if (!this.isDatabaseWriteable()) {
 				return null;
 			}
@@ -417,6 +418,25 @@ public class Database {
 			} else {
 				throw new InvalidParameterException(
 						"content must be implement stageID and number of correct answer");
+			}
+		case ACTION_GET_ALL_ITEM_SORT_BY_ANSWER:
+			// RETURN ALL ITEM WHICH BELONG TO A SUBJECT AND SORT BY CORRECT ANSWER
+			ArrayList<HashMap<String, String>> listSortedItem = new ArrayList<HashMap<String, String>>();
+			if (content[0] instanceof ArrayList<?>) {
+				int subjectID = Integer.parseInt(content[0].get(0));
+				Cursor cursorItem = database.query(mSQLiteHelper.TABLE_ITEM,
+						allColumnsItem, mSQLiteHelper.SUBJECT_ID + " = "
+								+ subjectID, null, null, null, mSQLiteHelper.ITEM_CORRECT_ANSWER);
+				cursorItem.moveToFirst();
+				while (!cursorItem.isAfterLast()) {
+					listSortedItem.add(cursorToItem(cursorItem));
+					cursorItem.moveToNext();
+				}
+				cursorItem.close();
+				return listSortedItem;
+			} else {
+				throw new InvalidParameterException(
+						"content must be implement Subject ID");
 			}
 		default:
 			throw new UnsupportedOperationException();

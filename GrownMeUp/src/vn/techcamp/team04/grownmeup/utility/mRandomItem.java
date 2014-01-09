@@ -9,15 +9,15 @@ import android.content.Context;
 
 public class mRandomItem {
 	private Context context;
-	private Database db;
 
 	public mRandomItem(Context context) {
 		this.context = context;
-		db = new Database(this.context);
+
 	}
 
 	public ArrayList<String> random(int subjectID, int itemID) {
 		ArrayList<String> result = new ArrayList<String>();
+		Database db = new Database(this.context);
 		ArrayList<String> subID = new ArrayList<String>();
 		subID.add(subjectID + "");
 		ArrayList<HashMap<String, String>> allItem = db.query(
@@ -34,13 +34,12 @@ public class mRandomItem {
 				int posItem;
 				do {
 					posItem = r.nextInt(totalItem - 1) + 1;
-				} while (posItem == itemID);
+				} while (posItem == itemID || result.contains(posItem));
 				result.add(posItem + "");
 			}
 		}
+		db.close();
 		return result;
 	}
-	public void close(){
-		db.close();
-	}
+
 }

@@ -69,7 +69,7 @@ public class StatisticPlayingResult extends Activity implements
 		currentSubject = 1;
 		ArrayList<String> loadedSubject = new ArrayList<String>();
 		loadedSubject.add("1");
-		allItem = db.query(Database.ACTION_GET_ALL_ITEM, loadedSubject);
+		allItem = db.query(Database.ACTION_GET_ALL_ITEM_SORT_BY_ANSWER, loadedSubject);
 		ViewItem();
 	}
 
@@ -152,7 +152,7 @@ public class StatisticPlayingResult extends Activity implements
 		currentItem = 0;
 		ArrayList<String> loadedSubject = new ArrayList<String>();
 		loadedSubject.add(currentSubject + "");
-		allItem = db.query(Database.ACTION_GET_ALL_ITEM, loadedSubject);
+		allItem = db.query(Database.ACTION_GET_ALL_ITEM_SORT_BY_ANSWER, loadedSubject);
 		ViewItem();
 
 	}
