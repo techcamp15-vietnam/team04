@@ -7,9 +7,11 @@ import java.util.HashMap;
 
 import vn.techcamp.team04.grownmeup.database.Database;
 import vn.techcamp.team04.grownmeup.database.mSQLiteHelper;
+import vn.techcamp.team04.grownmeup.utility.AchievementRules;
 import vn.techcamp.team04.grownmeup.utility.mRandomItem;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -71,6 +73,9 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 	private CountDownTimer countDownTimer;
 	private long mRemainSecond = 0;
 
+	// achievement
+	private AchievementRules achievement;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -83,6 +88,8 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 		initViewQuiz1();
 		initTimeCounter();
 		initQuiz();
+
+		achievement = new AchievementRules(this);
 	}
 
 	public void initViewQuiz1() {
@@ -285,6 +292,28 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 		alCorrectAns.add(currentItemID);
 		alCorrectAns.add("true");
 		db.query(Database.ACTION_ADD_ITEM_ANSWER, alCorrectAns);
+
+		ArrayList<String> arr = achievement.checkNumberCorrectedAnswer(Integer
+				.parseInt(currentItemID));
+		if (arr.contains("true")) {
+			if (arr.contains(AchievementRules.badge3)) {
+				SharedPreferences settings = this.getSharedPreferences(
+						AchievementRules.ACHIEVEMENT, 0);
+				SharedPreferences.Editor editor = settings.edit();
+				editor.putBoolean(AchievementRules.badge3, true);
+				editor.commit();
+				Toast.makeText(getApplicationContext(), AchievementRules.badge3, Toast.LENGTH_SHORT).show();
+			}
+
+			if (arr.contains(AchievementRules.badge4)) {
+				SharedPreferences settings = this.getSharedPreferences(
+						AchievementRules.ACHIEVEMENT, 0);
+				SharedPreferences.Editor editor = settings.edit();
+				editor.putBoolean(AchievementRules.badge4, true);
+				editor.commit();
+				Toast.makeText(getApplicationContext(), AchievementRules.badge4, Toast.LENGTH_SHORT).show();
+			}
+		}
 
 	}
 

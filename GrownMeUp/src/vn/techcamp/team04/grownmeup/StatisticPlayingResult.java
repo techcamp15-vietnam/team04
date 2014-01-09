@@ -163,7 +163,7 @@ public class StatisticPlayingResult extends Activity implements
 
 	private void ViewItem() {
 		InputStream is = null;
-		Log.e("", allItem.get(currentItem).get(mSQLiteHelper.ITEM_IMG_LINK));
+		Log.e("statistic item", allItem.get(currentItem).toString());
 		try {
 			is = getAssets().open(
 					allItem.get(currentItem).get(mSQLiteHelper.ITEM_IMG_LINK));
@@ -171,7 +171,6 @@ public class StatisticPlayingResult extends Activity implements
 			e.printStackTrace();
 		}
 		Drawable d = Drawable.createFromStream(is, null);
-		Log.d("", d.toString());
 		imgvItemImage.setImageDrawable(d);
 		tvMeaning
 				.setText(allItem.get(currentItem).get(mSQLiteHelper.ITEM_NAME));

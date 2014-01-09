@@ -22,7 +22,7 @@ public class AchievementRules {
 	public static String badge4 = "answer correct an item 10 times";
 	public static String badge5 = "fastest stage";
 	public static String badge6 = "finish all stage";
-	
+
 	public static String TOTAL = "total stage";
 	public static String COMPLETED_STAGES = "completed stage";
 	public static int totalStage = 10;
@@ -35,85 +35,102 @@ public class AchievementRules {
 
 	/**
 	 * @return　badge received
+	 * @request call when finish a stage
 	 */
-	public String checkNumberCompleteStage() {
+	public ArrayList<String> checkNumberCompleteStage() {
 		SharedPreferences settings = this.context.getSharedPreferences(
 				ACHIEVEMENT, 0);
 		int current = settings.getInt(COMPLETED_STAGES, 0) + 1;
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putInt(AchievementRules.COMPLETED_STAGES, current);
+		ArrayList<String> result = new ArrayList<String>();
+		String check = null;
 		String receiveBadge = null;
-		
+
 		switch (current) {
 		case 1:
+			check = "true";
 			receiveBadge = badge1 + "";
 			editor.putBoolean(AchievementRules.badge1, true);
 			break;
 		case 5:
+			check = "true";
 			receiveBadge = badge2 + "";
 			editor.putBoolean(AchievementRules.badge2, true);
 			break;
 		case 10:
+			check = "true";
 			receiveBadge = badge6 + "";
 			editor.putBoolean(AchievementRules.badge6, true);
 			break;
 		default:
+			check = "false";
 			receiveBadge = blank_badge + "";
 			break;
 		}
 		editor.commit();
-		return receiveBadge;
+		result.add(check);
+		result.add(receiveBadge);
+		return result;
 	}
+
 	/**
 	 * @param itemID
 	 * @return　badge received
-	 * @request call before add new_answer to item
+	 * @request call after increase count_answer of item
 	 */
-	public String checkNumberCorrectedAnswer(int itemID){
-		ArrayList<HashMap<String, String>> item = new ArrayList<HashMap<String,String>>();
+	public ArrayList<String> checkNumberCorrectedAnswer(int itemID) {
+		ArrayList<HashMap<String, String>> item = new ArrayList<HashMap<String, String>>();
 		Database db = new Database(this.context);
 		ArrayList<String> itemValue = new ArrayList<String>();
-		itemValue.add(itemID +"");
+		itemValue.add(itemID + "");
 		item = db.query(Database.ACTION_GET_ITEM, itemValue);
-		int correct = Integer.parseInt(item.get(0).get(mSQLiteHelper.ITEM_CORRECT_ANSWER)) + 1;
+		int correct = Integer.parseInt(item.get(0).get(
+				mSQLiteHelper.ITEM_CORRECT_ANSWER));
 		SharedPreferences settings = this.context.getSharedPreferences(
 				ACHIEVEMENT, 0);
 		SharedPreferences.Editor editor = settings.edit();
+		ArrayList<String> result = new ArrayList<String>();
+		String check = null;
 		String receiveBadge = null;
 		switch (correct) {
 		case 1:
+			check = "true";
 			receiveBadge = badge3 + "";
 			editor.putBoolean(AchievementRules.badge3, true);
 			break;
 		case 10:
+			check = "true";
 			receiveBadge = badge4 + "";
 			editor.putBoolean(AchievementRules.badge4, true);
 			break;
 		default:
+			check = "false";
 			receiveBadge = blank_badge + "";
 			break;
 		}
 		editor.commit();
-		db.close();
-		return receiveBadge;
+		result.add(check);
+		result.add(receiveBadge);
+		return result;
 	}
-	
+
 	/**
 	 * @param timeRecorded
 	 * @return badge received
 	 */
-	public String checkFastestStage(float timeRecorded){
+	public String checkFastestStage(float timeRecorded) {
 		String receiveBadge = null;
 		SharedPreferences settings = this.context.getSharedPreferences(
 				ACHIEVEMENT, 0);
-		float currentTimeRecord = settings.getFloat(badge5, (float)0.0);
-		if (currentTimeRecord == 0.0 || currentTimeRecord<timeRecorded) {
+		float currentTimeRecord = settings.getFloat(badge5, (float) 0.0);
+		if (currentTimeRecord == 0.0 || currentTimeRecord < timeRecorded) {
 			currentTimeRecord = timeRecorded;
 			SharedPreferences.Editor editor = settings.edit();
 			editor.putFloat(badge5, currentTimeRecord);
 			editor.commit();
 			receiveBadge = badge5;
-		}else {
+		} else {
 			receiveBadge = blank_badge;
 		}
 		return receiveBadge;

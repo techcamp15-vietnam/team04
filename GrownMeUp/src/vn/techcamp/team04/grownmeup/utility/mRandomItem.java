@@ -7,6 +7,10 @@ import java.util.Random;
 import vn.techcamp.team04.grownmeup.database.Database;
 import android.content.Context;
 
+/**
+ * @author zendbui
+ * @author 4-B Bui Trong Hieu
+ */
 public class mRandomItem {
 	private Context context;
 
@@ -15,6 +19,12 @@ public class mRandomItem {
 
 	}
 
+	/**
+	 * @param subjectID
+	 * @param itemID
+	 * @return such as [1,1,3,7,2] - first value: position of correct answer -
+	 *         next: id of item in quiz
+	 */
 	public ArrayList<String> random(int subjectID, int itemID) {
 		ArrayList<String> result = new ArrayList<String>();
 		Database db = new Database(this.context);

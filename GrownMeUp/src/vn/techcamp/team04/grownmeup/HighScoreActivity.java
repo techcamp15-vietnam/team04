@@ -4,6 +4,7 @@ import vn.techcamp.team04.grownmeup.utility.AchievementRules;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -35,11 +36,15 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 	private float mValuebadge5;
 	private boolean mValuebadge6;
 
+	private boolean isPlaying = false;
+	public MediaPlayer sound;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.high_score_screen);
 		initView();
+
 	}
 
 	@Override
@@ -114,7 +119,13 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 			Toast.makeText(getApplicationContext(), "badge 1",
 					Toast.LENGTH_SHORT).show();
 			if (mValuebadge1) {
-
+				if (isPlaying) {
+					isPlaying = false;
+					releaseSound();
+				}else {
+					isPlaying = true;
+					playSound(R.raw.sound_right_1);
+				}
 			} else {
 
 			}
@@ -123,7 +134,13 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 			Toast.makeText(getApplicationContext(), "badge 2",
 					Toast.LENGTH_SHORT).show();
 			if (mValuebadge2) {
-
+				if (isPlaying) {
+					isPlaying = false;
+					releaseSound();
+				}else {
+					isPlaying = true;
+					playSound(R.raw.sound_right_1);
+				}
 			} else {
 
 			}
@@ -132,7 +149,13 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 			Toast.makeText(getApplicationContext(), "badge 3",
 					Toast.LENGTH_SHORT).show();
 			if (mValuebadge3) {
-
+				if (isPlaying) {
+					isPlaying = false;
+					releaseSound();
+				}else {
+					isPlaying = true;
+					playSound(R.raw.sound_right_1);
+				}
 			} else {
 
 			}
@@ -141,7 +164,13 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 			Toast.makeText(getApplicationContext(), "badge 4",
 					Toast.LENGTH_SHORT).show();
 			if (mValuebadge4) {
-
+				if (isPlaying) {
+					isPlaying = false;
+					releaseSound();
+				}else {
+					isPlaying = true;
+					playSound(R.raw.sound_right_1);
+				}
 			} else {
 
 			}
@@ -150,7 +179,13 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 			Toast.makeText(getApplicationContext(), "badge 5",
 					Toast.LENGTH_SHORT).show();
 			if (mValuebadge5 == 0.0) {
-
+				if (isPlaying) {
+					isPlaying = false;
+					releaseSound();
+				}else {
+					isPlaying = true;
+					playSound(R.raw.sound_right_1);
+				}
 			} else {
 
 			}
@@ -159,13 +194,51 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 			Toast.makeText(getApplicationContext(), "badge 6",
 					Toast.LENGTH_SHORT).show();
 			if (mValuebadge6) {
-
+				if (isPlaying) {
+					isPlaying = false;
+					releaseSound();
+				}else {
+					isPlaying = true;
+					playSound(R.raw.sound_right_1);
+				}
 			} else {
 
 			}
 			break;
 		default:
 			break;
+		}
+	}
+
+	private synchronized void playSound(int idSound) {
+		if (sound != null) {
+			sound.release();
+			sound = null;
+		}
+		sound = MediaPlayer.create(HighScoreActivity.this, idSound);
+		if (sound != null) {
+			sound.seekTo(0);
+			sound.start();
+		}
+		Runtime.getRuntime().gc();
+	}
+
+	private void releaseSound() {
+		if (sound != null) {
+			sound.release();
+			sound = null;
+		}
+	}
+
+	private void pauseSound() {
+		if (sound != null) {
+			sound.pause();
+		}
+	}
+
+	private void startSound() {
+		if (sound != null) {
+			sound.start();
 		}
 	}
 

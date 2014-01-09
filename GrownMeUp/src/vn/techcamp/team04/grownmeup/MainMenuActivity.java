@@ -45,7 +45,7 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 
 		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 		boolean silent = settings.getBoolean("silentMode", false);
-		// playLoopSound(R.raw.sound_background_menu);
+//		 playLoopSound(R.raw.sound_background_menu);
 
 		createDefaultValue();
 		creatCustomItemDirecrory();

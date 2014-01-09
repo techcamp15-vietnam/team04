@@ -426,7 +426,7 @@ public class Database {
 				int subjectID = Integer.parseInt(content[0].get(0));
 				Cursor cursorItem = database.query(mSQLiteHelper.TABLE_ITEM,
 						allColumnsItem, mSQLiteHelper.SUBJECT_ID + " = "
-								+ subjectID, null, null, null, mSQLiteHelper.ITEM_CORRECT_ANSWER);
+								+ subjectID, null, null, null, mSQLiteHelper.ITEM_CORRECT_ANSWER + " DESC");
 				cursorItem.moveToFirst();
 				while (!cursorItem.isAfterLast()) {
 					listSortedItem.add(cursorToItem(cursorItem));
