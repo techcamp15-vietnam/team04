@@ -4,6 +4,7 @@ import java.io.File;
 
 import vn.techcamp.team04.grownmeup.database.Database;
 import vn.techcamp.team04.grownmeup.utility.AchievementRules;
+import vn.techcamp.team04.grownmeup.utility.Utility;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -206,10 +207,10 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 	private boolean creatCustomItemDirecrory() {
 		File customItemsSoundDirectory = new File(Environment
 				.getExternalStorageDirectory().getPath()
-				+ "GrowMeUp/items/images");
+				+ Utility.CUSTOM_ITEMS_SOUND_DIRECTORY);
 		File customItemsImageDirectory = new File(Environment
 				.getExternalStorageDirectory().getPath()
-				+ "/GrowMeUp/items/sounds");
+				+ Utility.CUSTOM_ITEMS_IMAGE_DIRECTORY);
 		if (!customItemsImageDirectory.isDirectory()) {
 			customItemsImageDirectory.mkdirs();
 			customItemsSoundDirectory.mkdirs();

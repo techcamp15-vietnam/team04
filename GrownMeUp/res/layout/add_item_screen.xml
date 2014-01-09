@@ -2,66 +2,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".AddNewItemActivity" >
-
-    <ImageView
-        android:id="@+id/add_item_img_image_thumbnail"
-        android:layout_width="@dimen/add_item_image_thumbnail_width"
-        android:layout_height="@dimen/add_item_image_thumbnail_height"
-        android:layout_above="@+id/add_item_btn_camera"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/add_item_image_thumbnail_magrin_bottom"
-        android:contentDescription="@string/description_image_thumbnail"
-        android:src="@drawable/ic_launcher" >
-    </ImageView>
 
     <ImageButton
         android:id="@+id/add_item_btn_camera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_above="@+id/add_item_edt_description"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/add_item_margin_bottom"
         android:background="@android:color/transparent"
         android:contentDescription="@string/description_camera_image_button"
+        android:scaleType="fitCenter"
         android:src="@drawable/take_pic" />
 
     <EditText
         android:id="@+id/add_item_edt_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_above="@+id/add_item_spinner_list_subject"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/add_item_margin_bottom"
         android:ems="20"
         android:hint="@string/add_item_hint"
         android:inputType="text" >
     </EditText>
 
-    <LinearLayout
-        android:id="@+id/add_item_btn_record_play"
+    <Spinner
+        android:id="@+id/add_item_spinner_list_subject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/add_item_edt_description"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal" />
+
+    <LinearLayout
+        android:id="@+id/add_item_layout_record_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_item_spinner_list_subject"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/add_item_btn_record_margin_top"
         android:paddingBottom="@dimen/add_item_margin_bottom" >
 
         <ImageButton
             android:id="@+id/add_item_btn_record"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:background="@android:color/transparent"
             android:contentDescription="@string/description_camera_image_button"
             android:src="@drawable/record" />
 
         <ImageButton
             android:id="@+id/add_item_btn_recording"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:background="@android:color/transparent"
             android:contentDescription="@string/description_camera_image_button"
             android:src="@drawable/stop"
@@ -69,8 +63,8 @@
 
         <ImageButton
             android:id="@+id/add_item_btn_play"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:background="@android:color/transparent"
             android:contentDescription="@string/description_save_item"
             android:paddingLeft="@dimen/add_item_btn_record_margin_left"
@@ -82,6 +76,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:contentDescription="@string/description_camera_image_button"
+            android:paddingLeft="@dimen/add_item_btn_record_margin_left"
             android:src="@drawable/stop"
             android:visibility="gone" />
     </LinearLayout>
@@ -90,7 +85,7 @@
         android:id="@+id/add_item_btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/add_item_btn_record_play"
+        android:layout_below="@+id/add_item_layout_record_play"
         android:layout_centerHorizontal="true"
         android:background="@android:color/transparent"
         android:contentDescription="@string/description_save_item"

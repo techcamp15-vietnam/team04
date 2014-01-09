@@ -12,13 +12,14 @@ public class mPlayAudio {
 
 	private MediaPlayer mPlayer = null;
 	private boolean isPlaying = false;
-	
+
 	public mPlayAudio() {
 
 	}
 
 	/**
 	 * Start playing a audio file
+	 * 
 	 * @param audioFilePath
 	 * @throws IOException
 	 */
@@ -34,7 +35,7 @@ public class mPlayAudio {
 	}
 
 	/**
-	 *　Stop playing audio file 
+	 * 　Stop playing audio file
 	 */
 	public void stop() {
 		if (isPlaying) {
@@ -42,5 +43,9 @@ public class mPlayAudio {
 			mPlayer.release();
 			mPlayer = null;
 		}
+	}
+
+	public boolean isPlaying() {
+		return isPlaying;
 	}
 }
