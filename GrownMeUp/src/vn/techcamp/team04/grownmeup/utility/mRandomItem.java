@@ -44,7 +44,7 @@ public class mRandomItem {
 				int posItem;
 				do {
 					posItem = r.nextInt(totalItem - 1) + 1;
-				} while (posItem == itemID || result.contains(posItem));
+				} while (posItem == itemID || result.contains(posItem+""));
 				result.add(posItem + "");
 			}
 		}

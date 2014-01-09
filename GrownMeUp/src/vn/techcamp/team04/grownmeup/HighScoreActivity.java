@@ -121,18 +121,17 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 				if (isPlaying) {
 					isPlaying = false;
 					releaseSound();
-				} else {
-					isPlaying = true;
-					playSound(R.raw.sound_right_1);
 				}
+				isPlaying = true;
+				playSound(R.raw.sound_right_1);
 			} else {
 				if (isPlaying) {
 					isPlaying = false;
 					releaseSound();
-				} else {
-					isPlaying = true;
-					playSound(R.raw.sound_wrong_1);
 				}
+				isPlaying = true;
+				playSound(R.raw.sound_wrong_1);
+
 			}
 			break;
 		case R.id.high_score_img_achievement_2:
@@ -141,18 +140,18 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 				if (isPlaying) {
 					isPlaying = false;
 					releaseSound();
-				} else {
-					isPlaying = true;
-					playSound(R.raw.sound_right_1);
 				}
+				isPlaying = true;
+				playSound(R.raw.sound_right_1);
+
 			} else {
 				if (isPlaying) {
 					isPlaying = false;
 					releaseSound();
-				} else {
-					isPlaying = true;
-					playSound(R.raw.sound_wrong_1);
 				}
+				isPlaying = true;
+				playSound(R.raw.sound_wrong_1);
+
 			}
 			break;
 		case R.id.high_score_img_achievement_3:
@@ -161,18 +160,18 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 				if (isPlaying) {
 					isPlaying = false;
 					releaseSound();
-				} else {
-					isPlaying = true;
-					playSound(R.raw.sound_right_1);
 				}
+				isPlaying = true;
+				playSound(R.raw.sound_right_1);
+
 			} else {
 				if (isPlaying) {
 					isPlaying = false;
 					releaseSound();
-				} else {
-					isPlaying = true;
-					playSound(R.raw.sound_wrong_1);
 				}
+				isPlaying = true;
+				playSound(R.raw.sound_wrong_1);
+
 			}
 			break;
 		case R.id.high_score_img_achievement_4:
@@ -181,38 +180,39 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 				if (isPlaying) {
 					isPlaying = false;
 					releaseSound();
-				} else {
-					isPlaying = true;
-					playSound(R.raw.sound_right_1);
 				}
+				isPlaying = true;
+				playSound(R.raw.sound_right_1);
+
 			} else {
 				if (isPlaying) {
 					isPlaying = false;
 					releaseSound();
-				} else {
-					isPlaying = true;
-					playSound(R.raw.sound_wrong_1);
 				}
+				isPlaying = true;
+				playSound(R.raw.sound_wrong_1);
+
 			}
 			break;
 		case R.id.high_score_img_achievement_5:
-			mTvExplainBadge.setText(AchievementRules.badge5.toLowerCase());
-			if (mValuebadge5 == 0.0) {
+			mTvExplainBadge.setText(AchievementRules.badge5.toLowerCase()
+					+ " : " + mValuebadge5);
+			if (mValuebadge5 != 0.0) {
 				if (isPlaying) {
 					isPlaying = false;
 					releaseSound();
-				} else {
-					isPlaying = true;
-					playSound(R.raw.sound_right_1);
 				}
+				isPlaying = true;
+				playSound(R.raw.sound_right_1);
+
 			} else {
 				if (isPlaying) {
 					isPlaying = false;
 					releaseSound();
-				} else {
-					isPlaying = true;
-					playSound(R.raw.sound_wrong_1);
 				}
+				isPlaying = true;
+				playSound(R.raw.sound_wrong_1);
+
 			}
 			break;
 		case R.id.high_score_img_achievement_6:
@@ -221,18 +221,18 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 				if (isPlaying) {
 					isPlaying = false;
 					releaseSound();
-				} else {
-					isPlaying = true;
-					playSound(R.raw.sound_right_1);
 				}
+				isPlaying = true;
+				playSound(R.raw.sound_right_1);
+
 			} else {
 				if (isPlaying) {
 					isPlaying = false;
 					releaseSound();
-				} else {
-					isPlaying = true;
-					playSound(R.raw.sound_wrong_1);
 				}
+				isPlaying = true;
+				playSound(R.raw.sound_wrong_1);
+
 			}
 			break;
 		default:
