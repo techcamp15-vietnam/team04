@@ -56,6 +56,8 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 	private TextView tvTimeCounter;
 
+	private boolean holdDialog;
+
 	// quiz image_text
 	private ImageView imgvQuestionImage;
 	private Button btnAnswer1;
@@ -81,6 +83,8 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.quiz_image_text_screen);
 		// setContentView(R.layout.quiz_text_image_screen);
+
+		holdDialog = false;
 
 		stageID = getIntent().getExtras().getInt("stageID", 0);
 		subjectID = getIntent().getExtras().getInt("subjectID", 0);
@@ -302,7 +306,6 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 				SharedPreferences.Editor editor = settings.edit();
 				editor.putBoolean(AchievementRules.badge3, true);
 				editor.commit();
-				Toast.makeText(getApplicationContext(), AchievementRules.badge3, Toast.LENGTH_SHORT).show();
 			}
 
 			if (arr.contains(AchievementRules.badge4)) {
@@ -311,7 +314,6 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 				SharedPreferences.Editor editor = settings.edit();
 				editor.putBoolean(AchievementRules.badge4, true);
 				editor.commit();
-				Toast.makeText(getApplicationContext(), AchievementRules.badge4, Toast.LENGTH_SHORT).show();
 			}
 		}
 
@@ -327,78 +329,84 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 	}
 
 	public void showDialog(String content, int resourceID) {
-		final Dialog dialog = new Dialog(PlayingQuizActivity.this);
-		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		dialog.getWindow().setBackgroundDrawable(
-				new ColorDrawable(android.graphics.Color.TRANSPARENT));
-		dialog.setContentView(R.layout.correct_answer);
+		if (!holdDialog && PlayingQuizActivity.this != null) {
+			final Dialog dialog = new Dialog(PlayingQuizActivity.this);
+			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			dialog.getWindow().setBackgroundDrawable(
+					new ColorDrawable(android.graphics.Color.TRANSPARENT));
+			dialog.setContentView(R.layout.correct_answer);
 
-		TextView text = (TextView) dialog.findViewById(R.id.tv_answer);
-		text.setText(content);
-		ImageView image = (ImageView) dialog.findViewById(R.id.imgv_question);
-		image.setImageResource(resourceID);
-		dialog.show();
-		Handler handler = new Handler();
-		handler.postDelayed(new Runnable() {
+			TextView text = (TextView) dialog.findViewById(R.id.tv_answer);
+			text.setText(content);
+			ImageView image = (ImageView) dialog
+					.findViewById(R.id.imgv_question);
+			image.setImageResource(resourceID);
+			dialog.show();
+			Handler handler = new Handler();
+			handler.postDelayed(new Runnable() {
 
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				if (dialog != null) {
-					dialog.dismiss();
-					displayNextQuestion();
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					if (dialog != null) {
+						dialog.dismiss();
+						displayNextQuestion();
+					}
 				}
-			}
-		}, 2000);
-		/*
-		 * new CountDownTimer(2000, 1000) {
-		 * 
-		 * @Override public void onTick(long millisUntilFinished) {
-		 * 
-		 * }
-		 * 
-		 * @Override public void onFinish() { if (dialog != null) {
-		 * dialog.dismiss(); dialog = null; displayNextQuestion(); }
-		 * 
-		 * } }.start();
-		 */
+			}, 2000);
+			/*
+			 * new CountDownTimer(2000, 1000) {
+			 * 
+			 * @Override public void onTick(long millisUntilFinished) {
+			 * 
+			 * }
+			 * 
+			 * @Override public void onFinish() { if (dialog != null) {
+			 * dialog.dismiss(); dialog = null; displayNextQuestion(); }
+			 * 
+			 * } }.start();
+			 */
+		}
 	}
 
 	public void showDialog(String content, Drawable questionImage) {
-		final Dialog dialog = new Dialog(PlayingQuizActivity.this);
-		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		dialog.getWindow().setBackgroundDrawable(
-				new ColorDrawable(android.graphics.Color.TRANSPARENT));
-		dialog.setContentView(R.layout.correct_answer);
+		if (!holdDialog && PlayingQuizActivity.this != null) {
+			final Dialog dialog = new Dialog(PlayingQuizActivity.this);
+			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			dialog.getWindow().setBackgroundDrawable(
+					new ColorDrawable(android.graphics.Color.TRANSPARENT));
+			dialog.setContentView(R.layout.correct_answer);
 
-		TextView text = (TextView) dialog.findViewById(R.id.tv_answer);
-		text.setText(content);
-		ImageView image = (ImageView) dialog.findViewById(R.id.imgv_question);
-		image.setImageDrawable(questionImage);
-		dialog.show();
-		Handler handler = new Handler();
-		handler.postDelayed(new Runnable() {
+			TextView text = (TextView) dialog.findViewById(R.id.tv_answer);
+			text.setText(content);
+			ImageView image = (ImageView) dialog
+					.findViewById(R.id.imgv_question);
+			image.setImageDrawable(questionImage);
+			dialog.show();
+			Handler handler = new Handler();
+			handler.postDelayed(new Runnable() {
 
-			@Override
-			public void run() {
-				if (dialog != null) {
-					dialog.dismiss();
-					displayNextQuestion();
+				@Override
+				public void run() {
+					if (dialog != null) {
+						dialog.dismiss();
+						displayNextQuestion();
+					}
 				}
-			}
-		}, 2000);
-		/*
-		 * new CountDownTimer(2000, 1000) {
-		 * 
-		 * @Override public void onTick(long millisUntilFinished) {
-		 * 
-		 * }
-		 * 
-		 * @Override public void onFinish() { if (dialog != null) {
-		 * dialog.dismiss(); dialog = null; displayNextQuestion(); }
-		 * 
-		 * } }.start();
-		 */
+			}, 2000);
+			/*
+			 * new CountDownTimer(2000, 1000) {
+			 * 
+			 * @Override public void onTick(long millisUntilFinished) {
+			 * 
+			 * }
+			 * 
+			 * @Override public void onFinish() { if (dialog != null) {
+			 * dialog.dismiss(); dialog = null; displayNextQuestion(); }
+			 * 
+			 * } }.start();
+			 */
+		}
 	}
 
 	@Override
@@ -406,6 +414,18 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 		super.onDestroy();
 		db.close();
 
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		holdDialog = true;
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		holdDialog = false;
 	}
 
 }
