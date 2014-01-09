@@ -1,5 +1,6 @@
 package vn.techcamp.team04.grownmeup;
 
+import vn.techcamp.team04.grownmeup.utility.AchievementRules;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,13 +29,7 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 	private TextView mTvExplainBadge;
 
 	
-	public static String ACHIEVEMENT = "achievement";
-	public static String badge1 = "complete first stage";
-	public static String badge2 = "complete five stage";
-	public static String badge3 = "answer correct an item 10 times";
-	public static String badge4 = "learn 10 item";
-	public static String badge5 = "fastest stage";
-	public static String badge6 = "finish all stage";
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,28 +70,28 @@ public class HighScoreActivity extends Activity implements OnClickListener {
 		mBadge5.setOnClickListener(this);
 		mBadge6.setOnClickListener(this);
 
-		SharedPreferences settings = getSharedPreferences(ACHIEVEMENT, 0);
-		boolean mValuebadge1 = settings.getBoolean(badge1, false);
+		SharedPreferences settings = getSharedPreferences(AchievementRules.ACHIEVEMENT, 0);
+		boolean mValuebadge1 = settings.getBoolean(AchievementRules.badge1, false);
 		if (!mValuebadge1) {
 			mBadge1.setImageResource(R.drawable.black_badge);
 		}
-		boolean mValuebadge2 = settings.getBoolean(badge2, false);
+		boolean mValuebadge2 = settings.getBoolean(AchievementRules.badge2, false);
 		if (!mValuebadge2) {
 			mBadge2.setImageResource(R.drawable.black_badge);
 		}
-		boolean mValuebadge3 = settings.getBoolean(badge3, false);
+		boolean mValuebadge3 = settings.getBoolean(AchievementRules.badge3, false);
 		if (!mValuebadge3) {
 			mBadge3.setImageResource(R.drawable.black_badge);
 		}
-		boolean mValuebadge4 = settings.getBoolean(badge4, false);
+		boolean mValuebadge4 = settings.getBoolean(AchievementRules.badge4, false);
 		if (!mValuebadge4) {
 			mBadge4.setImageResource(R.drawable.black_badge);
 		}
-		float mValuebadge5 = settings.getFloat(badge5, (float)0.0);
-		if (mValuebadge5== 0.0) {
+		float mValuebadge5 = settings.getFloat(AchievementRules.badge5, (float)0.0);
+		if (mValuebadge5 == 0.0) {
 			mBadge5.setImageResource(R.drawable.black_badge);
 		}
-		boolean mValuebadge6 = settings.getBoolean(badge6, false);
+		boolean mValuebadge6 = settings.getBoolean(AchievementRules.badge6, false);
 		if (!mValuebadge6) {
 			mBadge6.setImageResource(R.drawable.black_badge);
 		}

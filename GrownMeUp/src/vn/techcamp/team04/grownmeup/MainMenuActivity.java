@@ -1,6 +1,7 @@
 package vn.techcamp.team04.grownmeup;
 
 import vn.techcamp.team04.grownmeup.database.Database;
+import vn.techcamp.team04.grownmeup.utility.AchievementRules;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -80,7 +81,7 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 			startActivity(subjectChooserActivity);
 			break;
 		case R.id.btn_highscore:
-			Intent highScoreActivity = new Intent(this, HighScoreActivity.class);
+			Intent highScoreActivity = new Intent(this, AchievementRules.class);
 			startActivity(highScoreActivity);
 			break;
 		case R.id.btn_option:
@@ -179,15 +180,17 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 		db.setDefaultData();
 
 		SharedPreferences settings = getSharedPreferences(
-				HighScoreActivity.ACHIEVEMENT, 0);
-		if (!settings.contains(HighScoreActivity.badge1)) {
+				AchievementRules.ACHIEVEMENT, 0);
+		if (!settings.contains(AchievementRules.badge1)) {
 			SharedPreferences.Editor editor = settings.edit();
-			editor.putBoolean(HighScoreActivity.badge1, false);
-			editor.putBoolean(HighScoreActivity.badge2, false);
-			editor.putBoolean(HighScoreActivity.badge3, false);
-			editor.putBoolean(HighScoreActivity.badge4, false);
-			editor.putFloat(HighScoreActivity.badge5, (float) 0.0);
-			editor.putBoolean(HighScoreActivity.badge6, false);
+			editor.putInt(AchievementRules.TOTAL, AchievementRules.totalStage);
+			editor.putInt(AchievementRules.COMPLETED_STAGES, 0);
+			editor.putBoolean(AchievementRules.badge1, false);
+			editor.putBoolean(AchievementRules.badge2, false);
+			editor.putBoolean(AchievementRules.badge3, false);
+			editor.putBoolean(AchievementRules.badge4, false);
+			editor.putFloat(AchievementRules.badge5, (float) 0.0);
+			editor.putBoolean(AchievementRules.badge6, false);
 			editor.commit();
 		}
 	}
