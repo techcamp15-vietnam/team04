@@ -14,6 +14,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -36,7 +37,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 	private ArrayList<HashMap<String, String>> allItem;
 	private ArrayList<HashMap<String, String>> allAns;
 
-	private Dialog dialog;
+	//private Dialog dialog;
 
 	private int correctAnswer;
 	private int answer;
@@ -283,7 +284,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 	public void chosenCorrectAnswer() {
 		showDialog("Correct!", R.drawable.correct);
-		
+
 		ArrayList<String> alCorrectAns = new ArrayList<String>();
 		alCorrectAns.add(currentItemID);
 		alCorrectAns.add("true");
@@ -293,7 +294,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 	public void chosenWrongAnswer() {
 		showDialog(correctAnswerText, this.questionImage);
-		
+
 		ArrayList<String> alWrongAns = new ArrayList<String>();
 		alWrongAns.add(currentItemID);
 		alWrongAns.add("false");
@@ -301,7 +302,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 	}
 
 	public void showDialog(String content, int resourceID) {
-		dialog = new Dialog(PlayingQuizActivity.this);
+		final Dialog dialog = new Dialog(PlayingQuizActivity.this);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.getWindow().setBackgroundDrawable(
 				new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -312,6 +313,19 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 		ImageView image = (ImageView) dialog.findViewById(R.id.imgv_question);
 		image.setImageResource(resourceID);
 		dialog.show();
+		Handler handler = new Handler();
+		handler.postDelayed(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				if (dialog != null) {
+					dialog.dismiss();
+					displayNextQuestion();
+				}
+			}
+		}, 2000);
+		/*
 		new CountDownTimer(2000, 1000) {
 
 			@Override
@@ -323,15 +337,16 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 			public void onFinish() {
 				if (dialog != null) {
 					dialog.dismiss();
+					dialog = null;
 					displayNextQuestion();
 				}
 
 			}
-		}.start();
+		}.start();*/
 	}
 
 	public void showDialog(String content, Drawable questionImage) {
-		dialog = new Dialog(PlayingQuizActivity.this);
+		final Dialog dialog = new Dialog(PlayingQuizActivity.this);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.getWindow().setBackgroundDrawable(
 				new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -342,6 +357,19 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 		ImageView image = (ImageView) dialog.findViewById(R.id.imgv_question);
 		image.setImageDrawable(questionImage);
 		dialog.show();
+		Handler handler = new Handler();
+		handler.postDelayed(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				if (dialog != null) {
+					dialog.dismiss();
+					displayNextQuestion();
+				}
+			}
+		}, 2000);
+		/*
 		new CountDownTimer(2000, 1000) {
 
 			@Override
@@ -353,11 +381,12 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 			public void onFinish() {
 				if (dialog != null) {
 					dialog.dismiss();
+					dialog = null;
 					displayNextQuestion();
 				}
 
 			}
-		}.start();
+		}.start();*/
 	}
 
 	@Override

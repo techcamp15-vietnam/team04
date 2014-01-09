@@ -32,9 +32,9 @@
 
             <ImageView
                 android:id="@+id/imgv_top_left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/subject_car" />
 
             <TextView
@@ -57,9 +57,9 @@
 
             <ImageView
                 android:id="@+id/imgv_top_right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/subject_car" />
 
             <TextView
@@ -82,9 +82,9 @@
 
             <ImageView
                 android:id="@+id/imgv_bottom_left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/subject_car" />
 
             <TextView
@@ -108,9 +108,9 @@
 
             <ImageView
                 android:id="@+id/imgv_bottom_right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/subject_car" />
 
             <TextView

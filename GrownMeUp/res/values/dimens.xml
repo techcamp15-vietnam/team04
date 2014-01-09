@@ -20,17 +20,17 @@
 
     <!-- Main Menu -->
     <dimen name="mainmenu_item_padding">10dp</dimen>
-    <dimen name="mainmenu_margin_top">90dp</dimen>
+    <dimen name="mainmenu_margin_top">30dp</dimen>
 
     <!-- Learning Screen -->
-    <dimen name="learning_screen_image_margin_top">80dp</dimen>
+    <dimen name="learning_screen_image_margin_top">30dp</dimen>
     <dimen name="learning_screen_text_margin_top">30dp</dimen>
     <dimen name="learning_screen_text_margin_bottom">10dp</dimen>
     <dimen name="learning_screen_text_size">40sp</dimen>
     <dimen name="learning_screen_sound_margin_left">30dp</dimen>
     <!-- Stage Chooser -->
-    <dimen name="stage_chooser_item_margin">10dp</dimen>
-    <dimen name="stage_chooser_text_size">30dp</dimen>
+    <dimen name="stage_chooser_item_margin">5dp</dimen>
+    <dimen name="stage_chooser_text_size">20dp</dimen>
     <dimen name="stage_chooser_image_margin">5dp</dimen>
 
     <!-- Quiz Image -> Text -->

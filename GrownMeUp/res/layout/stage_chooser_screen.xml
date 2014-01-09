@@ -24,48 +24,59 @@
 
         <ImageView
             android:id="@+id/imgv_stage_pos_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
             android:layout_margin="@dimen/stage_chooser_image_margin"
-            android:layout_toLeftOf="@+id/imgv_stage_pos_2" />
+            android:layout_toLeftOf="@+id/imgv_stage_pos_2"
+            android:scaleType="fitCenter"
+            android:src="@drawable/stage" />
 
         <ImageView
             android:id="@+id/imgv_stage_pos_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="@dimen/stage_chooser_image_margin" />
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="@dimen/stage_chooser_image_margin"
+            android:scaleType="fitCenter"
+            android:src="@drawable/stage" />
 
         <ImageView
             android:id="@+id/imgv_stage_pos_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_margin="@dimen/stage_chooser_image_margin"
-            android:layout_toRightOf="@+id/imgv_stage_pos_2" />
+            android:layout_toRightOf="@+id/imgv_stage_pos_2"
+            android:scaleType="fitCenter"
+            android:src="@drawable/stage" />
 
         <ImageView
             android:id="@+id/imgv_stage_pos_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_below="@+id/imgv_stage_pos_1"
             android:layout_margin="@dimen/stage_chooser_image_margin"
-            android:layout_toLeftOf="@+id/imgv_stage_pos_5" />
+            android:layout_toLeftOf="@+id/imgv_stage_pos_5"
+            android:scaleType="fitCenter"
+            android:src="@drawable/stage" />
 
         <ImageView
             android:id="@+id/imgv_stage_pos_5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_below="@+id/imgv_stage_pos_2"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="@dimen/stage_chooser_image_margin" />
+            android:layout_margin="@dimen/stage_chooser_image_margin"
+            android:scaleType="fitCenter"
+            android:src="@drawable/stage" />
 
         <ImageView
             android:id="@+id/imgv_stage_pos_6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_below="@+id/imgv_stage_pos_3"
             android:layout_margin="@dimen/stage_chooser_image_margin"
-            android:layout_toRightOf="@+id/imgv_stage_pos_5" />
+            android:layout_toRightOf="@+id/imgv_stage_pos_5"
+            android:scaleType="fitCenter"
+            android:src="@drawable/stage" />
     </RelativeLayout>
 
     <ImageButton
