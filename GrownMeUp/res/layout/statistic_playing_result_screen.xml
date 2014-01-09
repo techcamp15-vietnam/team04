@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_learn"
     tools:context=".LearningActivity" >
-
+	
     <RelativeLayout
         android:id="@+id/rltlayout_image"
         android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/rltlayout_image"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/learning_screen_text_margin_top"
+        android:layout_marginTop="@dimen/high_score_margin_top"
         android:background="#CCFFFFFF" >
 
         <TextView
@@ -66,5 +66,12 @@
             android:background="@android:color/transparent"
             android:textSize="@dimen/learning_screen_text_size" />
     </RelativeLayout>
+
+    <Spinner
+        android:id="@+id/spinner_statistic_list_subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" />
 
 </RelativeLayout>

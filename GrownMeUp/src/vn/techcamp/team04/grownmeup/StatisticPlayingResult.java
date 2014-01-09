@@ -4,30 +4,38 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import vn.techcamp.team04.grownmeup.database.Database;
 import vn.techcamp.team04.grownmeup.database.mSQLiteHelper;
 import vn.techcamp.team04.grownmeup.utility.mTTS;
-import android.os.Bundle;
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
-import android.speech.tts.TextToSpeech.OnInitListener;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-public class StatisticPlayingResult extends Activity implements OnClickListener {
+public class StatisticPlayingResult extends Activity implements
+		OnClickListener, OnItemSelectedListener {
 
 	private ImageView imgvItemImage;
 	private TextView tvMeaning;
 	private ImageButton btnNext;
 	private ImageButton btnPrev;
 	private TextView tvResult;
+	private Spinner spSubject;
+
 	private mTTS tts;
+
 	private Database db;
 	private ArrayList<HashMap<String, String>> allItem;
 	private int currentSubject;
@@ -37,15 +45,31 @@ public class StatisticPlayingResult extends Activity implements OnClickListener 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.statistic_playing_result_screen);
+
 		initView();
+
 		tts = new mTTS(this, 0.7f);
 
 		db = new Database(this);
+
+		ArrayList<HashMap<String, String>> allSubject = db.query(
+				Database.ACTION_GET_ALL_SUBJECT, null);
+
+		List<String> listSubject = new ArrayList<String>();
+		for (int i = 0; i < allSubject.size(); i++) {
+			listSubject.add(allSubject.get(i).get(mSQLiteHelper.SUBJECT_NAME));
+		}
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_item, listSubject);
+		dataAdapter
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spSubject.setAdapter(dataAdapter);
+
 		currentItem = 0;
 		currentSubject = 1;
-		ArrayList<String> currentSubject = new ArrayList<String>();
-		currentSubject.add("1");
-		allItem = db.query(Database.ACTION_GET_ALL_ITEM, currentSubject);
+		ArrayList<String> loadedSubject = new ArrayList<String>();
+		loadedSubject.add("1");
+		allItem = db.query(Database.ACTION_GET_ALL_ITEM, loadedSubject);
 		ViewItem();
 	}
 
@@ -55,11 +79,13 @@ public class StatisticPlayingResult extends Activity implements OnClickListener 
 		tvResult = (TextView) findViewById(R.id.tv_result);
 		btnNext = (ImageButton) findViewById(R.id.btn_next);
 		btnPrev = (ImageButton) findViewById(R.id.btn_prev);
+		spSubject = (Spinner) findViewById(R.id.spinner_statistic_list_subject);
 
 		imgvItemImage.setOnClickListener(this);
 		tvMeaning.setOnClickListener(this);
 		btnNext.setOnClickListener(this);
 		btnPrev.setOnClickListener(this);
+		spSubject.setOnItemSelectedListener(this);
 	}
 
 	@Override
@@ -72,6 +98,7 @@ public class StatisticPlayingResult extends Activity implements OnClickListener 
 	@Override
 	protected void onDestroy() {
 		tts.close();
+		db.close();
 		super.onDestroy();
 	}
 
@@ -114,6 +141,24 @@ public class StatisticPlayingResult extends Activity implements OnClickListener 
 			break;
 		}
 
+	}
+
+	public void onItemSelected(AdapterView<?> parent, View view, int pos,
+			long id) {
+		if (currentSubject == (pos + 1)) {
+			return;
+		}
+		currentSubject = pos + 1;
+		currentItem = 0;
+		ArrayList<String> loadedSubject = new ArrayList<String>();
+		loadedSubject.add(currentSubject + "");
+		allItem = db.query(Database.ACTION_GET_ALL_ITEM, loadedSubject);
+		ViewItem();
+
+	}
+
+	public void onNothingSelected(AdapterView<?> parent) {
+		// Another interface callback
 	}
 
 	private void ViewItem() {

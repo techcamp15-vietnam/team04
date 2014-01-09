@@ -85,7 +85,7 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 			startActivity(subjectChooserActivity);
 			break;
 		case R.id.btn_highscore:
-			Intent highScoreActivity = new Intent(this, AchievementRules.class);
+			Intent highScoreActivity = new Intent(this, HighScoreActivity.class);
 			startActivity(highScoreActivity);
 			break;
 		case R.id.btn_option:
