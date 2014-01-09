@@ -128,16 +128,23 @@ public class LearningActivity extends Activity implements OnClickListener {
 	}
 
 	private void ViewItem() {
-		InputStream is = null;
-		Log.e("", allItem.get(currentItem).get(mSQLiteHelper.ITEM_IMG_LINK));
-		try {
-			is = getAssets().open(
-					allItem.get(currentItem).get(mSQLiteHelper.ITEM_IMG_LINK));
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (allItem.get(currentItem).get(mSQLiteHelper.SUBJECT_ID).toString()
+				.equals("8")) {
+
+		} else {
+			InputStream is = null;
+			Log.e("", allItem.get(currentItem).get(mSQLiteHelper.ITEM_IMG_LINK));
+			try {
+				is = getAssets().open(
+						allItem.get(currentItem).get(
+								mSQLiteHelper.ITEM_IMG_LINK));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Drawable d = Drawable.createFromStream(is, null);
+			imgvLearningImage.setImageDrawable(d);
+
 		}
-		Drawable d = Drawable.createFromStream(is, null);
-		imgvLearningImage.setImageDrawable(d);
 		tvMeaning
 				.setText(allItem.get(currentItem).get(mSQLiteHelper.ITEM_NAME));
 	}

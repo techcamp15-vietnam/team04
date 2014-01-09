@@ -64,7 +64,7 @@ public class Database {
 					"lock", "bottle", "trash can" },
 			{ "Animal", "cat", "snake", "dog", "pig", "bee", "bird", "cow",
 					"sheep", "elephant", "horse" }, { "Car" }, { "City" },
-			{ "Clothes" }, { "Color" }, { "Plant" }, { "School" }, { "Custom" } };
+			{ "Clothes" }, { "Color" }, { "Plant" }, { "Custom" } };
 	// DEFAUT_STAGE format : {{subjectID, stage_name, stage_number,
 	// stage_status, item1ID, item2ID, item3ID, item4ID, item5ID}}
 	private static final String[][] DEFAULT_STAGE = {
