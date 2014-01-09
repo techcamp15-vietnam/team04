@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -40,8 +41,8 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.main_menu_screen);
 		initView();
 
-		db = new Database(this);
-		db.setDefaultData();
+//		db = new Database(this);
+//		db.setDefaultData();
 
 		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 		boolean silent = settings.getBoolean("silentMode", false);
@@ -160,18 +161,21 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 	public void onDestroy() {
 		super.onDestroy();
 		releaseSound();
+		db.close();
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
 		startSound();
+		db.open();
 	}
 
 	@Override
 	public void onPause() {
 		super.onPause();
 		pauseSound();
+		db.close();
 
 	}
 
