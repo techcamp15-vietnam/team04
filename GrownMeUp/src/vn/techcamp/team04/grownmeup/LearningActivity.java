@@ -148,4 +148,9 @@ public class LearningActivity extends Activity implements OnClickListener {
 		tvMeaning
 				.setText(allItem.get(currentItem).get(mSQLiteHelper.ITEM_NAME));
 	}
+
+	@Override
+	public void onBackPressed() {
+		finish();
+	}
 }

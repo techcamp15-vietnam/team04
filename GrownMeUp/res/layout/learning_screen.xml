@@ -66,7 +66,7 @@
             android:layout_marginLeft="@dimen/learning_screen_sound_margin_left"
             android:layout_toRightOf="@+id/tv_meaning"
             android:background="@android:color/transparent"
-            android:src="@drawable/btn_sound" />
+            android:src="@drawable/btn_sound_on" />
     </RelativeLayout>
 
 </RelativeLayout>

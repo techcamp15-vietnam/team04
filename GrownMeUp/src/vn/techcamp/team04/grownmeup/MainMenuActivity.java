@@ -29,6 +29,7 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 	private ImageButton btnPlay;
 	private ImageButton btnHighScore;
 	private ImageButton btnOption;
+	private ImageButton btnSound;
 	private ImageButton btnExit;
 	private Database db;
 
@@ -42,8 +43,14 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 		initView();
 
 		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-		boolean silent = settings.getBoolean("silentMode", false);
-		// playLoopSound(R.raw.sound_background_menu);
+		isMute = settings.getBoolean("isMute", false);
+
+		if (!isMute) {
+			playLoopSound(R.raw.sound_background_menu);
+			btnSound.setImageResource(R.drawable.btn_sound_on);
+		} else {
+			btnSound.setImageResource(R.drawable.btn_sound_off);
+		}
 
 		db = new Database(this);
 		if (!settings.contains(FIRST_RUN)) {
@@ -62,12 +69,14 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 		btnHighScore = (ImageButton) findViewById(R.id.btn_highscore);
 		btnOption = (ImageButton) findViewById(R.id.btn_option);
 		btnExit = (ImageButton) findViewById(R.id.btn_exit);
+		btnSound = (ImageButton) findViewById(R.id.btn_sound);
 
 		btnLearn.setOnClickListener(this);
 		btnPlay.setOnClickListener(this);
 		btnHighScore.setOnClickListener(this);
 		btnOption.setOnClickListener(this);
 		btnExit.setOnClickListener(this);
+		btnSound.setOnClickListener(this);
 
 	}
 
@@ -100,7 +109,22 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 
 			break;
 		case R.id.btn_exit:
+			finish();
 			break;
+		case R.id.btn_sound:
+			if (isMute) {
+				if (sound != null) {
+					startSound();
+				} else {
+					playLoopSound(R.raw.sound_background_menu);
+				}
+				btnSound.setImageResource(R.drawable.btn_sound_on);
+				isMute = false;
+			} else {
+				btnSound.setImageResource(R.drawable.btn_sound_off);
+				pauseSound();
+				isMute = true;
+			}
 
 		default:
 			break;
@@ -113,20 +137,17 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 			if (sound != null) {
 				sound.release();
 				sound = null;
-				// Log.v("Huy bo", String.valueOf(i));
 			}
-			// Log.v("Khoi tao", String.valueOf(i));
 			sound = MediaPlayer.create(MainMenuActivity.this, idSound);
 			if (sound != null) {
 				sound.seekTo(0);
 				sound.start();
 			}
-			Runtime.getRuntime().gc();
 		}
 	}
 
 	private void releaseSound() {
-		if (this.isMute == false && sound != null) {
+		if (sound != null) {
 			sound.release();
 			sound = null;
 			// Log.v("Con lai", String.valueOf(i));
@@ -134,36 +155,39 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 	}
 
 	private void pauseSound() {
-		if (this.isMute == false && sound != null) {
+		if (sound != null) {
 			sound.pause();
 		}
 	}
 
 	private void startSound() {
-		if (this.isMute == false && sound != null) {
+		if (sound != null) {
 			sound.start();
 		}
 	}
 
 	private void playLoopSound(int idSound) {
-		if (this.isMute == false) {
-			if (sound != null) {
-				sound.release();
-				sound = null;
-			}
-			sound = MediaPlayer.create(MainMenuActivity.this, idSound);
-			if (sound != null) {
-				sound.seekTo(0);
-				sound.setLooping(true);
-				sound.start();
-			}
-			Runtime.getRuntime().gc();
+
+		if (sound != null) {
+			sound.release();
+			sound = null;
+		}
+		sound = MediaPlayer.create(MainMenuActivity.this, idSound);
+		if (sound != null) {
+			sound.seekTo(0);
+			sound.setLooping(true);
+			sound.start();
 		}
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
+		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putBoolean("isMute", isMute);
+		editor.commit();
+
 		releaseSound();
 		db.close();
 	}
@@ -178,6 +202,10 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 	@Override
 	public void onPause() {
 		super.onPause();
+		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putBoolean("isMute", isMute);
+		editor.commit();
 		pauseSound();
 		db.close();
 
@@ -228,5 +256,10 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 			customItemsSoundDirectory.mkdirs();
 		}
 		return false;
+	}
+
+	@Override
+	public void onBackPressed() {
+		finish();
 	}
 }

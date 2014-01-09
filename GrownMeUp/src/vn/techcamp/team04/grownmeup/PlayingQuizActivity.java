@@ -17,6 +17,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -87,6 +88,9 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 	private int quizType = 1;
 
+	private boolean isMute;
+	public MediaPlayer sound;
+
 	// achievement
 	private AchievementRules achievement;
 
@@ -117,6 +121,11 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 		initQuiz();
 
 		achievement = new AchievementRules(this);
+
+		SharedPreferences settings = getSharedPreferences(
+				MainMenuActivity.PREFS_NAME, 0);
+		isMute = settings.getBoolean("isMute", false);
+
 	}
 
 	public void initViewQuiz1() {
@@ -172,7 +181,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 				@Override
 				public void onFinish() {
-					if (!holdFinishStage) {
+					if (!holdFinishStage && !holdDialog) {
 						chosenWrongAnswer();
 					}
 
@@ -383,9 +392,11 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 		if (answer == correctAnswer) {
 			chosenCorrectAnswer();
+			playSound(R.raw.sound_right_en);
 		} else {
 
 			chosenWrongAnswer();
+			playSound(R.raw.sound_wrong_en);
 		}
 
 	}
@@ -402,6 +413,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 	}
 
 	public void chosenCorrectAnswer() {
+
 		countCorrectAnswer++;
 		showDialog("Correct!", R.drawable.correct);
 
@@ -433,6 +445,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 	}
 
 	public void chosenWrongAnswer() {
+
 		if (quizType == 1) {
 			showDialog(correctAnswerText, this.questionImage);
 		} else {
@@ -447,6 +460,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 	public void showDialog(String content, int resourceID) {
 		if (!holdDialog && PlayingQuizActivity.this != null) {
+			holdDialog = true;
 			final Dialog dialog = new Dialog(PlayingQuizActivity.this);
 			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 			dialog.setCancelable(false);
@@ -468,6 +482,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 					if (dialog != null) {
 						dialog.dismiss();
 						displayNextQuestion();
+						holdDialog = false;
 					}
 				}
 			}, 2000);
@@ -488,6 +503,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 	public void showDialog(String content, Drawable questionImage) {
 		if (!holdDialog && PlayingQuizActivity.this != null) {
+			holdDialog = true;
 			final Dialog dialog = new Dialog(PlayingQuizActivity.this);
 			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 			dialog.setCancelable(false);
@@ -509,6 +525,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 					if (dialog != null) {
 						dialog.dismiss();
 						displayNextQuestion();
+						holdDialog = false;
 					}
 				}
 			}, 2000);
@@ -538,28 +555,47 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 								public void onClick(DialogInterface dialog,
 										int which) {
 									if (correctAnswer == 5) {
-										ArrayList<String> result = achievement.checkNumberCompleteStage();
+										ArrayList<String> result = achievement
+												.checkNumberCompleteStage();
 										if (result.contains("true")) {
-											if (result.contains(AchievementRules.badge1)) {
-												SharedPreferences settings = PlayingQuizActivity.this.getSharedPreferences(
-														AchievementRules.ACHIEVEMENT, 0);
-												SharedPreferences.Editor editor = settings.edit();
-												editor.putBoolean(AchievementRules.badge1, true);
+											if (result
+													.contains(AchievementRules.badge1)) {
+												SharedPreferences settings = PlayingQuizActivity.this
+														.getSharedPreferences(
+																AchievementRules.ACHIEVEMENT,
+																0);
+												SharedPreferences.Editor editor = settings
+														.edit();
+												editor.putBoolean(
+														AchievementRules.badge1,
+														true);
 												editor.commit();
 											}
 
-											if (result.contains(AchievementRules.badge2)) {
-												SharedPreferences settings = PlayingQuizActivity.this.getSharedPreferences(
-														AchievementRules.ACHIEVEMENT, 0);
-												SharedPreferences.Editor editor = settings.edit();
-												editor.putBoolean(AchievementRules.badge2, true);
+											if (result
+													.contains(AchievementRules.badge2)) {
+												SharedPreferences settings = PlayingQuizActivity.this
+														.getSharedPreferences(
+																AchievementRules.ACHIEVEMENT,
+																0);
+												SharedPreferences.Editor editor = settings
+														.edit();
+												editor.putBoolean(
+														AchievementRules.badge2,
+														true);
 												editor.commit();
 											}
-											if (result.contains(AchievementRules.badge6)) {
-												SharedPreferences settings = PlayingQuizActivity.this.getSharedPreferences(
-														AchievementRules.ACHIEVEMENT, 0);
-												SharedPreferences.Editor editor = settings.edit();
-												editor.putBoolean(AchievementRules.badge6, true);
+											if (result
+													.contains(AchievementRules.badge6)) {
+												SharedPreferences settings = PlayingQuizActivity.this
+														.getSharedPreferences(
+																AchievementRules.ACHIEVEMENT,
+																0);
+												SharedPreferences.Editor editor = settings
+														.edit();
+												editor.putBoolean(
+														AchievementRules.badge6,
+														true);
 												editor.commit();
 											}
 										}
@@ -592,10 +628,60 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 		}
 	}
 
+	private synchronized void playSound(int idSound) {
+		if (this.isMute == false) {
+			if (sound != null) {
+				sound.release();
+				sound = null;
+			}
+			sound = MediaPlayer.create(PlayingQuizActivity.this, idSound);
+			if (sound != null) {
+				sound.seekTo(0);
+				sound.start();
+			}
+		}
+	}
+
+	private void releaseSound() {
+		if (sound != null) {
+			sound.release();
+			sound = null;
+			// Log.v("Con lai", String.valueOf(i));
+		}
+	}
+
+	private void pauseSound() {
+		if (sound != null) {
+			sound.pause();
+		}
+	}
+
+	private void startSound() {
+		if (sound != null) {
+			sound.start();
+		}
+	}
+
+	private void playLoopSound(int idSound) {
+
+		if (sound != null) {
+			sound.release();
+			sound = null;
+		}
+		sound = MediaPlayer.create(PlayingQuizActivity.this, idSound);
+		if (sound != null) {
+			sound.seekTo(0);
+			sound.setLooping(true);
+			sound.start();
+		}
+	}
+
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
+		countDownTimer.cancel();
 		db.close();
+		releaseSound();
 
 	}
 
@@ -603,14 +689,21 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 	public void onPause() {
 		super.onPause();
 		holdDialog = true;
-//		db.close();
+		// db.close();
+		pauseSound();
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
 		holdDialog = false;
-//		db.open();
+		// db.open();
+		startSound();
+	}
+
+	@Override
+	public void onBackPressed() {
+		finish();
 	}
 
 }

@@ -9,7 +9,9 @@ import vn.techcamp.team04.grownmeup.database.Database;
 import vn.techcamp.team04.grownmeup.database.mSQLiteHelper;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -38,6 +40,9 @@ public class StageChooserActivity extends Activity implements OnClickListener {
 	private int subjectID;
 	private int currentStage;
 
+	private boolean isMute;
+	public MediaPlayer sound;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,6 +52,14 @@ public class StageChooserActivity extends Activity implements OnClickListener {
 
 		initView();
 		initStage();
+
+		SharedPreferences settings = getSharedPreferences(
+				MainMenuActivity.PREFS_NAME, 0);
+		isMute = settings.getBoolean("isMute", false);
+
+		if (!isMute) {
+			playLoopSound(R.raw.sound_background_chooser);
+		}
 	}
 
 	public void initView() {
@@ -224,11 +237,76 @@ public class StageChooserActivity extends Activity implements OnClickListener {
 
 	}
 
+	private synchronized void playSound(int idSound) {
+		if (this.isMute == false) {
+			if (sound != null) {
+				sound.release();
+				sound = null;
+			}
+			sound = MediaPlayer.create(StageChooserActivity.this, idSound);
+			if (sound != null) {
+				sound.seekTo(0);
+				sound.start();
+			}
+		}
+	}
+
+	private void releaseSound() {
+		if (sound != null) {
+			sound.release();
+			sound = null;
+			// Log.v("Con lai", String.valueOf(i));
+		}
+	}
+
+	private void pauseSound() {
+		if (sound != null) {
+			sound.pause();
+		}
+	}
+
+	private void startSound() {
+		if (sound != null) {
+			sound.start();
+		}
+	}
+
+	private void playLoopSound(int idSound) {
+
+		if (sound != null) {
+			sound.release();
+			sound = null;
+		}
+		sound = MediaPlayer.create(StageChooserActivity.this, idSound);
+		if (sound != null) {
+			sound.seekTo(0);
+			sound.setLooping(true);
+			sound.start();
+		}
+	}
+
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
 		db.close();
 
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		pauseSound();
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		startSound();
+	}
+
+	@Override
+	public void onBackPressed() {
+		finish();
 	}
 
 }
