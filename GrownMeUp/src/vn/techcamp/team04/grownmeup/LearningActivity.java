@@ -10,6 +10,7 @@ import vn.techcamp.team04.grownmeup.database.mSQLiteHelper;
 import vn.techcamp.team04.grownmeup.utility.mTTS;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Menu;
@@ -40,13 +41,17 @@ public class LearningActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.learning_screen);
 		initView();
-		
+
 		tts = new mTTS(this, 0.7f);
-		
+
 		db = new Database(this);
 		currentItem = 0;
 		ArrayList<String> currentSubject = new ArrayList<String>();
-		currentSubject.add("1");
+		SharedPreferences settings = getSharedPreferences(
+				OptionActivity.OPTION, 0);
+		currentSubject.add(settings.getInt(OptionActivity.DEFAULT_SUBJECT, 1)
+				+ "");
+		Log.d("Load default subject", currentSubject.get(0));
 		allItem = db.query(Database.ACTION_GET_ALL_ITEM, currentSubject);
 		ViewItem();
 	}

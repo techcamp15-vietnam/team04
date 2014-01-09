@@ -64,7 +64,7 @@ public class Database {
 					"lock", "bottle", "trash can" },
 			{ "Animal", "cat", "snake", "dog", "pig", "bee", "bird", "cow",
 					"sheep", "elephant", "horse" }, { "Car" }, { "City" },
-			{ "Clothes" }, { "Color" }, { "Plant" }, { "School" } };
+			{ "Clothes" }, { "Color" }, { "Plant" }, { "School" }, { "Custom" } };
 	// DEFAUT_STAGE format : {{subjectID, stage_name, stage_number,
 	// stage_status, item1ID, item2ID, item3ID, item4ID, item5ID}}
 	private static final String[][] DEFAULT_STAGE = {
@@ -420,13 +420,15 @@ public class Database {
 						"content must be implement stageID and number of correct answer");
 			}
 		case ACTION_GET_ALL_ITEM_SORT_BY_ANSWER:
-			// RETURN ALL ITEM WHICH BELONG TO A SUBJECT AND SORT BY CORRECT ANSWER
+			// RETURN ALL ITEM WHICH BELONG TO A SUBJECT AND SORT BY CORRECT
+			// ANSWER
 			ArrayList<HashMap<String, String>> listSortedItem = new ArrayList<HashMap<String, String>>();
 			if (content[0] instanceof ArrayList<?>) {
 				int subjectID = Integer.parseInt(content[0].get(0));
 				Cursor cursorItem = database.query(mSQLiteHelper.TABLE_ITEM,
 						allColumnsItem, mSQLiteHelper.SUBJECT_ID + " = "
-								+ subjectID, null, null, null, mSQLiteHelper.ITEM_CORRECT_ANSWER + " DESC");
+								+ subjectID, null, null, null,
+						mSQLiteHelper.ITEM_CORRECT_ANSWER + " DESC");
 				cursorItem.moveToFirst();
 				while (!cursorItem.isAfterLast()) {
 					listSortedItem.add(cursorToItem(cursorItem));
@@ -532,6 +534,7 @@ public class Database {
 
 				query(ACTION_ADD_NEW_STAGE, newStage);
 			}
+			// set default subject for learn
 		}
 		return true;
 	}

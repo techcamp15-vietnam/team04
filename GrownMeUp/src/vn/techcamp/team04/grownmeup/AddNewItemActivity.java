@@ -62,13 +62,6 @@ public class AddNewItemActivity extends Activity implements OnClickListener,
 		setContentView(R.layout.add_item_screen);
 		db = new Database(this);
 		initView();
-		try {
-			d = Drawable.createFromStream(getAssets().open("image/char.png"),
-					null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		mRecord = new mRecord();
 		mTTS = new mTTS(this, 0.7f);
 

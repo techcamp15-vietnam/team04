@@ -46,7 +46,7 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 
 		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 		boolean silent = settings.getBoolean("silentMode", false);
-//		 playLoopSound(R.raw.sound_background_menu);
+		// playLoopSound(R.raw.sound_background_menu);
 
 		createDefaultValue();
 		creatCustomItemDirecrory();
@@ -200,6 +200,12 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 			editor.putBoolean(AchievementRules.badge4, false);
 			editor.putFloat(AchievementRules.badge5, (float) 0.0);
 			editor.putBoolean(AchievementRules.badge6, false);
+			editor.commit();
+		}
+		settings = getSharedPreferences(OptionActivity.OPTION, 0);
+		if (!settings.contains(OptionActivity.DEFAULT_SUBJECT)) {
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putInt(OptionActivity.DEFAULT_SUBJECT, 1);
 			editor.commit();
 		}
 	}
