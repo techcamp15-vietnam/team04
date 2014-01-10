@@ -393,7 +393,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 	public void calculateResult() {
 
-		sumTime = (int) (sumTime + currentTime);
+		sumTime = (int) (sumTime + MAX_TIME - currentTime);
 
 		if (answer == correctAnswer) {
 			chosenCorrectAnswer();
@@ -730,8 +730,8 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 			String fastestTime = achievement.checkFastestStage(sumTime);
 			if (fastestTime.equalsIgnoreCase(AchievementRules.badge5)) {
 				Toast.makeText(getApplicationContext(),
-						"WOW, new record " + (int)sumTime + " s", Toast.LENGTH_SHORT)
-						.show();
+						"WOW, new record " + (int) sumTime + " s",
+						Toast.LENGTH_SHORT).show();
 				SharedPreferences settings = PlayingQuizActivity.this
 						.getSharedPreferences(AchievementRules.ACHIEVEMENT, 0);
 				SharedPreferences.Editor editor = settings.edit();

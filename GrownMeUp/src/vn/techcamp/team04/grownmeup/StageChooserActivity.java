@@ -44,6 +44,13 @@ public class StageChooserActivity extends Activity implements OnClickListener {
 	private boolean isMute;
 	public MediaPlayer sound;
 
+	public boolean holdPos1 = true;
+	public boolean holdPos2 = true;
+	public boolean holdPos3 = true;
+	public boolean holdPos4 = true;
+	public boolean holdPos5 = true;
+	public boolean holdPos6 = true;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -110,6 +117,7 @@ public class StageChooserActivity extends Activity implements OnClickListener {
 				}
 				Drawable d = Drawable.createFromStream(is, null);
 				imgvStagePos1.setImageDrawable(d);
+				holdPos1 = false;
 			}
 		}
 		if (currentStage + 1 < allStage.size()) {
@@ -123,6 +131,7 @@ public class StageChooserActivity extends Activity implements OnClickListener {
 				}
 				Drawable d = Drawable.createFromStream(is, null);
 				imgvStagePos2.setImageDrawable(d);
+				holdPos2 = false;
 			}
 		}
 		if (currentStage + 2 < allStage.size()) {
@@ -136,6 +145,7 @@ public class StageChooserActivity extends Activity implements OnClickListener {
 				}
 				Drawable d = Drawable.createFromStream(is, null);
 				imgvStagePos3.setImageDrawable(d);
+				holdPos3 = false;
 			}
 		}
 		if (currentStage + 3 < allStage.size()) {
@@ -149,6 +159,7 @@ public class StageChooserActivity extends Activity implements OnClickListener {
 				}
 				Drawable d = Drawable.createFromStream(is, null);
 				imgvStagePos4.setImageDrawable(d);
+				holdPos4 = false;
 			}
 		}
 		if (currentStage + 4 < allStage.size()) {
@@ -162,6 +173,7 @@ public class StageChooserActivity extends Activity implements OnClickListener {
 				}
 				Drawable d = Drawable.createFromStream(is, null);
 				imgvStagePos5.setImageDrawable(d);
+				holdPos5 = false;
 			}
 		}
 		if (currentStage + 5 < allStage.size()) {
@@ -175,6 +187,7 @@ public class StageChooserActivity extends Activity implements OnClickListener {
 				}
 				Drawable d = Drawable.createFromStream(is, null);
 				imgvStagePos6.setImageDrawable(d);
+				holdPos6 = false;
 			}
 		}
 
@@ -205,24 +218,34 @@ public class StageChooserActivity extends Activity implements OnClickListener {
 
 			break;
 		case R.id.imgv_stage_pos_1:
-			startPlayQuiz(currentStage);
-
+			if (!holdPos1) {
+				startPlayQuiz(currentStage);
+			}
 			break;
 		case R.id.imgv_stage_pos_2:
-			startPlayQuiz(currentStage + 1);
-
+			if (!holdPos2) {
+				startPlayQuiz(currentStage + 1);
+			}
 			break;
 		case R.id.imgv_stage_pos_3:
-			startPlayQuiz(currentStage + 2);
+			if (!holdPos3) {
+				startPlayQuiz(currentStage + 2);
+			}
 			break;
 		case R.id.imgv_stage_pos_4:
-			startPlayQuiz(currentStage + 3);
+			if (!holdPos4) {
+				startPlayQuiz(currentStage + 3);
+			}
 			break;
 		case R.id.imgv_stage_pos_5:
-			startPlayQuiz(currentStage + 4);
+			if (!holdPos5) {
+				startPlayQuiz(currentStage + 4);
+			}
 			break;
 		case R.id.imgv_stage_pos_6:
-			startPlayQuiz(currentStage + 5);
+			if (!holdPos6) {
+				startPlayQuiz(currentStage + 5);
+			}
 			break;
 
 		default:
