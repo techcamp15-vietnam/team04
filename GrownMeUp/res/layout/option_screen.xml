@@ -17,7 +17,7 @@
         android:layout_marginTop="@dimen/option_margin_top"
         android:background="@android:color/transparent"
         android:contentDescription="@string/description_add_item"
-        android:src="@drawable/add_item" />
+        android:src="@drawable/btn_add_item" />
 
     <ImageButton
         android:id="@+id/option_custom_stage"
@@ -28,7 +28,7 @@
         android:layout_marginBottom="@dimen/option_margin_bottom"
         android:background="@android:color/transparent"
         android:contentDescription="@string/description_custom_stage"
-        android:src="@drawable/custom_stage" />
+        android:src="@drawable/btn_custom_stage" />
 
     <ImageButton
         android:id="@+id/option_language"
@@ -39,7 +39,7 @@
         android:layout_marginBottom="@dimen/option_margin_bottom"
         android:background="@android:color/transparent"
         android:contentDescription="@string/description_custom_stage"
-        android:src="@drawable/language" />
+        android:src="@drawable/btn_default_subject" />
 
     <ImageButton
         android:id="@+id/option_about"
@@ -50,6 +50,6 @@
         android:layout_marginBottom="@dimen/option_margin_bottom"
         android:background="@android:color/transparent"
         android:contentDescription="@string/description_add_item"
-        android:src="@drawable/about" />
+        android:src="@drawable/btn_about" />
 
 </RelativeLayout>

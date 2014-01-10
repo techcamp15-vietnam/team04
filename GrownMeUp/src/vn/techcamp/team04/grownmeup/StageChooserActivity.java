@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -89,6 +90,7 @@ public class StageChooserActivity extends Activity implements OnClickListener {
 		ArrayList<String> alSubjectID = new ArrayList<String>();
 		alSubjectID.add(subjectID + "");
 		allStage = db.query(Database.ACTION_GET_ALL_STAGE, alSubjectID);
+		Log.i("all stage", allStage.toString());
 		currentStage = 0;
 		loadStage();
 
@@ -231,7 +233,10 @@ public class StageChooserActivity extends Activity implements OnClickListener {
 	public void startPlayQuiz(int stageID) {
 		Intent intent = new Intent(StageChooserActivity.this,
 				PlayingQuizActivity.class);
-		intent.putExtra("stageID", stageID + 1);
+
+		String temp = allStage.get(stageID).get(mSQLiteHelper.STAGE_ID);
+		Log.i("stageID", temp);
+		intent.putExtra("stageID", Integer.parseInt(temp));
 		intent.putExtra("subjectID", subjectID);
 		startActivity(intent);
 

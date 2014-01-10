@@ -15,6 +15,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 
 /**
@@ -36,12 +38,15 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 
 	public MediaPlayer sound;
 	private boolean isMute;
+	private Animation lslide, rslide, bslide;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_menu_screen);
 		initView();
+
+
 
 		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 		isMute = settings.getBoolean("isMute", false);
@@ -65,6 +70,14 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 	}
 
 	public void initView() {
+		
+		lslide = AnimationUtils.loadAnimation(MainMenuActivity.this,
+				R.anim.slide_from_left);
+		rslide = AnimationUtils.loadAnimation(MainMenuActivity.this,
+				R.anim.slide_from_right);
+		bslide = AnimationUtils.loadAnimation(MainMenuActivity.this,
+				R.anim.slide_from_bottom);
+		
 		btnLearn = (ImageButton) findViewById(R.id.btn_learn);
 		btnPlay = (ImageButton) findViewById(R.id.btn_play);
 		btnHighScore = (ImageButton) findViewById(R.id.btn_highscore);
@@ -78,6 +91,13 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 		btnOption.setOnClickListener(this);
 		btnExit.setOnClickListener(this);
 		btnSound.setOnClickListener(this);
+		
+		btnLearn.setAnimation(lslide);
+		btnPlay.setAnimation(rslide);
+		btnHighScore.setAnimation(lslide);
+		btnOption.setAnimation(rslide);
+		btnExit.setAnimation(lslide);
+		btnSound.setAnimation(bslide);
 
 	}
 

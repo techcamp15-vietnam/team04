@@ -42,7 +42,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 	private Database db;
 	private ArrayList<HashMap<String, String>> allItem;
 
-	private int MAX_TIME = 5000;
+	private int MAX_TIME = 30000;
 
 	private int sumTime;
 	private long currentTime;

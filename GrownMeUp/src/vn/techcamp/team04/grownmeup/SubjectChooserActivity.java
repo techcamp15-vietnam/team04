@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -223,6 +224,7 @@ public class SubjectChooserActivity extends Activity implements OnClickListener 
 		Intent intent = new Intent(SubjectChooserActivity.this,
 				StageChooserActivity.class);
 		intent.putExtra("subjectID", subjectID + 1);
+		Log.i("subjectID", subjectID + 1 + "");
 		startActivity(intent);
 
 	}

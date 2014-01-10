@@ -16,6 +16,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 
 /**
@@ -34,6 +36,8 @@ public class OptionActivity extends Activity implements OnClickListener {
 	public static final String OPTION = "option";
 	public static final String DEFAULT_SUBJECT = "default_subject";
 	private SharedPreferences settings;
+
+	private Animation lslide, rslide, bslide;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +68,12 @@ public class OptionActivity extends Activity implements OnClickListener {
 	 * @return
 	 */
 	private void initView() {
+
+		lslide = AnimationUtils.loadAnimation(OptionActivity.this,
+				R.anim.slide_from_left);
+		rslide = AnimationUtils.loadAnimation(OptionActivity.this,
+				R.anim.slide_from_right);
+
 		btnAddItem = (ImageButton) findViewById(R.id.option_add_item);
 		btnCustomStage = (ImageButton) findViewById(R.id.option_custom_stage);
 		btnlanguage = (ImageButton) findViewById(R.id.option_language);
@@ -73,6 +83,11 @@ public class OptionActivity extends Activity implements OnClickListener {
 		btnCustomStage.setOnClickListener(this);
 		btnlanguage.setOnClickListener(this);
 		btnAbout.setOnClickListener(this);
+
+		btnAddItem.setAnimation(lslide);
+		btnCustomStage.setAnimation(rslide);
+		btnlanguage.setAnimation(lslide);
+		btnAbout.setAnimation(rslide);
 	}
 
 	@Override
@@ -84,15 +99,36 @@ public class OptionActivity extends Activity implements OnClickListener {
 
 			break;
 		case R.id.option_custom_stage:
-			Intent customStageItent = new Intent(this,
-					CustomStageActivity.class);
-			startActivity(customStageItent);
+			new AlertDialog.Builder(this)
+					.setTitle("Function on Development")
+					.setMessage(
+							"Sorry! Function on Development!Please come back later! ")
+
+					.setNegativeButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+
+								}
+							}).show();
 
 			break;
 		case R.id.option_language:
 			ChooseDefaultSubjectDialog(allSubs);
 			break;
 		case R.id.option_about:
+			new AlertDialog.Builder(this)
+					.setTitle("About")
+					.setMessage(
+							"Group4: \n 4-A Bui Trung Hieu \n 4-B Bui Trong Hieu \n 4-C Nguyen Sinh Hiep")
+
+					.setNegativeButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+
+								}
+							}).show();
 
 			break;
 		default:

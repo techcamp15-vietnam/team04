@@ -80,7 +80,7 @@
                     android:paddingBottom="@dimen/stage_detail_padding_bottom"
                     android:paddingTop="@dimen/stage_detail_padding_top"
                     android:scaleType="center"
-                    android:src="@drawable/add_item" />
+                    android:src="@drawable/btn_add_item" />
 
                 <TextView
                     android:id="@+id/stage_detail_item_desc_1"
@@ -108,7 +108,7 @@
                     android:paddingBottom="@dimen/stage_detail_padding_bottom"
                     android:paddingTop="@dimen/stage_detail_padding_top"
                     android:scaleType="center"
-                    android:src="@drawable/add_item" />
+                    android:src="@drawable/btn_add_item" />
 
                 <TextView
                     android:id="@+id/stage_detail_item_desc_2"
@@ -136,7 +136,7 @@
                     android:paddingBottom="@dimen/stage_detail_padding_bottom"
                     android:paddingTop="@dimen/stage_detail_padding_top"
                     android:scaleType="center"
-                    android:src="@drawable/add_item" />
+                    android:src="@drawable/btn_add_item" />
 
                 <TextView
                     android:id="@+id/stage_detail_item_desc_3"
@@ -165,7 +165,7 @@
                     android:paddingBottom="@dimen/stage_detail_padding_bottom"
                     android:paddingTop="@dimen/stage_detail_padding_top"
                     android:scaleType="center"
-                    android:src="@drawable/add_item" />
+                    android:src="@drawable/btn_add_item" />
 
                 <TextView
                     android:id="@+id/stage_detail_item_desc_4"
