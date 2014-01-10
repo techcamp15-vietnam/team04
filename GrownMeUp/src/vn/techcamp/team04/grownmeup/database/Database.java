@@ -69,8 +69,11 @@ public class Database {
 			{ "Clothes", "boots", "dress", "hat", "jacket", "jeans", "pajama",
 					"shirt", "skirt", "slippers", "socks" },
 			{ "Color", "aqua", "black", "blue", "brown", "green", "orange",
-					"pink", "red", "violet", "yellow" }, { "City" },
-			{ "Plant" }, { "Others" } };
+					"pink", "red", "violet", "yellow" },
+			{ "Stationery", "blackboard", "book", "pencil", "shoolbag",
+					"teacher" },
+			{ "Plant", "apple", "mango", "lemon", "pineapple", "tomato" },
+			{ "Others" } };
 
 	// DEFAUT_STAGE format : {{subjectID, stage_name, stage_number,
 	// stage_status, item1ID, item2ID, item3ID, item4ID, item5ID}}
@@ -86,7 +89,9 @@ public class Database {
 			{ "4", "stage_1", "1", "0", "41", "42", "43", "44", "45" },
 			{ "4", "stage_2", "2", "0", "46", "47", "48", "49", "50" },
 			{ "5", "stage_1", "1", "0", "51", "52", "53", "54", "55" },
-			{ "5", "stage_2", "2", "0", "56", "57", "58", "59", "60" }, };
+			{ "5", "stage_2", "2", "0", "56", "57", "58", "59", "60" },
+			{ "6", "stage_1", "1", "0", "61", "62", "63", "64", "65" },
+			{ "7", "stage_1", "1", "0", "66", "67", "68", "69", "70" }, };
 
 	public Database(Context context) {
 		dbHelper = new mSQLiteHelper(context);
