@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
+/**
+ * @author hiepns
+ *
+ */
 public class CameraCropOptionAdapter extends ArrayAdapter<CameraCropOption> {
 	private ArrayList<CameraCropOption> mOptions;
 	private LayoutInflater mInflater;

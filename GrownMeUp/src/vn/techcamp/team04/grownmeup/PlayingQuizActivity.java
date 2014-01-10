@@ -571,21 +571,22 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 			new AlertDialog.Builder(this)
 					.setTitle("Stage Result")
 					.setMessage("Correct Answer: " + countCorrectAnswer + "/5")
-					.setPositiveButton("Next Stage",
+					.setPositiveButton("Choose Another Stage",
 							new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface dialog,
 										int which) {
 
-									stageID++;
-									countDownTimer.start();
-									allItem.clear();
-									allItem = null;
-									countCorrectAnswer = 0;
-									currentItem = 0;
-									holdFinishStage = false;
-									sumTime = 0;
-									initQuiz();
+									// stageID++;
+									// countDownTimer.start();
+									// allItem.clear();
+									// allItem = null;
+									// countCorrectAnswer = 0;
+									// currentItem = 0;
+									// holdFinishStage = false;
+									// sumTime = 0;
+									// initQuiz();
+									finish();
 
 								}
 							})
