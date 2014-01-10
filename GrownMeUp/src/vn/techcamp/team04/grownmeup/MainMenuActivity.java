@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -250,12 +251,16 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 		File customItemsSoundDirectory = new File(Environment
 				.getExternalStorageDirectory().getPath()
 				+ Utility.CUSTOM_ITEMS_SOUND_DIRECTORY);
+
 		File customItemsImageDirectory = new File(Environment
 				.getExternalStorageDirectory().getPath()
 				+ Utility.CUSTOM_ITEMS_IMAGE_DIRECTORY);
 		if (!customItemsImageDirectory.isDirectory()) {
 			customItemsImageDirectory.mkdirs();
+			Log.d("create folder", customItemsImageDirectory.getPath());
 			customItemsSoundDirectory.mkdirs();
+			Log.d("create folder", customItemsSoundDirectory.getPath());
+
 		}
 		return false;
 	}

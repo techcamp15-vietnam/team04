@@ -142,9 +142,18 @@ public class AddNewItemActivity extends Activity implements OnClickListener,
 
 			break;
 		case R.id.add_item_btn_camera:
+<<<<<<< Updated upstream
+			// imagePath = Utility.getCustomItemsImageFilePath("pig.png");
+			// Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+			// btnTakePic.setImageBitmap(bitmap);
 			Intent takePhotoActivity = new Intent(this, CameraActivity.class);
 			startActivityForResult(takePhotoActivity, REQUEST_TAKE_PHOTO);
-
+=======
+			imagePath = Utility.getCustomItemsImageFilePath("bag.png");
+			Log.d("", imagePath);
+			Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+			btnTakePic.setImageBitmap(bitmap);
+>>>>>>> Stashed changes
 
 			break;
 

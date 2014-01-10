@@ -7,10 +7,14 @@ import java.util.HashMap;
 
 import vn.techcamp.team04.grownmeup.database.Database;
 import vn.techcamp.team04.grownmeup.database.mSQLiteHelper;
+import vn.techcamp.team04.grownmeup.utility.Utility;
+import vn.techcamp.team04.grownmeup.utility.mPlayAudio;
 import vn.techcamp.team04.grownmeup.utility.mTTS;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Menu;
@@ -32,6 +36,7 @@ public class LearningActivity extends Activity implements OnClickListener {
 	private ImageButton btnPrev;
 	private ImageButton btnSound;
 	private mTTS tts;
+	private mPlayAudio mplayAudio;
 	private Database db;
 	private ArrayList<HashMap<String, String>> allItem;
 	private int currentItem;
@@ -43,8 +48,9 @@ public class LearningActivity extends Activity implements OnClickListener {
 		initView();
 
 		tts = new mTTS(this, 0.7f);
-
+		mplayAudio = new mPlayAudio();
 		db = new Database(this);
+
 		currentItem = 0;
 		ArrayList<String> currentSubject = new ArrayList<String>();
 		SharedPreferences settings = getSharedPreferences(
@@ -113,13 +119,22 @@ public class LearningActivity extends Activity implements OnClickListener {
 			}
 			break;
 		case R.id.btn_sound:
-			String audioFilePath = allItem.get(currentItem).get(
-					mSQLiteHelper.ITEM_AUDIO_LINK);
-			if (audioFilePath == null || audioFilePath.length() == 0) {
-				tts.speakText(allItem.get(currentItem).get(
-						mSQLiteHelper.ITEM_NAME));
+			if (allItem == null || allItem.size() == 0) {
+				tts.speakText("No image in subject");
 			} else {
-
+				String audioFilePath = allItem.get(currentItem).get(
+						mSQLiteHelper.ITEM_AUDIO_LINK);
+				if (audioFilePath == null || audioFilePath.length() == 0) {
+					tts.speakText(allItem.get(currentItem).get(
+							mSQLiteHelper.ITEM_NAME));
+				} else {
+					try {
+						mplayAudio.play(audioFilePath);
+						Log.d("play", audioFilePath);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
 			}
 		default:
 			break;
@@ -130,14 +145,16 @@ public class LearningActivity extends Activity implements OnClickListener {
 	private void ViewItem() {
 
 		if (allItem == null || allItem.size() == 0) {
-
 			imgvLearningImage.setImageResource(R.drawable.no_image);
-			tvMeaning
-					.setText("No image in subject.Go to Option to choose another.");
+			tvMeaning.setText("No image in subject.");
+
 		} else {
 			if (allItem.get(currentItem).get(mSQLiteHelper.ITEM_IMG_LINK)
 					.toString().contains("items")) {
-
+				String imagePath = allItem.get(currentItem)
+						.get(mSQLiteHelper.ITEM_IMG_LINK).toString();
+				Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+				imgvLearningImage.setImageBitmap(bitmap);
 			} else {
 				InputStream is = null;
 				try {
@@ -149,9 +166,9 @@ public class LearningActivity extends Activity implements OnClickListener {
 				}
 				Drawable d = Drawable.createFromStream(is, null);
 				imgvLearningImage.setImageDrawable(d);
-				tvMeaning.setText(allItem.get(currentItem).get(
-						mSQLiteHelper.ITEM_NAME));
 			}
+			tvMeaning.setText(allItem.get(currentItem).get(
+					mSQLiteHelper.ITEM_NAME));
 		}
 	}
 

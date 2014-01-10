@@ -63,7 +63,7 @@ public class Database {
 					"bowl", "cup", "door", "dvd player", "remote", "water can",
 					"lock", "bottle", "trash can" },
 			{ "Animal", "cat", "snake", "dog", "pig", "bee", "bird", "cow",
-					"sheep", "elephant", "horse" }, { "Car" }, { "City" },
+					"sheep", "elephant", "horse" }, { "Transport" }, { "City" },
 			{ "Clothes" }, { "Color" }, { "Plant" }, { "Custom" } };
 	// DEFAUT_STAGE format : {{subjectID, stage_name, stage_number,
 	// stage_status, item1ID, item2ID, item3ID, item4ID, item5ID}}

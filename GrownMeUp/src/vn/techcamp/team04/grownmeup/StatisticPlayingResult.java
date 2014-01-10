@@ -10,6 +10,8 @@ import vn.techcamp.team04.grownmeup.database.Database;
 import vn.techcamp.team04.grownmeup.database.mSQLiteHelper;
 import vn.techcamp.team04.grownmeup.utility.mTTS;
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -109,11 +111,16 @@ public class StatisticPlayingResult extends Activity implements
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.imgv_item_image:
-			String audioFilePath = allItem.get(currentItem).get(
-					mSQLiteHelper.ITEM_AUDIO_LINK);
-			if (audioFilePath == null || audioFilePath.length() == 0) {
-				tts.speakText(allItem.get(currentItem).get(
-						mSQLiteHelper.ITEM_NAME));
+			if (allItem == null || allItem.size() == 0) {
+				tts.speakText("No image in subject");
+			} else {
+
+				String audioFilePath = allItem.get(currentItem).get(
+						mSQLiteHelper.ITEM_AUDIO_LINK);
+				if (audioFilePath == null || audioFilePath.length() == 0) {
+					tts.speakText(allItem.get(currentItem).get(
+							mSQLiteHelper.ITEM_NAME));
+				}
 			}
 			break;
 		case R.id.tv_meaning:
@@ -172,24 +179,41 @@ public class StatisticPlayingResult extends Activity implements
 	}
 
 	private void ViewItem() {
-		InputStream is = null;
-		Log.e("statistic item", allItem.get(currentItem).toString());
-		try {
-			is = getAssets().open(
-					allItem.get(currentItem).get(mSQLiteHelper.ITEM_IMG_LINK));
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (allItem == null || allItem.size() == 0) {
+			imgvItemImage.setImageResource(R.drawable.no_image);
+			tvMeaning.setText("No image in subject.");
+			tvResultCorrect.setText("");
+			tvResultWrong.setText("");
+
+		} else {
+
+			if (allItem.get(currentItem).get(mSQLiteHelper.ITEM_IMG_LINK)
+					.toString().contains("items")) {
+				String imagePath = allItem.get(currentItem)
+						.get(mSQLiteHelper.ITEM_IMG_LINK).toString();
+				Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+				imgvItemImage.setImageBitmap(bitmap);
+			} else {
+				InputStream is = null;
+				Log.e("statistic item", allItem.get(currentItem).toString());
+				try {
+					is = getAssets().open(
+							allItem.get(currentItem).get(
+									mSQLiteHelper.ITEM_IMG_LINK));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				Drawable d = Drawable.createFromStream(is, null);
+				imgvItemImage.setImageDrawable(d);
+			}
+			tvMeaning.setText(allItem.get(currentItem).get(
+					mSQLiteHelper.ITEM_NAME));
+			tvResultCorrect.setText("Correct: "
+					+ allItem.get(currentItem).get(
+							mSQLiteHelper.ITEM_CORRECT_ANSWER));
+			tvResultWrong.setText("Wrong: "
+					+ allItem.get(currentItem).get(
+							mSQLiteHelper.ITEM_WRONG_ANSWER));
 		}
-		Drawable d = Drawable.createFromStream(is, null);
-		imgvItemImage.setImageDrawable(d);
-		tvMeaning
-				.setText(allItem.get(currentItem).get(mSQLiteHelper.ITEM_NAME));
-		tvResultCorrect.setText("Correct: "
-				+ allItem.get(currentItem).get(
-						mSQLiteHelper.ITEM_CORRECT_ANSWER));
-		tvResultWrong
-				.setText("Wrong: "
-						+ allItem.get(currentItem).get(
-								mSQLiteHelper.ITEM_WRONG_ANSWER));
 	}
 }
