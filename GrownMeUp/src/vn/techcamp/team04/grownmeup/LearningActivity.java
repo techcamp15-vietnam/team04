@@ -136,13 +136,10 @@ public class LearningActivity extends Activity implements OnClickListener {
 					.setText("No image in subject.Go to Option to choose another.");
 		} else {
 			if (allItem.get(currentItem).get(mSQLiteHelper.ITEM_IMG_LINK)
-					.toString().equals("8")) {
+					.toString().contains("items")) {
 
 			} else {
 				InputStream is = null;
-				Log.e("",
-						allItem.get(currentItem).get(
-								mSQLiteHelper.ITEM_IMG_LINK));
 				try {
 					is = getAssets().open(
 							allItem.get(currentItem).get(
@@ -156,7 +153,6 @@ public class LearningActivity extends Activity implements OnClickListener {
 						mSQLiteHelper.ITEM_NAME));
 			}
 		}
-
 	}
 
 	@Override

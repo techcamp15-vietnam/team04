@@ -122,7 +122,7 @@ public class OptionActivity extends Activity implements OnClickListener {
 		// Creating and Building the Dialog
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Select The Default Subject");
-		builder.setSingleChoiceItems(allSubjects, checked,
+		builder.setSingleChoiceItems(allSubjects, checked - 1,
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int item) {
