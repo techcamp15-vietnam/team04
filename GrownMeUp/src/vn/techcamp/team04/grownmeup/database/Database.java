@@ -70,7 +70,7 @@ public class Database {
 					"shirt", "skirt", "slippers", "socks" },
 			{ "Color", "aqua", "black", "blue", "brown", "green", "orange",
 					"pink", "red", "violet", "yellow" },
-			{ "Stationery", "blackboard", "book", "pencil", "shoolbag",
+			{ "Stationery", "blackboard", "book", "pencil", "schoolbag",
 					"teacher" },
 			{ "Plant", "apple", "mango", "lemon", "pineapple", "tomato" },
 			{ "Others" } };
