@@ -15,6 +15,7 @@ import vn.techcamp.team04.grownmeup.utility.mPlayAudio;
 import vn.techcamp.team04.grownmeup.utility.mRecord;
 import vn.techcamp.team04.grownmeup.utility.mTTS;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -55,6 +56,8 @@ public class AddNewItemActivity extends Activity implements OnClickListener,
 	private String subjectID;
 	private Database db;
 	ArrayList<HashMap<String, String>> allSubject;
+
+	public static int REQUEST_TAKE_PHOTO = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -139,9 +142,11 @@ public class AddNewItemActivity extends Activity implements OnClickListener,
 
 			break;
 		case R.id.add_item_btn_camera:
-			imagePath = Utility.getCustomItemsImageFilePath("pig.png");
-			Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
-			btnTakePic.setImageBitmap(bitmap);
+			// imagePath = Utility.getCustomItemsImageFilePath("pig.png");
+			// Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+			// btnTakePic.setImageBitmap(bitmap);
+			Intent takePhotoActivity = new Intent(this, CameraActivity.class);
+			startActivityForResult(takePhotoActivity, REQUEST_TAKE_PHOTO);
 
 			break;
 
@@ -229,4 +234,22 @@ public class AddNewItemActivity extends Activity implements OnClickListener,
 	public void onNothingSelected(AdapterView<?> arg0) {
 
 	}
+
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		if (requestCode == REQUEST_TAKE_PHOTO) {
+
+			if (resultCode == RESULT_OK) {
+				imagePath = data.getStringExtra("imagePath");
+				
+				Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+				btnTakePic.setImageBitmap(bitmap);
+				// Toast.makeText(AddNewItemActivity.this, result,
+				// Toast.LENGTH_SHORT).show();
+			}
+			if (resultCode == RESULT_CANCELED) {
+				// Write your code if there's no result
+			}
+		}
+	}// onActivityResult
 }

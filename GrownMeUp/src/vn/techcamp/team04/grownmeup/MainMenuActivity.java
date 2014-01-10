@@ -195,7 +195,9 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 	@Override
 	public void onResume() {
 		super.onResume();
-		startSound();
+		if (!isMute) {
+			startSound();
+		}
 		db.open();
 	}
 
