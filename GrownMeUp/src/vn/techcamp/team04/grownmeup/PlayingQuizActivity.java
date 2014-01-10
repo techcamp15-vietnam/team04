@@ -44,6 +44,9 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 	private int MAX_TIME = 5000;
 
+	private int sumTime;
+	private long currentTime;
+
 	// private Dialog dialog;
 
 	private int correctAnswer;
@@ -169,13 +172,13 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 				@Override
 				public void onTick(long millisUntilFinished) {
-					long second = (millisUntilFinished % 60000) / 1000;
+					currentTime = (millisUntilFinished % 60000) / 1000;
 					if ((millisUntilFinished % 60000) / 1000 < 10) {
 						tvTimeCounter.setText(millisUntilFinished / 60000
-								+ " : " + "0" + second);
+								+ " : " + "0" + currentTime);
 					} else {
 						tvTimeCounter.setText(millisUntilFinished / 60000
-								+ " : " + second);
+								+ " : " + currentTime);
 					}
 				}
 
@@ -390,11 +393,12 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 	public void calculateResult() {
 
+		sumTime = (int) (sumTime + currentTime);
+
 		if (answer == correctAnswer) {
 			chosenCorrectAnswer();
 			playSound(R.raw.sound_right_en);
 		} else {
-
 			chosenWrongAnswer();
 			playSound(R.raw.sound_wrong_en);
 		}
@@ -426,6 +430,14 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 				.parseInt(currentItemID));
 		if (arr.contains("true")) {
 			if (arr.contains(AchievementRules.badge3)) {
+				Toast.makeText(
+						getApplicationContext(),
+						"WOW "
+								+ AchievementRules.badge3
+								+ " item "
+								+ allItem.get(currentItem).get(
+										mSQLiteHelper.ITEM_NAME),
+						Toast.LENGTH_SHORT).show();
 				SharedPreferences settings = this.getSharedPreferences(
 						AchievementRules.ACHIEVEMENT, 0);
 				SharedPreferences.Editor editor = settings.edit();
@@ -434,6 +446,14 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 			}
 
 			if (arr.contains(AchievementRules.badge4)) {
+				Toast.makeText(
+						getApplicationContext(),
+						"WOW you"
+								+ AchievementRules.badge4
+								+ " item "
+								+ allItem.get(currentItem).get(
+										mSQLiteHelper.ITEM_NAME),
+						Toast.LENGTH_SHORT).show();
 				SharedPreferences settings = this.getSharedPreferences(
 						AchievementRules.ACHIEVEMENT, 0);
 				SharedPreferences.Editor editor = settings.edit();
@@ -563,6 +583,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 									countCorrectAnswer = 0;
 									currentItem = 0;
 									holdFinishStage = false;
+									sumTime = 0;
 									initQuiz();
 
 								}
@@ -577,6 +598,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 									countCorrectAnswer = 0;
 									currentItem = 0;
 									holdFinishStage = false;
+									sumTime = 0;
 									initQuiz();
 
 								}
@@ -668,6 +690,9 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 			ArrayList<String> result = achievement.checkNumberCompleteStage();
 			if (result.contains("true")) {
 				if (result.contains(AchievementRules.badge1)) {
+					Toast.makeText(getApplicationContext(),
+							"WOW you " + AchievementRules.badge1,
+							Toast.LENGTH_SHORT).show();
 					SharedPreferences settings = PlayingQuizActivity.this
 							.getSharedPreferences(AchievementRules.ACHIEVEMENT,
 									0);
@@ -677,6 +702,9 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 				}
 
 				if (result.contains(AchievementRules.badge2)) {
+					Toast.makeText(getApplicationContext(),
+							"WOW you " + AchievementRules.badge2,
+							Toast.LENGTH_SHORT).show();
 					SharedPreferences settings = PlayingQuizActivity.this
 							.getSharedPreferences(AchievementRules.ACHIEVEMENT,
 									0);
@@ -685,6 +713,9 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 					editor.commit();
 				}
 				if (result.contains(AchievementRules.badge6)) {
+					Toast.makeText(getApplicationContext(),
+							"WOW you " + AchievementRules.badge6,
+							Toast.LENGTH_SHORT).show();
 					SharedPreferences settings = PlayingQuizActivity.this
 							.getSharedPreferences(AchievementRules.ACHIEVEMENT,
 									0);
@@ -692,6 +723,17 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 					editor.putBoolean(AchievementRules.badge6, true);
 					editor.commit();
 				}
+			}
+			String fastestTime = achievement.checkFastestStage((float) sumTime);
+			if (fastestTime.equalsIgnoreCase(AchievementRules.badge5)) {
+				Toast.makeText(getApplicationContext(),
+						"WOW " + AchievementRules.badge5, Toast.LENGTH_SHORT)
+						.show();
+				SharedPreferences settings = PlayingQuizActivity.this
+						.getSharedPreferences(AchievementRules.ACHIEVEMENT, 0);
+				SharedPreferences.Editor editor = settings.edit();
+				editor.putFloat(AchievementRules.badge5, (float) sumTime);
+				editor.commit();
 			}
 		}
 	}

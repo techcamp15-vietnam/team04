@@ -123,7 +123,7 @@ public class StatisticPlayingResult extends Activity implements
 
 			break;
 		case R.id.tv_result_wrong:
-			
+
 			break;
 		case R.id.btn_next:
 			if (currentItem < allItem.size() - 1) {
@@ -184,9 +184,12 @@ public class StatisticPlayingResult extends Activity implements
 		imgvItemImage.setImageDrawable(d);
 		tvMeaning
 				.setText(allItem.get(currentItem).get(mSQLiteHelper.ITEM_NAME));
-		tvResultCorrect.setText(allItem.get(currentItem).get(
-				"Correct: " + mSQLiteHelper.ITEM_CORRECT_ANSWER));
-		tvResultWrong.setText(allItem.get(currentItem).get(
-				"Wrong: " + mSQLiteHelper.ITEM_WRONG_ANSWER));
+		tvResultCorrect.setText("Correct: "
+				+ allItem.get(currentItem).get(
+						mSQLiteHelper.ITEM_CORRECT_ANSWER));
+		tvResultWrong
+				.setText("Wrong: "
+						+ allItem.get(currentItem).get(
+								mSQLiteHelper.ITEM_WRONG_ANSWER));
 	}
 }

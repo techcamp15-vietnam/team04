@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
 			android:layout_centerHorizontal="true"
             android:text="@string/hello_world"
-            android:textSize="@dimen/learning_screen_text_size" 
+            android:textSize="@dimen/high_score_text_size" 
             android:background="#CCFFFF"/>
 
         <TextView
@@ -65,19 +65,22 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_meaning"
             android:layout_marginTop="@dimen/statistic_margin_top"
-            android:layout_toRightOf="@+id/tv_result_wrong"
             android:text="@string/hello_world"
             android:textColor="@android:color/holo_blue_bright"
-            android:textSize="@dimen/learning_screen_text_size" />
+            android:textSize="@dimen/high_score_text_size" 
+            android:background="#CCFFFF"/>
         <TextView
             android:id="@+id/tv_result_wrong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_meaning"
+            android:layout_toRightOf="@+id/tv_result_correct"
+            android:layout_marginLeft="@dimen/statistic_margin_left"
             android:layout_marginTop="@dimen/statistic_margin_top"
             android:text="@string/hello_world"
             android:textColor="@android:color/holo_red_dark"
-            android:textSize="@dimen/learning_screen_text_size" />
+            android:textSize="@dimen/high_score_text_size" 
+            android:background="#CCFFFF"/>
     </RelativeLayout>
 
     <Spinner

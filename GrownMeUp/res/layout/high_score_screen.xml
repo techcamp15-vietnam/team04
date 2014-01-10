@@ -18,7 +18,7 @@
 
     <RelativeLayout
         android:id="@+id/high_score_relative_badge"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/high_score_btn_report"
         android:background="@color/white_transparent"
