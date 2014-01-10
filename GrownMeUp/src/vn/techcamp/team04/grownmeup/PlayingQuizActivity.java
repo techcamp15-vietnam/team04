@@ -434,7 +434,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 						getApplicationContext(),
 						"WOW "
 								+ AchievementRules.badge3
-								+ " item "
+								+ "  "
 								+ allItem.get(currentItem).get(
 										mSQLiteHelper.ITEM_NAME),
 						Toast.LENGTH_SHORT).show();
@@ -450,7 +450,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 						getApplicationContext(),
 						"WOW you"
 								+ AchievementRules.badge4
-								+ " item "
+								+ "  "
 								+ allItem.get(currentItem).get(
 										mSQLiteHelper.ITEM_NAME),
 						Toast.LENGTH_SHORT).show();
@@ -729,7 +729,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 			String fastestTime = achievement.checkFastestStage(sumTime);
 			if (fastestTime.equalsIgnoreCase(AchievementRules.badge5)) {
 				Toast.makeText(getApplicationContext(),
-						"WOW " + AchievementRules.badge5, Toast.LENGTH_SHORT)
+						"WOW, new record " + (int)sumTime + " s", Toast.LENGTH_SHORT)
 						.show();
 				SharedPreferences settings = PlayingQuizActivity.this
 						.getSharedPreferences(AchievementRules.ACHIEVEMENT, 0);
