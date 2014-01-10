@@ -128,25 +128,35 @@ public class LearningActivity extends Activity implements OnClickListener {
 	}
 
 	private void ViewItem() {
-		if (allItem.get(currentItem).get(mSQLiteHelper.SUBJECT_ID).toString()
-				.equals("8")) {
 
+		if (allItem == null || allItem.size() == 0) {
+
+			imgvLearningImage.setImageResource(R.drawable.no_image);
+			tvMeaning
+					.setText("No image in subject.Go to Option to choose another.");
 		} else {
-			InputStream is = null;
-			Log.e("", allItem.get(currentItem).get(mSQLiteHelper.ITEM_IMG_LINK));
-			try {
-				is = getAssets().open(
+			if (allItem.get(currentItem).get(mSQLiteHelper.ITEM_IMG_LINK)
+					.toString().equals("8")) {
+
+			} else {
+				InputStream is = null;
+				Log.e("",
 						allItem.get(currentItem).get(
 								mSQLiteHelper.ITEM_IMG_LINK));
-			} catch (IOException e) {
-				e.printStackTrace();
+				try {
+					is = getAssets().open(
+							allItem.get(currentItem).get(
+									mSQLiteHelper.ITEM_IMG_LINK));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				Drawable d = Drawable.createFromStream(is, null);
+				imgvLearningImage.setImageDrawable(d);
+				tvMeaning.setText(allItem.get(currentItem).get(
+						mSQLiteHelper.ITEM_NAME));
 			}
-			Drawable d = Drawable.createFromStream(is, null);
-			imgvLearningImage.setImageDrawable(d);
-
 		}
-		tvMeaning
-				.setText(allItem.get(currentItem).get(mSQLiteHelper.ITEM_NAME));
+
 	}
 
 	@Override
