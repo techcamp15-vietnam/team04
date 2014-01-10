@@ -75,7 +75,7 @@
             android:name="vn.techcamp.team04.grownmeup.HighScoreActivity"
             android:label="@string/title_activity_high_score"
             android:screenOrientation="landscape"
-            android:theme="@style/NoActionBar" >
+            android:theme="@style/NoActionBar" > 
         </activity>
         <activity
             android:name="vn.techcamp.team04.grownmeup.CreateStageActivity"
@@ -96,7 +96,7 @@
             android:theme="@style/NoActionBar" >
         </activity>
         <activity
-            android:name="vn.techcamp.team04.grownmeup.CameraActivity"
+            android:name="CameraActivity"
             android:label="@string/title_activity_camera" android:theme="@style/NoActionBar" android:screenOrientation="landscape">
         </activity>
     </application>

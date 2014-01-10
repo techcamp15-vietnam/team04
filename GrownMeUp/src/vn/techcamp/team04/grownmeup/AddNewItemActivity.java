@@ -247,6 +247,7 @@ public class AddNewItemActivity extends Activity implements OnClickListener,
 
 	}
 
+	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		if (requestCode == REQUEST_TAKE_PHOTO) {

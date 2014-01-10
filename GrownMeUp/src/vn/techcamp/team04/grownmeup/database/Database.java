@@ -63,8 +63,12 @@ public class Database {
 					"bowl", "cup", "door", "dvd player", "remote", "water can",
 					"lock", "bottle", "trash can" },
 			{ "Animal", "cat", "snake", "dog", "pig", "bee", "bird", "cow",
-					"sheep", "elephant", "horse" }, { "Transport" }, { "City" },
-			{ "Clothes" }, { "Color" }, { "Plant" }, { "Custom" } };
+					"sheep", "elephant", "horse" },
+			{ "Transport", "bike", "boat", "bus", "car", "plane", "truck",
+					"shinkansen", "helicopter", "lorry", "ship" },
+			{ "Clothes", "boots", "dress", "hat", "jacket", "jeans", "pajama",
+					"shirt", "skirt", "slippers", "socks" }, { "City" },
+			{ "Color" }, { "Plant" }, { "Custom" } };
 	// DEFAUT_STAGE format : {{subjectID, stage_name, stage_number,
 	// stage_status, item1ID, item2ID, item3ID, item4ID, item5ID}}
 	private static final String[][] DEFAULT_STAGE = {
@@ -73,7 +77,11 @@ public class Database {
 			{ "1", "stage_3", "3", "0", "11", "12", "13", "14", "15" },
 			{ "1", "stage_4", "4", "0", "16", "17", "18", "19", "20" },
 			{ "2", "stage_1", "1", "0", "21", "22", "23", "24", "25" },
-			{ "2", "stage_2", "2", "0", "26", "27", "28", "29", "30" } };
+			{ "2", "stage_2", "2", "0", "26", "27", "28", "29", "30" },
+			{ "3", "stage_1", "1", "0", "31", "32", "33", "34", "35" },
+			{ "3", "stage_2", "2", "0", "36", "37", "38", "39", "40" },
+			{ "4", "stage_1", "1", "0", "41", "42", "43", "44", "45" },
+			{ "4", "stage_2", "2", "0", "46", "47", "48", "49", "50" }, };
 
 	public Database(Context context) {
 		dbHelper = new mSQLiteHelper(context);

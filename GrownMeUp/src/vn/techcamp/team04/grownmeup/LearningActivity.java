@@ -7,7 +7,6 @@ import java.util.HashMap;
 
 import vn.techcamp.team04.grownmeup.database.Database;
 import vn.techcamp.team04.grownmeup.database.mSQLiteHelper;
-import vn.techcamp.team04.grownmeup.utility.Utility;
 import vn.techcamp.team04.grownmeup.utility.mPlayAudio;
 import vn.techcamp.team04.grownmeup.utility.mTTS;
 import android.os.Bundle;

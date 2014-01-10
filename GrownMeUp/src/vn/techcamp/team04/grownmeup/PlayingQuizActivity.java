@@ -573,6 +573,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 					.setMessage("Correct Answer: " + countCorrectAnswer + "/5")
 					.setPositiveButton("Next Stage",
 							new DialogInterface.OnClickListener() {
+								@Override
 								public void onClick(DialogInterface dialog,
 										int which) {
 
@@ -590,6 +591,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 							})
 					.setNegativeButton("RePlay",
 							new DialogInterface.OnClickListener() {
+								@Override
 								public void onClick(DialogInterface dialog,
 										int which) {
 									countDownTimer.start();
@@ -724,7 +726,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 					editor.commit();
 				}
 			}
-			String fastestTime = achievement.checkFastestStage((float) sumTime);
+			String fastestTime = achievement.checkFastestStage(sumTime);
 			if (fastestTime.equalsIgnoreCase(AchievementRules.badge5)) {
 				Toast.makeText(getApplicationContext(),
 						"WOW " + AchievementRules.badge5, Toast.LENGTH_SHORT)
@@ -732,7 +734,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 				SharedPreferences settings = PlayingQuizActivity.this
 						.getSharedPreferences(AchievementRules.ACHIEVEMENT, 0);
 				SharedPreferences.Editor editor = settings.edit();
-				editor.putFloat(AchievementRules.badge5, (float) sumTime);
+				editor.putFloat(AchievementRules.badge5, sumTime);
 				editor.commit();
 			}
 		}

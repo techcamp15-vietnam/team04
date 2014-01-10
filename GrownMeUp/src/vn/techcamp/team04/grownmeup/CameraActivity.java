@@ -26,7 +26,6 @@ import android.graphics.BitmapFactory.Options;
 import android.graphics.Matrix;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
-import android.hardware.Camera.Size;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -86,16 +85,19 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
 		Log.d(TAG, "surface holder type was set");
 	}
 
+	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		Log.d(TAG, "onRestoreInstanceState");
 		super.onRestoreInstanceState(savedInstanceState);
 	};
 
+	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		Log.d(TAG, "onSaveInstanceState");
 		super.onSaveInstanceState(outState);
 	};
 
+	@Override
 	public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
 		Log.d(TAG, "onKeyDown");
 		if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER) {
@@ -251,6 +253,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
 				builder.setTitle("Choose Crop App");
 				builder.setAdapter(adapter,
 						new DialogInterface.OnClickListener() {
+							@Override
 							public void onClick(DialogInterface dialog, int item) {
 								startActivityForResult(
 										cropOptions.get(item).appIntent,
@@ -273,16 +276,19 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
 		}
 	}
 
+	@Override
 	protected void onResume() {
 		Log.d(TAG, "OnResume()");
 		super.onResume();
 	};
 
+	@Override
 	protected void onStop() {
 		Log.d(TAG, "onStop()");
 		super.onStop();
 	};
 
+	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
 			int height) {
 		Log.d(TAG, "surfaceChanged()");
@@ -309,12 +315,14 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
 		Log.d(TAG, "camera preview is started");
 	}
 
+	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		Log.d(TAG, "surfaceCreated()");
 		camera = Camera.open();
 		Log.d(TAG, "camera opened");
 	}
 
+	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
 		Log.d(TAG, "surfaceDestroyed()");
 		camera.stopPreview();
@@ -388,6 +396,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
 	}
 
 	Camera.ShutterCallback mShutterCallback = new Camera.ShutterCallback() {
+		@Override
 		public void onShutter() {
 			AudioManager mgr = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 			mgr.playSoundEffect(AudioManager.FLAG_PLAY_SOUND);
@@ -395,6 +404,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
 	};
 
 	Camera.PictureCallback mPictureCallbackRaw = new Camera.PictureCallback() {
+		@Override
 		public void onPictureTaken(byte[] data, Camera camera) {
 			Log.d(TAG, "Picture taken, data = " + data);
 			Log.d(TAG, "Prepare to start camera preview");
@@ -405,6 +415,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
 	};
 
 	Camera.PictureCallback mPictureCallbackJpeg = new Camera.PictureCallback() {
+		@Override
 		public void onPictureTaken(byte[] data, Camera camera) {
 			Log.d(TAG, "onPictureTaken()");
 			try {
