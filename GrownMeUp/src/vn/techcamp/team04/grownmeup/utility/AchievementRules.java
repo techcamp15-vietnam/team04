@@ -125,7 +125,7 @@ public class AchievementRules {
 		SharedPreferences settings = this.context.getSharedPreferences(
 				ACHIEVEMENT, 0);
 		float currentTimeRecord = settings.getFloat(badge5, (float) 0.0);
-		if (currentTimeRecord == 0.0 || currentTimeRecord < timeRecorded) {
+		if (currentTimeRecord == 0.0 || currentTimeRecord > timeRecorded) {
 			currentTimeRecord = timeRecorded;
 			SharedPreferences.Editor editor = settings.edit();
 			editor.putFloat(badge5, currentTimeRecord);

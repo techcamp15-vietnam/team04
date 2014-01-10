@@ -393,7 +393,7 @@ public class PlayingQuizActivity extends Activity implements OnClickListener {
 
 	public void calculateResult() {
 
-		sumTime = (int) (sumTime + MAX_TIME - currentTime);
+		sumTime = (int) (sumTime + MAX_TIME / 1000 - currentTime);
 
 		if (answer == correctAnswer) {
 			chosenCorrectAnswer();
